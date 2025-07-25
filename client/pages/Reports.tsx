@@ -1,9 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Download, Calendar, Filter, MapPin, BarChart3 } from "lucide-react";
-import BaatoMap from "@/components/BaatoMap";
-import { useData } from "@/contexts/DataContext";
+import { FileText, Download, Calendar, Filter } from "lucide-react";
 
 export default function Reports() {
   const { mappingRecords, getTotalDistance, getCompletedWeeks } = useData();
