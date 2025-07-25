@@ -5,9 +5,9 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, BarChart3, PieChart, Plus, Edit2, Trash2, TrendingUp } from "lucide-react";
 import WeeklyBarChart from "@/components/charts/WeeklyBarChart";
-import WeeklyUpload from "@/components/WeeklyUpload";
+import CompactWeeklyUpload from "@/components/CompactWeeklyUpload";
 import RecentMappingLogs from "@/components/RecentMappingLogs";
-import BaatoMap from "@/components/BaatoMap";
+import LocationOverview from "@/components/LocationOverview";
 import { useData } from "@/contexts/DataContext";
 
 export default function Dashboard() {
