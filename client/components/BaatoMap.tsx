@@ -25,38 +25,28 @@ export default function BaatoMap({
   className = "",
   markers = []
 }: BaatoMapProps) {
-  const mapRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [searchQuery, setSearchQuery] = useState(location);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapKey, setMapKey] = useState(0);
 
   // Default coordinates for Kathmandu
   const [mapCenter, setMapCenter] = useState({ lat: 27.7172, lng: 85.3240 });
 
+  // Generate map URL
+  const mapSrc = `https://maps.baato.io/?lat=${mapCenter.lat}&lng=${mapCenter.lng}&zoom=12&search=${encodeURIComponent(searchQuery)}`;
+
   useEffect(() => {
-    if (!mapRef.current) return;
+    setMapLoaded(false);
+    // Force re-render of iframe by changing key
+    setMapKey(prev => prev + 1);
 
-    // Initialize Baato Map
-    const initializeMap = () => {
-      if (mapRef.current) {
-        // Create iframe for Baato Maps
-        const iframe = document.createElement('iframe');
-        iframe.src = `https://maps.baato.io/?lat=${mapCenter.lat}&lng=${mapCenter.lng}&zoom=12&search=${encodeURIComponent(searchQuery)}`;
-        iframe.width = '100%';
-        iframe.height = '100%';
-        iframe.style.border = 'none';
-        iframe.style.borderRadius = '8px';
-        iframe.loading = 'lazy';
-        
-        // Clear previous content
-        mapRef.current.innerHTML = '';
-        mapRef.current.appendChild(iframe);
-        
-        setMapLoaded(true);
-      }
-    };
+    // Set loaded after iframe loads
+    const timer = setTimeout(() => {
+      setMapLoaded(true);
+    }, 1000);
 
-    initializeMap();
+    return () => clearTimeout(timer);
   }, [mapCenter, searchQuery]);
 
   const handleSearch = () => {
