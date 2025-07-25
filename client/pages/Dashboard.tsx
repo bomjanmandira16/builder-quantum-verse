@@ -8,6 +8,7 @@ import WeeklyBarChart from "@/components/charts/WeeklyBarChart";
 import CompactWeeklyUpload from "@/components/CompactWeeklyUpload";
 import RecentMappingLogs from "@/components/RecentMappingLogs";
 import LocationOverview from "@/components/LocationOverview";
+import CompletedWeeksGallery from "@/components/CompletedWeeksGallery";
 import { useData } from "@/contexts/DataContext";
 
 export default function Dashboard() {
@@ -106,6 +107,9 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       )}
+
+      {/* Completed Weeks Gallery */}
+      <CompletedWeeksGallery />
 
       {/* Recent Mapping Logs */}
       <RecentMappingLogs />
