@@ -61,6 +61,7 @@ export default function Layout({ children }: LayoutProps) {
     { name: "Dashboard", href: "/", icon: BarChart3 },
     { name: "Reports", href: "/reports", icon: FileText },
     { name: "Analytics", href: "/analytics", icon: TrendingUp },
+    { name: "Team", href: "/team", icon: User },
     { name: "Settings", href: "/settings", icon: Settings },
   ];
 
