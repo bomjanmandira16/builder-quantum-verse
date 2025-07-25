@@ -13,6 +13,7 @@ import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { measurePageLoad, preloadCriticalResources } from "./lib/performance";
+import { DataProvider } from "./contexts/DataContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
