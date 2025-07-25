@@ -139,22 +139,7 @@ export default function Dashboard() {
             <CardTitle className="text-lg font-semibold">Road Length per Week</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {weeklyData.map((data, index) => (
-                <div key={data.week} className="flex items-center gap-3">
-                  <span className="text-sm font-medium w-8">{data.week}</span>
-                  <div className="flex-1 bg-gray-100 rounded-full h-8 relative overflow-hidden">
-                    <div 
-                      className="bg-blue-500 h-full rounded-full transition-all duration-300"
-                      style={{ width: `${(data.km / maxKm) * 100}%` }}
-                    />
-                    <span className="absolute inset-0 flex items-center justify-center text-xs font-medium text-gray-700">
-                      {data.km} km
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <WeeklyBarChart data={weeklyData} />
           </CardContent>
         </Card>
 
@@ -163,47 +148,7 @@ export default function Dashboard() {
             <CardTitle className="text-lg font-semibold">Roads Mapped by Location</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded"></div>
-                    <span className="text-sm">Mountain Pass 23%</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded"></div>
-                    <span className="text-sm">Coastal Road</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-purple-500 rounded"></div>
-                    <span className="text-sm">Urban Grid</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-gray-400 rounded"></div>
-                    <span className="text-sm">Rural Trails 11%</span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-center">
-                  <div className="relative w-32 h-32">
-                    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                      <path
-                        d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"
-                        fill="none"
-                        stroke="#e5e7eb"
-                        strokeWidth="3"
-                      />
-                      <path
-                        d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831"
-                        fill="none"
-                        stroke="#3b82f6"
-                        strokeWidth="3"
-                        strokeDasharray="23, 100"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <LocationPieChart data={locationData} />
           </CardContent>
         </Card>
       </div>
