@@ -7,6 +7,7 @@ import { Calendar, MapPin, BarChart3, PieChart, Plus, Edit2, Trash2, TrendingUp 
 import WeeklyBarChart from "@/components/charts/WeeklyBarChart";
 import WeeklyUpload from "@/components/WeeklyUpload";
 import RecentMappingLogs from "@/components/RecentMappingLogs";
+import BaatoMap from "@/components/BaatoMap";
 import { useData } from "@/contexts/DataContext";
 
 export default function Dashboard() {
