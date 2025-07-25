@@ -29,12 +29,29 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
+  const { getCompletedWeeks, getTotalDistance } = useData();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [notifications] = useState([
+    { id: 1, message: "Week 3 data successfully uploaded", time: "2 hours ago", unread: true },
+    { id: 2, message: "Monthly report generated", time: "1 day ago", unread: false },
+    { id: 3, message: "New team member added", time: "3 days ago", unread: false },
+  ]);
+
+  const unreadCount = notifications.filter(n => n.unread).length;
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      console.log('Searching for:', searchQuery);
+      // In a real app, you'd implement search functionality here
+    }
+  };
 
   const navigation = [
     { name: "Dashboard", href: "/", icon: BarChart3 },
