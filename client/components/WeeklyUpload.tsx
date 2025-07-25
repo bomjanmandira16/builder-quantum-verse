@@ -36,11 +36,10 @@ export default function WeeklyUpload() {
   const { toast } = useToast();
 
   const [weeks, setWeeks] = useState<WeekData[]>(() => {
-    const completedWeeks = getCompletedWeeks();
     return Array.from({ length: 15 }, (_, i) => ({
       id: i + 1,
       weekNumber: i + 1,
-      status: i === 0 || i < completedWeeks ? (i < completedWeeks ? 'completed' : 'current') : 'locked',
+      status: 'locked' as WeekData['status'],
       location: '',
       startDate: '',
       endDate: '',
@@ -48,6 +47,15 @@ export default function WeeklyUpload() {
       roadLength: ''
     }));
   });
+
+  // Update week statuses when completed weeks change
+  useEffect(() => {
+    const completedWeeks = getCompletedWeeks();
+    setWeeks(prev => prev.map((week, i) => ({
+      ...week,
+      status: i < completedWeeks ? 'completed' : (i === completedWeeks ? 'current' : 'locked')
+    })));
+  }, [getCompletedWeeks]);
 
   const [draggedWeek, setDraggedWeek] = useState<number | null>(null);
 
