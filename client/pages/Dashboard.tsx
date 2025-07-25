@@ -37,7 +37,12 @@ export default function Dashboard() {
     { week: "W15", km: 29.1 },
   ];
 
-  const maxKm = Math.max(...weeklyData.map(d => d.km));
+  const locationData = [
+    { name: "Mountain Pass", percentage: 23, color: "#3b82f6" },
+    { name: "Coastal Road", percentage: 31, color: "#10b981" },
+    { name: "Urban Grid", percentage: 35, color: "#8b5cf6" },
+    { name: "Rural Trails", percentage: 11, color: "#9ca3af" },
+  ];
 
   return (
     <div className="space-y-6">
