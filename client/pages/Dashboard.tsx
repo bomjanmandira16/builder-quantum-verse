@@ -148,10 +148,10 @@ export default function Dashboard() {
                       <MapPin className={`h-4 w-4 ${index === 0 ? 'text-yellow-600' : 'text-blue-600'}`} />
                     </div>
                     <div>
-                      <p className="font-medium flex items-center gap-2">
+                      <div className="font-medium flex items-center gap-2">
                         {location}
                         {index === 0 && <Badge className="bg-yellow-100 text-yellow-800 text-xs">Top</Badge>}
-                      </p>
+                      </div>
                       <p className="text-sm text-gray-600">View on Baato Maps</p>
                     </div>
                   </div>
