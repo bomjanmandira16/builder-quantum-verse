@@ -38,7 +38,7 @@ export default function Dashboard() {
       <WeeklyUpload />
 
       {/* Statistics Cards */}
-      <div className="grid md:grid-cols-4 gap-6">
+      <div className="grid md:grid-cols-3 gap-6">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
