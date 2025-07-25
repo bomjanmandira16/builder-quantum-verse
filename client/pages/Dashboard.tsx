@@ -70,20 +70,35 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="p-6">
+        <Card className="col-span-full">
+          <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Top Location</p>
-                <p className="text-xl font-bold text-ellipsis overflow-hidden">
-                  {topLocation}
-                </p>
-                <p className="text-xs text-muted-foreground mt-1">Location with highest mapped distance</p>
-              </div>
-              <div className="p-3 bg-purple-100 rounded-lg">
-                <MapPin className="h-6 w-6 text-purple-600" />
+                <CardTitle className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-purple-600" />
+                  Top Location: {topLocation}
+                </CardTitle>
+                <CardDescription>
+                  {topLocation === 'No data'
+                    ? 'Complete your first week to see location data'
+                    : `Location with highest mapped distance (${locationStats[topLocation]?.toFixed(1) || 0} km)`
+                  }
+                </CardDescription>
               </div>
             </div>
+          </CardHeader>
+          <CardContent>
+            <BaatoMap
+              location={topLocation === 'No data' ? 'Kathmandu, Nepal' : topLocation}
+              height="300px"
+              showControls={true}
+              markers={Object.entries(locationStats).map(([location, distance]) => ({
+                lat: 27.7172, // Default coordinates - in a real app you'd geocode the location
+                lng: 85.3240,
+                title: location,
+                description: `${distance.toFixed(1)} km mapped`
+              }))}
+            />
           </CardContent>
         </Card>
 
