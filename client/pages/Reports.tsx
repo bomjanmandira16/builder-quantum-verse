@@ -4,8 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { FileText, Download, Calendar, Filter } from "lucide-react";
 
 export default function Reports() {
-  const { mappingRecords, getTotalDistance, getCompletedWeeks } = useData();
-
   const reports = [
     {
       id: 1,
