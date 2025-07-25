@@ -2,18 +2,18 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
-  BarChart3, 
-  FileText, 
-  TrendingUp, 
-  Settings, 
-  Search, 
-  Bell, 
+import {
+  BarChart3,
+  FileText,
+  TrendingUp,
+  Settings,
+  Search,
+  Bell,
   HelpCircle,
   User,
   Menu
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface LayoutProps {
   children: React.ReactNode;
