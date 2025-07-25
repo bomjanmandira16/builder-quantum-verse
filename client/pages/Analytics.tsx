@@ -95,30 +95,6 @@ export default function Analytics() {
         </Card>
       </div>
 
-      {/* Geographic Analytics */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MapPin className="h-5 w-5 text-blue-600" />
-            Geographic Analytics
-          </CardTitle>
-          <CardDescription>Interactive map showing all mapped locations and their performance</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <BaatoMap
-            location="Nepal"
-            height="400px"
-            showControls={true}
-            markers={Object.entries(locationAnalytics).map(([location, stats]) => ({
-              lat: 27.7172 + Math.random() * 0.1, // Random offset for demo
-              lng: 85.3240 + Math.random() * 0.1,
-              title: location,
-              description: `${stats.distance.toFixed(1)} km mapped over ${stats.weeks} weeks`
-            }))}
-          />
-        </CardContent>
-      </Card>
-
       {/* Analytics Cards */}
       <div className="grid lg:grid-cols-2 gap-6">
         <Card>
@@ -144,7 +120,7 @@ export default function Analytics() {
               </div>
             ) : (
               <div className="text-center py-8 text-muted-foreground">
-                <MapPin className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                <BarChart3 className="h-12 w-12 mx-auto mb-4 opacity-50" />
                 <p>Complete some weeks to see location analytics</p>
               </div>
             )}
@@ -153,14 +129,31 @@ export default function Analytics() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Trend Analysis</CardTitle>
-            <CardDescription>Weekly progress trends and patterns</CardDescription>
+            <CardTitle>Weekly Trends</CardTitle>
+            <CardDescription>Your mapping performance over time</CardDescription>
           </CardHeader>
-          <CardContent className="h-64 flex items-center justify-center text-muted-foreground">
-            <div className="text-center">
-              <LineChart className="h-12 w-12 mx-auto mb-4 opacity-50" />
-              <p>Advanced trend analysis coming soon</p>
-            </div>
+          <CardContent>
+            {mappingRecords.length > 0 ? (
+              <div className="space-y-4">
+                {mappingRecords.map((record) => (
+                  <div key={record.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div>
+                      <p className="font-medium">Week {record.week}</p>
+                      <p className="text-sm text-gray-600">{record.location}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-bold text-green-600">{record.length.toFixed(1)} km</p>
+                      <p className="text-sm text-gray-600">{record.date}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-muted-foreground">
+                <LineChart className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                <p>Complete some weeks to see trends</p>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
