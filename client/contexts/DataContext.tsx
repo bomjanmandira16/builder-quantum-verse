@@ -114,6 +114,23 @@ export function DataProvider({ children }: { children: ReactNode }) {
     saveToStorage(updatedRecords);
   };
 
+  const addReport = (report: Omit<Report, 'id' | 'createdAt'>) => {
+    const newReport: Report = {
+      ...report,
+      id: Date.now().toString(),
+      createdAt: new Date(),
+    };
+    const updatedReports = [newReport, ...reports];
+    setReports(updatedReports);
+    saveReportsToStorage(updatedReports);
+  };
+
+  const deleteReport = (id: string) => {
+    const updatedReports = reports.filter(report => report.id !== id);
+    setReports(updatedReports);
+    saveReportsToStorage(updatedReports);
+  };
+
   const getTotalDistance = () => {
     return mappingRecords
       .filter(record => record.status === 'completed')
