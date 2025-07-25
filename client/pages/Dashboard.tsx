@@ -121,6 +121,10 @@ export default function Dashboard() {
         </Card>
       </div>
 
+      {/* Top Location Map */}
+      <div className="grid gap-6">
+      </div>
+
       {/* Charts Section */}
       {weeklyData.length > 0 && (
         <Card>
