@@ -37,13 +37,13 @@ export default function Dashboard() {
       <WeeklyUpload />
 
       {/* Statistics Cards */}
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-4 gap-6">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Total KM Mapped</p>
-                <p className="text-3xl font-bold">321.6 km</p>
+                <p className="text-3xl font-bold">{totalDistance.toFixed(1)} km</p>
                 <p className="text-xs text-muted-foreground mt-1">Complete distance covered across all data</p>
               </div>
               <div className="p-3 bg-blue-100 rounded-lg">
@@ -57,9 +57,11 @@ export default function Dashboard() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Weeks Logged</p>
-                <p className="text-3xl font-bold">15 Weeks</p>
-                <p className="text-xs text-muted-foreground mt-1">From January 1st to mid-April annually</p>
+                <p className="text-sm font-medium text-muted-foreground">Weeks Completed</p>
+                <p className="text-3xl font-bold">{completedWeeks}</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {completedWeeks === 0 ? "Start your first week" : "Weeks successfully logged"}
+                </p>
               </div>
               <div className="p-3 bg-green-100 rounded-lg">
                 <Calendar className="h-6 w-6 text-green-600" />
@@ -73,11 +75,30 @@ export default function Dashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Top Location</p>
-                <p className="text-3xl font-bold">Urban Grid</p>
+                <p className="text-xl font-bold text-ellipsis overflow-hidden">
+                  {topLocation}
+                </p>
                 <p className="text-xs text-muted-foreground mt-1">Location with highest mapped distance</p>
               </div>
               <div className="p-3 bg-purple-100 rounded-lg">
                 <MapPin className="h-6 w-6 text-purple-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Weekly Average</p>
+                <p className="text-3xl font-bold">{averageKmPerWeek.toFixed(1)} km</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {efficiency.toFixed(0)}% of target efficiency
+                </p>
+              </div>
+              <div className="p-3 bg-orange-100 rounded-lg">
+                <TrendingUp className="h-6 w-6 text-orange-600" />
               </div>
             </div>
           </CardContent>
