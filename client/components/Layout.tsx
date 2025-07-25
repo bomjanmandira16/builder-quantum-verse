@@ -54,7 +54,12 @@ export default function Layout({ children }: LayoutProps) {
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F67d3cd4f4d464a76af4015fa874bdeea%2F60ac84203645468c97574dd2e6beec68?format=webp&width=800"
                   alt="BaatoMetrics Logo"
-                  className="w-8 h-8 object-contain"
+                  className="w-8 h-8 object-contain transition-opacity duration-200"
+                  loading="eager"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
                 />
                 <h1 className="text-xl font-bold text-gray-900">BaatoMetrics</h1>
               </div>
