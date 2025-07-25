@@ -327,8 +327,8 @@ export default function Reports() {
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                           <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction 
-                            onClick={() => deleteReport(report.id)}
+                          <AlertDialogAction
+                            onClick={() => handleDeleteReport(report.id)}
                             className="bg-red-600 hover:bg-red-700"
                           >
                             Delete Report
