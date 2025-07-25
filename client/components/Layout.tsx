@@ -161,7 +161,7 @@ export default function Layout({ children }: LayoutProps) {
         <div className="px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2 text-sm text-gray-600">
-              <span>© 2024 RoadMetrics.</span>
+              <span>© 2024 BaatoMetrics.</span>
               <span>All rights reserved.</span>
             </div>
             <div className="flex items-center gap-4 text-sm">
