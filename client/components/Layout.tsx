@@ -115,13 +115,15 @@ export default function Layout({ children }: LayoutProps) {
             {/* Search and Actions */}
             <div className="flex items-center gap-4">
               {/* Search */}
-              <div className="hidden lg:flex relative">
+              <form onSubmit={handleSearch} className="hidden lg:flex relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   placeholder="Search for roads, locations, or data..."
                   className="pl-10 w-80"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
-              </div>
+              </form>
 
               {/* Action Buttons */}
               <div className="flex items-center gap-2">
