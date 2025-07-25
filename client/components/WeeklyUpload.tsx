@@ -313,15 +313,21 @@ export default function WeeklyUpload() {
                     {/* Uploaded Images Grid */}
                     {week.images.length > 0 && (
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {week.images.map((image, index) => (
-                          <div key={index} className="relative group">
-                            <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                              <img
-                                src={URL.createObjectURL(image)}
-                                alt={`Upload ${index + 1}`}
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
+                        {week.images.map((image, index) => {
+                          const imageUrl = URL.createObjectURL(image);
+                          return (
+                            <div key={`${week.id}-${index}`} className="relative group">
+                              <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                                <img
+                                  src={imageUrl}
+                                  alt={`Upload ${index + 1}`}
+                                  className="w-full h-full object-cover"
+                                  onLoad={() => {
+                                    // Clean up object URL to prevent memory leaks
+                                    setTimeout(() => URL.revokeObjectURL(imageUrl), 100);
+                                  }}
+                                />
+                              </div>
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-lg" />
                             {week.status !== 'completed' && (
                               <Button
@@ -336,8 +342,9 @@ export default function WeeklyUpload() {
                             <div className="absolute bottom-1 left-1 bg-black/50 text-white text-xs px-1 rounded">
                               {image.name.split('.')[0].substring(0, 8)}...
                             </div>
-                          </div>
-                        ))}
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
