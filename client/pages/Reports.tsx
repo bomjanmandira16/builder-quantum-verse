@@ -121,8 +121,8 @@ export default function Reports() {
     });
   };
 
-  const deleteReport = (reportId: string) => {
-    setReports(prev => prev.filter(r => r.id !== reportId));
+  const handleDeleteReport = (reportId: string) => {
+    deleteReport(reportId);
     toast({
       title: "Report Deleted",
       description: "The report has been removed successfully."
