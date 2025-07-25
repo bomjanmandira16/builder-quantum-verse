@@ -45,25 +45,36 @@ export function DataProvider({ children }: { children: ReactNode }) {
     return [];
   });
 
+  // Save to localStorage whenever data changes
+  const saveToStorage = (records: MappingRecord[]) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('baatometrics-data', JSON.stringify(records));
+    }
+  };
+
   const addMappingRecord = (record: Omit<MappingRecord, 'id' | 'createdAt'>) => {
     const newRecord: MappingRecord = {
       ...record,
       id: Date.now().toString(),
       createdAt: new Date(),
     };
-    setMappingRecords(prev => [...prev, newRecord]);
+    const updatedRecords = [...mappingRecords, newRecord];
+    setMappingRecords(updatedRecords);
+    saveToStorage(updatedRecords);
   };
 
   const updateMappingRecord = (id: string, updates: Partial<MappingRecord>) => {
-    setMappingRecords(prev =>
-      prev.map(record =>
-        record.id === id ? { ...record, ...updates } : record
-      )
+    const updatedRecords = mappingRecords.map(record =>
+      record.id === id ? { ...record, ...updates } : record
     );
+    setMappingRecords(updatedRecords);
+    saveToStorage(updatedRecords);
   };
 
   const deleteMappingRecord = (id: string) => {
-    setMappingRecords(prev => prev.filter(record => record.id !== id));
+    const updatedRecords = mappingRecords.filter(record => record.id !== id);
+    setMappingRecords(updatedRecords);
+    saveToStorage(updatedRecords);
   };
 
   const getTotalDistance = () => {
