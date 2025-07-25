@@ -57,6 +57,25 @@ export function DataProvider({ children }: { children: ReactNode }) {
     return [];
   });
 
+  const [reports, setReports] = useState<Report[]>(() => {
+    // Load reports from localStorage
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('baatometrics-reports');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          return parsed.map((report: any) => ({
+            ...report,
+            createdAt: new Date(report.createdAt)
+          }));
+        } catch (error) {
+          console.error('Error loading saved reports:', error);
+        }
+      }
+    }
+    return [];
+  });
+
   // Save to localStorage whenever data changes
   const saveToStorage = (records: MappingRecord[]) => {
     if (typeof window !== 'undefined') {
