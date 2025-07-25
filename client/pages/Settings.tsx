@@ -48,11 +48,11 @@ export default function Settings() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
-                <Input id="email" type="email" defaultValue="john.doe@roadmetrics.com" />
+                <Input id="email" type="email" defaultValue="john.doe@baatometrics.com" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="organization">Organization</Label>
-                <Input id="organization" defaultValue="RoadMetrics Inc." />
+                <Input id="organization" defaultValue="BaatoMetrics Inc." />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="role">Role</Label>
