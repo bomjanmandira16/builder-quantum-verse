@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, BarChart3, PieChart, Plus, Edit2, Trash2 } from "lucide-react";
+import { Calendar, MapPin, BarChart3, PieChart, Plus, Edit2, Trash2, TrendingUp } from "lucide-react";
 import WeeklyBarChart from "@/components/charts/WeeklyBarChart";
-import LocationPieChart from "@/components/charts/LocationPieChart";
 import WeeklyUpload from "@/components/WeeklyUpload";
+import RecentMappingLogs from "@/components/RecentMappingLogs";
+import { useData } from "@/contexts/DataContext";
 
 export default function Dashboard() {
   const mappingLogs = [
