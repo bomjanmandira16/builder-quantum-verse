@@ -1,7 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, TrendingDown, BarChart3, LineChart, PieChart, MapPin } from "lucide-react";
-import BaatoMap from "@/components/BaatoMap";
+import { TrendingUp, TrendingDown, BarChart3, LineChart, PieChart } from "lucide-react";
 import { useData } from "@/contexts/DataContext";
 
 export default function Analytics() {
