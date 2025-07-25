@@ -46,9 +46,11 @@ export default function Layout({ children }: LayoutProps) {
             {/* Logo and Brand */}
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">BM</span>
-                </div>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F67d3cd4f4d464a76af4015fa874bdeea%2F60ac84203645468c97574dd2e6beec68?format=webp&width=800"
+                  alt="BaatoMetrics Logo"
+                  className="w-8 h-8 object-contain"
+                />
                 <h1 className="text-xl font-bold text-gray-900">BaatoMetrics</h1>
               </div>
 
