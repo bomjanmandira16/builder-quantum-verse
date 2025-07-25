@@ -26,7 +26,24 @@ interface DataContextType {
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: ReactNode }) {
-  const [mappingRecords, setMappingRecords] = useState<MappingRecord[]>([]);
+  const [mappingRecords, setMappingRecords] = useState<MappingRecord[]>(() => {
+    // Load from localStorage on initialization
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('baatometrics-data');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          return parsed.map((record: any) => ({
+            ...record,
+            createdAt: new Date(record.createdAt)
+          }));
+        } catch (error) {
+          console.error('Error loading saved data:', error);
+        }
+      }
+    }
+    return [];
+  });
 
   const addMappingRecord = (record: Omit<MappingRecord, 'id' | 'createdAt'>) => {
     const newRecord: MappingRecord = {
