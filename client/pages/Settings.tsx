@@ -217,6 +217,102 @@ export default function Settings() {
           </Card>
         </TabsContent>
 
+        <TabsContent value="maps">
+          <Card>
+            <CardHeader className="flex flex-row items-center gap-4">
+              <div className="p-2 bg-green-100 rounded-lg">
+                <MapPin className="h-6 w-6 text-green-600" />
+              </div>
+              <div>
+                <CardTitle>Map Preferences</CardTitle>
+                <CardDescription>Configure map settings and default locations</CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="defaultLocation">Default Map Center</Label>
+                  <Select defaultValue="kathmandu">
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="kathmandu">Kathmandu, Nepal</SelectItem>
+                      <SelectItem value="pokhara">Pokhara, Nepal</SelectItem>
+                      <SelectItem value="chitwan">Chitwan, Nepal</SelectItem>
+                      <SelectItem value="current">Current Location</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="mapStyle">Map Style</Label>
+                  <Select defaultValue="standard">
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="standard">Standard</SelectItem>
+                      <SelectItem value="satellite">Satellite</SelectItem>
+                      <SelectItem value="terrain">Terrain</SelectItem>
+                      <SelectItem value="hybrid">Hybrid</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="zoomLevel">Default Zoom Level</Label>
+                  <Select defaultValue="12">
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="10">City Level (10)</SelectItem>
+                      <SelectItem value="12">District Level (12)</SelectItem>
+                      <SelectItem value="14">Street Level (14)</SelectItem>
+                      <SelectItem value="16">Building Level (16)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="space-y-4 pt-4 border-t">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-medium">Show Location Markers</p>
+                    <p className="text-sm text-muted-foreground">Display markers for all mapped locations</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-medium">Auto-center on New Data</p>
+                    <p className="text-sm text-muted-foreground">Automatically center map when new locations are added</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-medium">High Resolution Maps</p>
+                    <p className="text-sm text-muted-foreground">Use higher quality map tiles (uses more data)</p>
+                  </div>
+                  <Switch />
+                </div>
+              </div>
+
+              {/* Map Preview */}
+              <div className="space-y-4 pt-4 border-t">
+                <Label>Map Preview</Label>
+                <BaatoMap
+                  location="Kathmandu, Nepal"
+                  height="200px"
+                  showControls={false}
+                />
+              </div>
+
+              <Button>Save Map Settings</Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
         <TabsContent value="appearance">
           <Card>
             <CardHeader className="flex flex-row items-center gap-4">
