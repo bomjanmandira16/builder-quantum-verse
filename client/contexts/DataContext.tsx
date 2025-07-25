@@ -24,9 +24,12 @@ export interface Report {
 
 interface DataContextType {
   mappingRecords: MappingRecord[];
+  reports: Report[];
   addMappingRecord: (record: Omit<MappingRecord, 'id' | 'createdAt'>) => void;
   updateMappingRecord: (id: string, updates: Partial<MappingRecord>) => void;
   deleteMappingRecord: (id: string) => void;
+  addReport: (report: Omit<Report, 'id' | 'createdAt'>) => void;
+  deleteReport: (id: string) => void;
   getTotalDistance: () => number;
   getCompletedWeeks: () => number;
   getWeeklyData: () => Array<{ week: string; km: number }>;
