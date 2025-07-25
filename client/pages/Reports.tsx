@@ -114,51 +114,7 @@ export default function Reports() {
         </Card>
       </div>
 
-      {/* Geographic Report Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MapPin className="h-5 w-5 text-purple-600" />
-            Geographic Reporting Dashboard
-          </CardTitle>
-          <CardDescription>
-            Visual representation of your mapping activities across different locations
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid lg:grid-cols-3 gap-6 mb-6">
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <BarChart3 className="h-8 w-8 mx-auto text-blue-600 mb-2" />
-              <p className="text-2xl font-bold text-blue-600">{getTotalDistance().toFixed(1)} km</p>
-              <p className="text-sm text-gray-600">Total Mapped</p>
-            </div>
-            <div className="text-center p-4 bg-green-50 rounded-lg">
-              <Calendar className="h-8 w-8 mx-auto text-green-600 mb-2" />
-              <p className="text-2xl font-bold text-green-600">{getCompletedWeeks()}</p>
-              <p className="text-sm text-gray-600">Weeks Completed</p>
-            </div>
-            <div className="text-center p-4 bg-purple-50 rounded-lg">
-              <MapPin className="h-8 w-8 mx-auto text-purple-600 mb-2" />
-              <p className="text-2xl font-bold text-purple-600">
-                {new Set(mappingRecords.map(r => r.location)).size}
-              </p>
-              <p className="text-sm text-gray-600">Unique Locations</p>
-            </div>
-          </div>
 
-          <BaatoMap
-            location="Nepal"
-            height="350px"
-            showControls={true}
-            markers={mappingRecords.map((record, index) => ({
-              lat: 27.7172 + (index * 0.01), // Demo positioning
-              lng: 85.3240 + (index * 0.01),
-              title: record.location,
-              description: `Week ${record.week}: ${record.length} km mapped`
-            }))}
-          />
-        </CardContent>
-      </Card>
 
       {/* Reports List */}
       <Card>
