@@ -233,17 +233,100 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-16">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <span>© 2024 BaatoMetrics.</span>
-              <span>All rights reserved.</span>
+        <div className="px-4 sm:px-6 lg:px-8 py-8">
+          {/* Footer Content */}
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            {/* Company Info */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F67d3cd4f4d464a76af4015fa874bdeea%2F60ac84203645468c97574dd2e6beec68?format=webp&width=800"
+                  alt="BaatoMetrics Logo"
+                  className="w-8 h-8 object-contain"
+                />
+                <span className="text-lg font-bold text-gray-900">BaatoMetrics</span>
+              </div>
+              <p className="text-sm text-gray-600">
+                Professional road mapping and analytics platform for efficient infrastructure management.
+              </p>
+              <div className="flex gap-3">
+                <Button variant="ghost" size="sm" className="p-2">
+                  <Github className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="p-2">
+                  <Twitter className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="p-2">
+                  <Mail className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="space-y-4">
+              <h4 className="font-semibold text-gray-900">Quick Stats</h4>
+              <div className="space-y-2 text-sm text-gray-600">
+                <div className="flex justify-between">
+                  <span>Total Distance:</span>
+                  <span className="font-medium">{getTotalDistance().toFixed(1)} km</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Completed Weeks:</span>
+                  <span className="font-medium">{getCompletedWeeks()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Active Users:</span>
+                  <span className="font-medium">1</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h4 className="font-semibold text-gray-900">Quick Links</h4>
+              <div className="space-y-2">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="block text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Contact & Support */}
+            <div className="space-y-4">
+              <h4 className="font-semibold text-gray-900">Support</h4>
+              <div className="space-y-2 text-sm text-gray-600">
+                <a href="mailto:support@baatometrics.com" className="flex items-center gap-2 hover:text-gray-900">
+                  <Mail className="h-3 w-3" />
+                  support@baatometrics.com
+                </a>
+                <a href="tel:+977-1-4444444" className="flex items-center gap-2 hover:text-gray-900">
+                  <Phone className="h-3 w-3" />
+                  +977-1-4444444
+                </a>
+                <div className="flex items-center gap-2">
+                  <HelpCircle className="h-3 w-3" />
+                  24/7 Support Available
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Bottom */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-gray-200">
+            <div className="flex items-center gap-4 text-sm text-gray-600">
+              <span>© 2024 BaatoMetrics. All rights reserved.</span>
             </div>
             <div className="flex items-center gap-4 text-sm">
-              <button className="text-gray-600 hover:text-gray-900">English</button>
-              <button className="text-gray-600 hover:text-gray-900">Help</button>
-              <button className="text-gray-600 hover:text-gray-900">Privacy</button>
-              <button className="text-gray-600 hover:text-gray-900">Terms</button>
+              <button className="text-gray-600 hover:text-gray-900 transition-colors">Privacy Policy</button>
+              <button className="text-gray-600 hover:text-gray-900 transition-colors">Terms of Service</button>
+              <button className="text-gray-600 hover:text-gray-900 transition-colors">Help Center</button>
+              <button className="text-gray-600 hover:text-gray-900 transition-colors">API Docs</button>
             </div>
           </div>
         </div>
