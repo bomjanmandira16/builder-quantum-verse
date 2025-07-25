@@ -187,13 +187,36 @@ export default function Layout({ children }: LayoutProps) {
               
               {/* Mobile Search */}
               <div className="pt-4 pb-2">
-                <div className="relative">
+                <form onSubmit={handleSearch} className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
-                    placeholder="Search..."
+                    placeholder="Search for roads, locations, or data..."
                     className="pl-10"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                </div>
+                </form>
+              </div>
+
+              {/* Mobile Notifications & Profile */}
+              <div className="pt-2 pb-4 border-t border-gray-200 space-y-2">
+                <Button variant="ghost" className="w-full justify-start gap-3">
+                  <Bell className="h-4 w-4" />
+                  Notifications
+                  {unreadCount > 0 && (
+                    <Badge className="ml-auto bg-red-500 text-white">
+                      {unreadCount}
+                    </Badge>
+                  )}
+                </Button>
+                <Button variant="ghost" className="w-full justify-start gap-3">
+                  <UserCircle className="h-4 w-4" />
+                  Profile
+                </Button>
+                <Button variant="ghost" className="w-full justify-start gap-3">
+                  <HelpCircle className="h-4 w-4" />
+                  Help & Support
+                </Button>
               </div>
             </div>
           </div>
