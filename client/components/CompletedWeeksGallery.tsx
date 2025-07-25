@@ -112,8 +112,9 @@ export default function CompletedWeeksGallery() {
                     {week.images.slice(0, 4).map((image, index) => (
                       <Dialog key={index}>
                         <DialogTrigger asChild>
-                          <div
-                            className="aspect-square bg-gray-100 rounded cursor-pointer hover:bg-gray-200 transition-colors overflow-hidden"
+                          <Button
+                            variant="ghost"
+                            className="aspect-square bg-gray-100 rounded cursor-pointer hover:bg-gray-200 transition-colors overflow-hidden p-0 h-auto"
                             onClick={() => {
                               setSelectedWeek(week.week);
                               setSelectedImageIndex(index);
@@ -128,7 +129,7 @@ export default function CompletedWeeksGallery() {
                                 setTimeout(() => URL.revokeObjectURL(img.src), 100);
                               }}
                             />
-                          </div>
+                          </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-4xl w-full">
                           <DialogHeader>
@@ -226,6 +227,39 @@ export default function CompletedWeeksGallery() {
                             View All ({week.images.length})
                           </Button>
                         </DialogTrigger>
+                        <DialogContent className="max-w-4xl w-full">
+                          <DialogHeader>
+                            <DialogTitle className="flex items-center gap-2">
+                              <Calendar className="h-4 w-4" />
+                              Week {week.week} - {week.location} (All Images)
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => openInBaatoMaps(week.location)}
+                                className="ml-auto"
+                              >
+                                <ExternalLink className="h-4 w-4 mr-1" />
+                                View in Baato Maps
+                              </Button>
+                            </DialogTitle>
+                          </DialogHeader>
+
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
+                            {week.images.map((image, imgIndex) => (
+                              <div key={imgIndex} className="aspect-square bg-gray-100 rounded overflow-hidden">
+                                <img
+                                  src={URL.createObjectURL(image)}
+                                  alt={`Week ${week.week} - Image ${imgIndex + 1}`}
+                                  className="w-full h-full object-cover"
+                                  onLoad={(e) => {
+                                    const img = e.target as HTMLImageElement;
+                                    setTimeout(() => URL.revokeObjectURL(img.src), 100);
+                                  }}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </DialogContent>
                       </Dialog>
                     </div>
                   )}
