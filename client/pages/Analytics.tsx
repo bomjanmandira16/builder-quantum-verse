@@ -5,6 +5,19 @@ import BaatoMap from "@/components/BaatoMap";
 import { useData } from "@/contexts/DataContext";
 
 export default function Analytics() {
+  const { mappingRecords } = useData();
+
+  const locationAnalytics = mappingRecords.reduce((acc, record) => {
+    if (record.status === 'completed') {
+      if (!acc[record.location]) {
+        acc[record.location] = { distance: 0, weeks: 0 };
+      }
+      acc[record.location].distance += record.length;
+      acc[record.location].weeks += 1;
+    }
+    return acc;
+  }, {} as Record<string, { distance: number; weeks: number }>);
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
