@@ -119,20 +119,34 @@ export default function BaatoMap({
       )}
       
       <div
-        ref={mapRef}
-        className={`bg-gray-100 rounded-lg border overflow-hidden ${
+        className={`bg-gray-100 rounded-lg border overflow-hidden relative ${
           isFullscreen ? 'fixed inset-0 z-50 bg-white' : ''
         }`}
         style={{ height: isFullscreen ? '100vh' : height }}
       >
         {!mapLoaded && (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
             <div className="text-center">
               <div className="animate-spin w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
               <p className="text-gray-600">Loading Baato Map...</p>
             </div>
           </div>
         )}
+
+        <iframe
+          key={mapKey}
+          src={mapSrc}
+          width="100%"
+          height="100%"
+          style={{ border: 'none', borderRadius: '8px' }}
+          loading="lazy"
+          title="Baato Map"
+          onLoad={() => setMapLoaded(true)}
+          onError={() => {
+            setMapLoaded(true);
+            console.warn('Map failed to load');
+          }}
+        />
       </div>
       
       {isFullscreen && (
