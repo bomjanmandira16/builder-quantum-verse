@@ -11,9 +11,12 @@ import Dashboard from "./pages/Dashboard";
 import Reports from "./pages/Reports";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
+import Login from "./pages/Login";
+import TeamManagement from "./pages/TeamManagement";
 import NotFound from "./pages/NotFound";
 import { measurePageLoad, preloadCriticalResources } from "./lib/performance";
 import { DataProvider } from "./contexts/DataContext";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
