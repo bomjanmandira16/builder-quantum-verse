@@ -47,43 +47,8 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Data Input Section */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold">ArcGIS Data Input</CardTitle>
-            <CardDescription>Input total road length and date range from ArcGIS Pro.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="road-length">Total Road Length (KM)</Label>
-              <Input id="road-length" placeholder="0" className="mt-1" />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="start-date">Start Date</Label>
-                <Input id="start-date" type="date" className="mt-1" />
-              </div>
-              <div>
-                <Label htmlFor="end-date">End Date</Label>
-                <Input id="end-date" type="date" className="mt-1" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold">Image Upload</CardTitle>
-            <CardDescription>Upload images related to the road mapping project.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-              <Button variant="outline">Upload Image</Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Weekly Upload System */}
+      <WeeklyUpload />
 
       {/* Statistics Cards */}
       <div className="grid md:grid-cols-3 gap-6">
