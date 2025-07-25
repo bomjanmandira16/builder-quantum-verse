@@ -6,23 +6,13 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 import { FileText, Download, Calendar, Plus, Trash2, Eye, BarChart3 } from "lucide-react";
-import { useData } from "@/contexts/DataContext";
+import { useData, Report } from "@/contexts/DataContext";
 import { format } from "date-fns";
 
-interface Report {
-  id: string;
-  title: string;
-  description: string;
-  type: 'weekly' | 'monthly' | 'location' | 'summary';
-  createdAt: Date;
-  data: any;
-}
-
 export default function Reports() {
-  const { mappingRecords, getTotalDistance, getCompletedWeeks } = useData();
+  const { mappingRecords, reports, addReport, deleteReport, getTotalDistance, getCompletedWeeks } = useData();
   const { toast } = useToast();
-  
-  const [reports, setReports] = useState<Report[]>([]);
+
   const [isGenerating, setIsGenerating] = useState(false);
 
   const generateWeeklyReport = () => {
