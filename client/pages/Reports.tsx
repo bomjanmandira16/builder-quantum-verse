@@ -85,15 +85,12 @@ export default function Reports() {
     setIsGenerating(true);
     setTimeout(() => {
       const uniqueLocations = [...new Set(mappingRecords.map(r => r.location))];
-      const newReport: Report = {
-        id: Date.now().toString(),
+      addReport({
         title: `Location Analysis - ${uniqueLocations.length} Locations`,
         description: `Detailed breakdown of mapping activities across ${uniqueLocations.join(', ')}`,
         type: 'location',
-        createdAt: new Date(),
         data: { locations: uniqueLocations, records: mappingRecords }
-      };
-      setReports(prev => [newReport, ...prev]);
+      });
       setIsGenerating(false);
       toast({
         title: "Report Generated",
