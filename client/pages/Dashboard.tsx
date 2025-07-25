@@ -121,9 +121,65 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      {/* Top Location Map */}
-      <div className="grid gap-6">
-      </div>
+      {/* Location Overview */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <MapPin className="h-5 w-5 text-purple-600" />
+            Mapped Locations
+          </CardTitle>
+          <CardDescription>
+            Click on any location to view it on Baato Maps
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {Object.keys(locationStats).length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {Object.entries(locationStats)
+                .sort(([,a], [,b]) => b - a)
+                .map(([location, distance], index) => (
+                <div
+                  key={location}
+                  className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg hover:from-blue-100 hover:to-purple-100 cursor-pointer transition-all duration-200 border hover:border-blue-300"
+                  onClick={() => window.open(`https://maps.baato.io/?search=${encodeURIComponent(location)}`, '_blank')}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`p-2 rounded-lg ${index === 0 ? 'bg-yellow-100' : 'bg-blue-100'}`}>
+                      <MapPin className={`h-4 w-4 ${index === 0 ? 'text-yellow-600' : 'text-blue-600'}`} />
+                    </div>
+                    <div>
+                      <p className="font-medium flex items-center gap-2">
+                        {location}
+                        {index === 0 && <Badge className="bg-yellow-100 text-yellow-800 text-xs">Top</Badge>}
+                      </p>
+                      <p className="text-sm text-gray-600">View on Baato Maps</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-blue-600">{distance.toFixed(1)} km</p>
+                    <p className="text-xs text-gray-600">mapped</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <MapPin className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No locations mapped yet</h3>
+              <p className="text-gray-500 mb-4">
+                Complete your first week to see location data and interactive maps.
+              </p>
+              <Button
+                variant="outline"
+                onClick={() => window.open('https://maps.baato.io/', '_blank')}
+              >
+                <MapPin className="h-4 w-4 mr-2" />
+                Explore Baato Maps
+              </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Charts Section */}
       {weeklyData.length > 0 && (
