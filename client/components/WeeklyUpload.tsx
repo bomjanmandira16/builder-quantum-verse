@@ -32,13 +32,22 @@ interface WeekData {
 }
 
 export default function WeeklyUpload() {
-  const [weeks, setWeeks] = useState<WeekData[]>([
-    { id: 1, weekNumber: 1, status: 'current', location: '', startDate: '', endDate: '', images: [], roadLength: '' },
-    { id: 2, weekNumber: 2, status: 'locked', location: '', startDate: '', endDate: '', images: [], roadLength: '' },
-    { id: 3, weekNumber: 3, status: 'locked', location: '', startDate: '', endDate: '', images: [], roadLength: '' },
-    { id: 4, weekNumber: 4, status: 'locked', location: '', startDate: '', endDate: '', images: [], roadLength: '' },
-    { id: 5, weekNumber: 5, status: 'locked', location: '', startDate: '', endDate: '', images: [], roadLength: '' },
-  ]);
+  const { mappingRecords, addMappingRecord, updateMappingRecord, getCompletedWeeks } = useData();
+  const { toast } = useToast();
+
+  const [weeks, setWeeks] = useState<WeekData[]>(() => {
+    const completedWeeks = getCompletedWeeks();
+    return Array.from({ length: 15 }, (_, i) => ({
+      id: i + 1,
+      weekNumber: i + 1,
+      status: i === 0 || i < completedWeeks ? (i < completedWeeks ? 'completed' : 'current') : 'locked',
+      location: '',
+      startDate: '',
+      endDate: '',
+      images: [],
+      roadLength: ''
+    }));
+  });
 
   const [draggedWeek, setDraggedWeek] = useState<number | null>(null);
 
