@@ -13,10 +13,12 @@ import {
   BarChart3
 } from "lucide-react";
 import { useData } from "@/contexts/DataContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function ProfilePopover() {
   const [isOpen, setIsOpen] = useState(false);
   const { getTotalDistance, getCompletedWeeks } = useData();
+  const { currentUser, logout } = useAuth();
 
   const handleLogout = () => {
     // In a real app, you'd handle logout logic here
