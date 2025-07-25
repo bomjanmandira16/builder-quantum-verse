@@ -27,15 +27,12 @@ export default function Reports() {
 
     setIsGenerating(true);
     setTimeout(() => {
-      const newReport: Report = {
-        id: Date.now().toString(),
+      addReport({
         title: `Weekly Summary - ${format(new Date(), 'MMM yyyy')}`,
         description: `Summary of ${getCompletedWeeks()} completed weeks with ${getTotalDistance().toFixed(1)} km mapped`,
         type: 'weekly',
-        createdAt: new Date(),
         data: mappingRecords
-      };
-      setReports(prev => [newReport, ...prev]);
+      });
       setIsGenerating(false);
       toast({
         title: "Report Generated",
