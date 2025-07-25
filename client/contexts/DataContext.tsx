@@ -13,6 +13,15 @@ export interface MappingRecord {
   createdAt: Date;
 }
 
+export interface Report {
+  id: string;
+  title: string;
+  description: string;
+  type: 'weekly' | 'monthly' | 'location' | 'summary';
+  createdAt: Date;
+  data: any;
+}
+
 interface DataContextType {
   mappingRecords: MappingRecord[];
   addMappingRecord: (record: Omit<MappingRecord, 'id' | 'createdAt'>) => void;
