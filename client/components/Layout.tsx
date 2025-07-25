@@ -47,9 +47,9 @@ export default function Layout({ children }: LayoutProps) {
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">RM</span>
+                  <span className="text-white font-bold text-sm">BM</span>
                 </div>
-                <h1 className="text-xl font-bold text-gray-900">RoadMetrics</h1>
+                <h1 className="text-xl font-bold text-gray-900">BaatoMetrics</h1>
               </div>
 
               {/* Desktop Navigation */}
