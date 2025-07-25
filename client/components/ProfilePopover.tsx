@@ -21,8 +21,7 @@ export default function ProfilePopover() {
   const { currentUser, logout } = useAuth();
 
   const handleLogout = () => {
-    // In a real app, you'd handle logout logic here
-    console.log('Logging out...');
+    logout();
     setIsOpen(false);
   };
 
