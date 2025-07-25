@@ -124,14 +124,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const loginWithGoogle = async (): Promise<boolean> => {
-    // Simulate Google OAuth
+    // Simulate Google OAuth - in real implementation this would use Google API
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
+    // Simulate getting real Google user data
+    const googleUserData = {
+      email: 'bomjan.mandira@gmail.com',
+      name: 'Bomjan Mandira',
+      avatar: 'https://lh3.googleusercontent.com/a/default-user=s96-c', // Google profile pic
+      given_name: 'Bomjan',
+      family_name: 'Mandira'
+    };
+
     const user: User = {
-      id: 'google_123',
-      email: 'user@gmail.com',
-      name: 'John Doe',
-      avatar: 'https://via.placeholder.com/40',
+      id: 'google_' + Date.now(),
+      email: googleUserData.email,
+      name: googleUserData.name,
+      avatar: googleUserData.avatar,
       role: 'admin',
       joinedAt: new Date(),
       lastActive: new Date(),
