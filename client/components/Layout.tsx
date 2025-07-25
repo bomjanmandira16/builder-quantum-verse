@@ -126,8 +126,8 @@ export default function Layout({ children }: LayoutProps) {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white">
-            <div className="px-4 py-2 space-y-1">
+          <div className="md:hidden border-t border-gray-200 bg-white transition-all duration-200 ease-in-out">
+            <div className="px-4 py-2 space-y-1 animate-in slide-in-from-top-2">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 return (
