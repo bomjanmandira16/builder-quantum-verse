@@ -155,9 +155,12 @@ export function DataProvider({ children }: { children: ReactNode }) {
     <DataContext.Provider
       value={{
         mappingRecords,
+        reports,
         addMappingRecord,
         updateMappingRecord,
         deleteMappingRecord,
+        addReport,
+        deleteReport,
         getTotalDistance,
         getCompletedWeeks,
         getWeeklyData,
