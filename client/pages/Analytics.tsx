@@ -27,72 +27,76 @@ export default function Analytics() {
         <Button>Export Report</Button>
       </div>
 
-      {/* Key Metrics */}
-      <div className="grid md:grid-cols-4 gap-6">
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Total Distance</p>
-                <p className="text-2xl font-bold">1,284.7 km</p>
-                <div className="flex items-center gap-1 mt-1">
-                  <TrendingUp className="h-3 w-3 text-green-600" />
-                  <span className="text-xs text-green-600">+12.5%</span>
+      {/* Key Metrics - Real Data Only */}
+      {mappingRecords.length > 0 ? (
+        <div className="grid md:grid-cols-4 gap-6">
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Total Distance</p>
+                  <p className="text-2xl font-bold">{mappingRecords.reduce((sum, r) => sum + r.length, 0).toFixed(1)} km</p>
+                  <p className="text-xs text-muted-foreground mt-1">Across all weeks</p>
                 </div>
+                <BarChart3 className="h-8 w-8 text-blue-600" />
               </div>
-              <BarChart3 className="h-8 w-8 text-blue-600" />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Avg Weekly</p>
-                <p className="text-2xl font-bold">85.6 km</p>
-                <div className="flex items-center gap-1 mt-1">
-                  <TrendingDown className="h-3 w-3 text-red-600" />
-                  <span className="text-xs text-red-600">-3.2%</span>
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Avg Weekly</p>
+                  <p className="text-2xl font-bold">
+                    {(mappingRecords.reduce((sum, r) => sum + r.length, 0) / mappingRecords.length).toFixed(1)} km
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">Per completed week</p>
                 </div>
+                <LineChart className="h-8 w-8 text-green-600" />
               </div>
-              <LineChart className="h-8 w-8 text-green-600" />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Peak Week</p>
-                <p className="text-2xl font-bold">156.3 km</p>
-                <div className="flex items-center gap-1 mt-1">
-                  <TrendingUp className="h-3 w-3 text-green-600" />
-                  <span className="text-xs text-green-600">+8.1%</span>
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Peak Week</p>
+                  <p className="text-2xl font-bold">
+                    {Math.max(...mappingRecords.map(r => r.length)).toFixed(1)} km
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">Best single week</p>
                 </div>
+                <PieChart className="h-8 w-8 text-purple-600" />
               </div>
-              <PieChart className="h-8 w-8 text-purple-600" />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Efficiency</p>
-                <p className="text-2xl font-bold">94.2%</p>
-                <div className="flex items-center gap-1 mt-1">
-                  <TrendingUp className="h-3 w-3 text-green-600" />
-                  <span className="text-xs text-green-600">+2.8%</span>
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Locations</p>
+                  <p className="text-2xl font-bold">{Object.keys(locationAnalytics).length}</p>
+                  <p className="text-xs text-muted-foreground mt-1">Unique areas mapped</p>
                 </div>
+                <BarChart3 className="h-8 w-8 text-orange-600" />
               </div>
-              <BarChart3 className="h-8 w-8 text-orange-600" />
-            </div>
+            </CardContent>
+          </Card>
+        </div>
+      ) : (
+        <Card>
+          <CardContent className="p-12 text-center">
+            <BarChart3 className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">No Analytics Data</h3>
+            <p className="text-gray-500">
+              Complete some weeks in the Dashboard to see your analytics and insights.
+            </p>
           </CardContent>
         </Card>
-      </div>
+      )}
 
       {/* Analytics Cards */}
       <div className="grid lg:grid-cols-2 gap-6">
