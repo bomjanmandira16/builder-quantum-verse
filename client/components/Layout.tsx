@@ -159,7 +159,10 @@ export default function Layout({ children }: LayoutProps) {
       </header>
 
       {/* Main Content */}
-      <main className="px-4 sm:px-6 lg:px-8 py-8 max-w-7xl mx-auto">
+      <main className={cn(
+        "px-4 sm:px-6 lg:px-8 py-8 max-w-7xl mx-auto transition-all duration-300",
+        isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      )}>
         {children}
       </main>
 
