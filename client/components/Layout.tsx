@@ -22,6 +22,8 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useData } from "@/contexts/DataContext";
+import NotificationPopover from "./NotificationPopover";
+import ProfilePopover from "./ProfilePopover";
 
 interface LayoutProps {
   children: React.ReactNode;
