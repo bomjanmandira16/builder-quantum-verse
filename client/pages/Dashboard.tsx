@@ -141,7 +141,7 @@ export default function Dashboard() {
                 <div
                   key={location}
                   className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg hover:from-blue-100 hover:to-purple-100 cursor-pointer transition-all duration-200 border hover:border-blue-300"
-                  onClick={() => window.open(`https://maps.baato.io/?search=${encodeURIComponent(location)}`, '_blank')}
+                  onClick={() => window.open(`https://maps.baato.io/?q=${encodeURIComponent(location)}`, '_blank')}
                 >
                   <div className="flex items-center gap-3">
                     <div className={`p-2 rounded-lg ${index === 0 ? 'bg-yellow-100' : 'bg-blue-100'}`}>
