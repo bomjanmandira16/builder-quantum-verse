@@ -34,8 +34,8 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Weekly Upload System */}
-      <WeeklyUpload />
+      {/* Compact Weekly Upload System */}
+      <CompactWeeklyUpload />
 
       {/* Statistics Cards */}
       <div className="grid md:grid-cols-3 gap-6">
