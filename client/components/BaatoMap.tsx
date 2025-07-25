@@ -33,8 +33,8 @@ export default function BaatoMap({
   // Default coordinates for Kathmandu
   const [mapCenter, setMapCenter] = useState({ lat: 27.7172, lng: 85.3240 });
 
-  // Generate map URL
-  const mapSrc = `https://maps.baato.io/?lat=${mapCenter.lat}&lng=${mapCenter.lng}&zoom=12&search=${encodeURIComponent(searchQuery)}`;
+  // Generate map URL - fix search parameter
+  const mapSrc = `https://maps.baato.io/?lat=${mapCenter.lat}&lng=${mapCenter.lng}&zoom=12&q=${encodeURIComponent(searchQuery)}`;
 
   useEffect(() => {
     setMapLoaded(false);
