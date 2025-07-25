@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import {
   BarChart3,
   FileText,
@@ -11,9 +12,16 @@ import {
   Bell,
   HelpCircle,
   User,
-  Menu
+  Menu,
+  LogOut,
+  UserCircle,
+  Github,
+  Twitter,
+  Mail,
+  Phone
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useData } from "@/contexts/DataContext";
 
 interface LayoutProps {
   children: React.ReactNode;
