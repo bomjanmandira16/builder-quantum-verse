@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useData } from "@/contexts/DataContext";
+import { useAuth } from "@/contexts/AuthContext";
 import NotificationPopover from "./NotificationPopover";
 import ProfilePopover from "./ProfilePopover";
 
