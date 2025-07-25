@@ -133,25 +133,14 @@ export default function Dashboard() {
       </div>
 
       {/* Charts Section */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold">Road Length per Week</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <WeeklyBarChart data={weeklyData} />
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold">Roads Mapped by Location</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <LocationPieChart data={locationData} />
-          </CardContent>
-        </Card>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">Road Length per Week</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <WeeklyBarChart data={weeklyData} />
+        </CardContent>
+      </Card>
 
       {/* Recent Mapping Logs */}
       <Card>
