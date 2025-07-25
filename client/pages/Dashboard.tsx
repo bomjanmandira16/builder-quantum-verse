@@ -10,41 +10,26 @@ import RecentMappingLogs from "@/components/RecentMappingLogs";
 import { useData } from "@/contexts/DataContext";
 
 export default function Dashboard() {
-  const mappingLogs = [
-    { date: "2024-01-01", week: 1, location: "Mountain Pass", length: 15.2 },
-    { date: "2024-01-08", week: 2, location: "Coastal Road", length: 22.8 },
-    { date: "2024-01-15", week: 3, location: "Urban Grid", length: 30.5 },
-    { date: "2024-01-22", week: 4, location: "Rural Trails", length: 18.1 },
-    { date: "2024-01-29", week: 5, location: "Mountain Pass", length: 18 },
-    { date: "2024-02-05", week: 6, location: "Coastal Road", length: 25.5 },
-    { date: "2024-02-12", week: 7, location: "Urban Grid", length: 33 },
-    { date: "2024-02-19", week: 8, location: "Rural Trails", length: 12.5 },
-  ];
+  const { getTotalDistance, getCompletedWeeks, getWeeklyData, mappingRecords } = useData();
 
-  const weeklyData = [
-    { week: "W1", km: 15.2 },
-    { week: "W2", km: 22.8 },
-    { week: "W3", km: 30.5 },
-    { week: "W4", km: 18.1 },
-    { week: "W5", km: 18 },
-    { week: "W6", km: 25.5 },
-    { week: "W7", km: 33 },
-    { week: "W8", km: 12.5 },
-    { week: "W9", km: 28.3 },
-    { week: "W10", km: 19.7 },
-    { week: "W11", km: 24.8 },
-    { week: "W12", km: 31.2 },
-    { week: "W13", km: 17.9 },
-    { week: "W14", km: 26.4 },
-    { week: "W15", km: 29.1 },
-  ];
+  const totalDistance = getTotalDistance();
+  const completedWeeks = getCompletedWeeks();
+  const weeklyData = getWeeklyData();
 
-  const locationData = [
-    { name: "Mountain Pass", percentage: 23, color: "#3b82f6" },
-    { name: "Coastal Road", percentage: 31, color: "#10b981" },
-    { name: "Urban Grid", percentage: 35, color: "#8b5cf6" },
-    { name: "Rural Trails", percentage: 11, color: "#9ca3af" },
-  ];
+  // Get top location
+  const locationStats = mappingRecords.reduce((acc, record) => {
+    if (record.status === 'completed') {
+      acc[record.location] = (acc[record.location] || 0) + record.length;
+    }
+    return acc;
+  }, {} as Record<string, number>);
+
+  const topLocation = Object.entries(locationStats).sort(([,a], [,b]) => b - a)[0]?.[0] || 'No data';
+
+  // Calculate efficiency (assuming target of 25km per week)
+  const targetKmPerWeek = 25;
+  const averageKmPerWeek = completedWeeks > 0 ? totalDistance / completedWeeks : 0;
+  const efficiency = Math.min(100, (averageKmPerWeek / targetKmPerWeek) * 100);
 
   return (
     <div className="space-y-6">
