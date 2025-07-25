@@ -108,7 +108,7 @@ export default function Analytics() {
                   <div
                     key={location}
                     className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-blue-50 cursor-pointer transition-colors"
-                    onClick={() => window.open(`https://maps.baato.io/?search=${encodeURIComponent(location)}`, '_blank')}
+                    onClick={() => window.open(`https://maps.baato.io/?q=${encodeURIComponent(location)}`, '_blank')}
                   >
                     <div>
                       <p className="font-medium">{location}</p>
