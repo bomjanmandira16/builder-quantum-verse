@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { User, Bell, Shield, Database, Palette, Globe } from "lucide-react";
+import { User, Bell, Shield, Database, Palette, Globe, MapPin } from "lucide-react";
+import BaatoMap from "@/components/BaatoMap";
 
 export default function Settings() {
   return (
