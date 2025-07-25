@@ -106,70 +106,20 @@ export default function Dashboard() {
       </div>
 
       {/* Charts Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg font-semibold">Road Length per Week</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <WeeklyBarChart data={weeklyData} />
-        </CardContent>
-      </Card>
+      {weeklyData.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">Road Length per Week</CardTitle>
+            <CardDescription>Progress tracking across completed weeks</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <WeeklyBarChart data={weeklyData} />
+          </CardContent>
+        </Card>
+      )}
 
       {/* Recent Mapping Logs */}
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <div>
-            <CardTitle className="text-lg font-semibold">Recent Mapping Logs</CardTitle>
-          </div>
-          <Button className="bg-blue-600 hover:bg-blue-700">
-            <Plus className="h-4 w-4 mr-2" />
-            Add New Log
-          </Button>
-        </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Date</th>
-                  <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Week</th>
-                  <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Location</th>
-                  <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Length (KM)</th>
-                  <th className="text-left py-3 px-4 font-medium text-sm text-muted-foreground">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mappingLogs.map((log, index) => (
-                  <tr key={index} className="border-b hover:bg-gray-50">
-                    <td className="py-3 px-4 text-sm">{log.date}</td>
-                    <td className="py-3 px-4 text-sm">{log.week}</td>
-                    <td className="py-3 px-4 text-sm">{log.location}</td>
-                    <td className="py-3 px-4 text-sm">{log.length}</td>
-                    <td className="py-3 px-4">
-                      <div className="flex gap-2">
-                        <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700">
-                          Edit
-                        </Button>
-                        <Button variant="ghost" size="sm" className="text-red-600 hover:text-red-700">
-                          Delete
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          
-          {/* Pagination */}
-          <div className="flex items-center justify-center gap-2 mt-6">
-            <Button variant="outline" size="sm">Previous</Button>
-            <Button variant="outline" size="sm" className="bg-blue-600 text-white">1</Button>
-            <Button variant="outline" size="sm">2</Button>
-            <Button variant="outline" size="sm">Next</Button>
-          </div>
-        </CardContent>
-      </Card>
+      <RecentMappingLogs />
     </div>
   );
 }
