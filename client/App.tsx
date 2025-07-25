@@ -14,7 +14,18 @@ import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { measurePageLoad, preloadCriticalResources } from "./lib/performance";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      cacheTime: 10 * 60 * 1000, // 10 minutes
+    },
+  },
+});
+
+// Initialize performance monitoring
+measurePageLoad();
+preloadCriticalResources();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
