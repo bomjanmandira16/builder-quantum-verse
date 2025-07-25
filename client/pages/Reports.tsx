@@ -76,7 +76,7 @@ export default function Reports() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid md:grid-cols-4 gap-4">
+      <div className="grid md:grid-cols-3 gap-4">
         <Card className="cursor-pointer hover:shadow-md transition-shadow">
           <CardContent className="p-6 text-center">
             <FileText className="h-8 w-8 mx-auto text-blue-600 mb-3" />
@@ -90,14 +90,6 @@ export default function Reports() {
             <Calendar className="h-8 w-8 mx-auto text-green-600 mb-3" />
             <h3 className="font-semibold mb-2">Monthly Report</h3>
             <p className="text-sm text-muted-foreground">Comprehensive monthly analysis</p>
-          </CardContent>
-        </Card>
-
-        <Card className="cursor-pointer hover:shadow-md transition-shadow">
-          <CardContent className="p-6 text-center">
-            <MapPin className="h-8 w-8 mx-auto text-purple-600 mb-3" />
-            <h3 className="font-semibold mb-2">Geographic Report</h3>
-            <p className="text-sm text-muted-foreground">Location-based analysis</p>
           </CardContent>
         </Card>
 
