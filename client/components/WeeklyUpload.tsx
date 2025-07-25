@@ -77,9 +77,25 @@ export default function WeeklyUpload() {
   const completeWeek = (weekId: number) => {
     const week = weeks.find(w => w.id === weekId);
     if (!week || !week.location || !week.startDate || !week.endDate || !week.roadLength) {
-      alert('Please fill in all required fields before completing the week.');
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields before completing the week.",
+        variant: "destructive"
+      });
       return;
     }
+
+    // Add to mapping records
+    addMappingRecord({
+      date: week.endDate,
+      week: week.weekNumber,
+      location: week.location,
+      length: parseFloat(week.roadLength),
+      startDate: week.startDate,
+      endDate: week.endDate,
+      images: week.images,
+      status: 'completed'
+    });
 
     // Mark current week as completed
     updateWeek(weekId, { status: 'completed' });
@@ -89,6 +105,11 @@ export default function WeeklyUpload() {
     if (nextWeek) {
       updateWeek(nextWeek.id, { status: 'current' });
     }
+
+    toast({
+      title: "Week Completed!",
+      description: `Week ${week.weekNumber} has been completed and added to your mapping logs.`,
+    });
   };
 
   const getStatusIcon = (status: WeekData['status']) => {
