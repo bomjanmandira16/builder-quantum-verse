@@ -58,15 +58,12 @@ export default function Reports() {
         return acc;
       }, {} as Record<string, number>);
 
-      const newReport: Report = {
-        id: Date.now().toString(),
+      addReport({
         title: `Monthly Analysis - ${format(new Date(), 'MMM yyyy')}`,
         description: `Comprehensive analysis covering ${Object.keys(locationStats).length} locations`,
         type: 'monthly',
-        createdAt: new Date(),
         data: { records: mappingRecords, locationStats }
-      };
-      setReports(prev => [newReport, ...prev]);
+      });
       setIsGenerating(false);
       toast({
         title: "Report Generated",
