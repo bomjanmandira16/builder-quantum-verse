@@ -6,6 +6,8 @@ import BaatoMap from "@/components/BaatoMap";
 import { useData } from "@/contexts/DataContext";
 
 export default function Reports() {
+  const { mappingRecords, getTotalDistance, getCompletedWeeks } = useData();
+
   const reports = [
     {
       id: 1,
