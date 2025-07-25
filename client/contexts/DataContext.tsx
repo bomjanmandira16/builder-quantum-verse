@@ -83,6 +83,12 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const saveReportsToStorage = (reportsList: Report[]) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('baatometrics-reports', JSON.stringify(reportsList));
+    }
+  };
+
   const addMappingRecord = (record: Omit<MappingRecord, 'id' | 'createdAt'>) => {
     const newRecord: MappingRecord = {
       ...record,
