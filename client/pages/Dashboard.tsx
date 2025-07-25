@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, BarChart3, PieChart, Plus, Edit2, Trash2 } from "lucide-react";
 import WeeklyBarChart from "@/components/charts/WeeklyBarChart";
 import LocationPieChart from "@/components/charts/LocationPieChart";
+import WeeklyUpload from "@/components/WeeklyUpload";
 
 export default function Dashboard() {
   const mappingLogs = [
