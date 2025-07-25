@@ -105,10 +105,14 @@ export default function Analytics() {
             {Object.keys(locationAnalytics).length > 0 ? (
               <div className="space-y-4">
                 {Object.entries(locationAnalytics).map(([location, stats]) => (
-                  <div key={location} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div
+                    key={location}
+                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-blue-50 cursor-pointer transition-colors"
+                    onClick={() => window.open(`https://maps.baato.io/?search=${encodeURIComponent(location)}`, '_blank')}
+                  >
                     <div>
                       <p className="font-medium">{location}</p>
-                      <p className="text-sm text-gray-600">{stats.weeks} weeks completed</p>
+                      <p className="text-sm text-gray-600">{stats.weeks} weeks completed • Click to view on map</p>
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-blue-600">{stats.distance.toFixed(1)} km</p>
