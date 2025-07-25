@@ -50,8 +50,8 @@ export default function BaatoMap({
   }, [mapCenter, searchQuery]);
 
   const handleSearch = () => {
-    // Update map with new search query
-    setSearchQuery(searchQuery);
+    // Update map with new search query - this will trigger useEffect
+    setSearchQuery(searchQuery.trim());
   };
 
   const toggleFullscreen = () => {
