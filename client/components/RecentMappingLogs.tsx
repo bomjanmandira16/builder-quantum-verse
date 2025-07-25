@@ -137,7 +137,11 @@ export default function RecentMappingLogs() {
                   </td>
                   <td className="py-3 px-4 text-sm">{record.week}</td>
                   <td className="py-3 px-4 text-sm">
-                    <div className="flex items-center gap-2">
+                    <div
+                      className="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition-colors"
+                      onClick={() => window.open(`https://maps.baato.io/?search=${encodeURIComponent(record.location)}`, '_blank')}
+                      title="Click to view on Baato Maps"
+                    >
                       <MapPin className="h-3 w-3 text-gray-400" />
                       {record.location}
                     </div>
