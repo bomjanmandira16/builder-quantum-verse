@@ -129,25 +129,14 @@ export default function Layout({ children }: LayoutProps) {
 
               {/* Action Buttons */}
               <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="hidden sm:flex relative"
-                  title="Notifications"
-                >
-                  <Bell className="h-4 w-4" />
-                  {unreadCount > 0 && (
-                    <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-red-500 hover:bg-red-500">
-                      {unreadCount}
-                    </Badge>
-                  )}
-                </Button>
+                <NotificationPopover
+                  notifications={notifications.map(n => ({ ...n, type: 'info' as const }))}
+                  unreadCount={unreadCount}
+                />
                 <Button variant="ghost" size="sm" className="hidden sm:flex" title="Help">
                   <HelpCircle className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="sm" title="Profile">
-                  <UserCircle className="h-4 w-4" />
-                </Button>
+                <ProfilePopover />
 
                 {/* Mobile menu button */}
                 <Button
