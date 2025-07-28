@@ -50,14 +50,14 @@ export default function TeamManagement() {
       const success = await inviteTeamMember(inviteEmail, inviteRole);
       if (success) {
         toast({
-          title: "Invitation Sent! 📧",
-          description: `Email invitation sent to ${inviteEmail} as ${inviteRole}.`
+          title: "Invitation Sent Successfully! 📧",
+          description: `${inviteEmail} will receive an email invitation to join as ${inviteRole}. Check the browser console for email preview.`
         });
 
         addNotification({
           type: 'success',
           title: 'Team Member Invited',
-          message: `${inviteEmail} invited as ${inviteRole.toUpperCase()}. They will receive an email with join instructions.`,
+          message: `${inviteEmail} invited as ${inviteRole.toUpperCase()}. They will receive an email with join instructions and a secure invitation link.`,
           actionType: 'team_update'
         });
 
@@ -67,7 +67,7 @@ export default function TeamManagement() {
       } else {
         toast({
           title: "Invitation Failed",
-          description: "Unable to send invitation. Please try again.",
+          description: "Unable to send invitation email. Check your internet connection and try again.",
           variant: "destructive"
         });
       }
