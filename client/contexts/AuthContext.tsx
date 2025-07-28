@@ -31,7 +31,7 @@ interface AuthContextType {
   inviteTeamMember: (email: string, role: User['role']) => Promise<boolean>;
   updateUserRole: (userId: string, role: User['role']) => void;
   removeTeamMember: (userId: string) => void;
-  updateProfile: (userId: string, updates: Partial<User>) => void;
+  updateProfile: (updates: Partial<User>) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
