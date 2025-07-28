@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
-import { Link } from 'react-router-dom';
-import { 
-  UserCircle, 
-  Settings, 
-  HelpCircle, 
-  LogOut, 
+import { Link } from "react-router-dom";
+import {
+  UserCircle,
+  Settings,
+  HelpCircle,
+  LogOut,
   User,
   FileText,
-  BarChart3
+  BarChart3,
 } from "lucide-react";
 import { useData } from "@/contexts/DataContext";
 import { useAuth } from "@/contexts/AuthContext";
@@ -54,13 +58,21 @@ export default function ProfilePopover() {
             ) : (
               <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-semibold">
-                  {currentUser?.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                  {currentUser?.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .toUpperCase()}
                 </span>
               </div>
             )}
             <div>
-              <h3 className="font-semibold text-gray-900">{currentUser?.name}</h3>
-              <p className="text-sm text-gray-600 capitalize">{currentUser?.role}</p>
+              <h3 className="font-semibold text-gray-900">
+                {currentUser?.name}
+              </h3>
+              <p className="text-sm text-gray-600 capitalize">
+                {currentUser?.role}
+              </p>
             </div>
           </div>
         </div>
@@ -85,16 +97,16 @@ export default function ProfilePopover() {
               Settings
             </Button>
           </Link>
-          
+
           <Separator className="my-2" />
-          
+
           <Button variant="ghost" className="w-full justify-start gap-3">
             <HelpCircle className="h-4 w-4" />
             Help & Support
           </Button>
-          
-          <Button 
-            variant="ghost" 
+
+          <Button
+            variant="ghost"
             className="w-full justify-start gap-3 text-red-600 hover:text-red-700 hover:bg-red-50"
             onClick={handleLogout}
           >

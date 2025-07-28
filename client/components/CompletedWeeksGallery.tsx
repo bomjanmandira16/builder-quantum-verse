@@ -1,15 +1,27 @@
 import { useState, useCallback } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { 
-  Calendar, 
-  MapPin, 
-  Image as ImageIcon, 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Calendar,
+  MapPin,
+  Image as ImageIcon,
   ExternalLink,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
 import { useData } from "@/contexts/DataContext";
 
@@ -19,29 +31,32 @@ export default function CompletedWeeksGallery() {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const completedWeeks = mappingRecords
-    .filter(record => record.status === 'completed')
+    .filter((record) => record.status === "completed")
     .sort((a, b) => a.week - b.week);
 
   const openInBaatoMaps = useCallback((location: string) => {
     try {
       const url = `https://maps.baato.io/?q=${encodeURIComponent(location)}`;
-      console.log('Opening Baato Maps:', url);
-      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      console.log("Opening Baato Maps:", url);
+      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
       if (!newWindow) {
-        alert('Please allow popups for this site to open maps');
+        alert("Please allow popups for this site to open maps");
       }
     } catch (error) {
-      console.error('Error opening Baato Maps:', error);
-      alert('Unable to open maps. Please try again.');
+      console.error("Error opening Baato Maps:", error);
+      alert("Unable to open maps. Please try again.");
     }
   }, []);
 
-  const selectedWeekData = selectedWeek 
-    ? completedWeeks.find(week => week.week === selectedWeek)
+  const selectedWeekData = selectedWeek
+    ? completedWeeks.find((week) => week.week === selectedWeek)
     : null;
 
   const nextImage = () => {
-    if (selectedWeekData && selectedImageIndex < selectedWeekData.images.length - 1) {
+    if (
+      selectedWeekData &&
+      selectedImageIndex < selectedWeekData.images.length - 1
+    ) {
       setSelectedImageIndex(selectedImageIndex + 1);
     }
   };
@@ -57,22 +72,25 @@ export default function CompletedWeeksGallery() {
     try {
       return URL.createObjectURL(file);
     } catch (error) {
-      console.error('Error creating object URL:', error);
-      return '';
+      console.error("Error creating object URL:", error);
+      return "";
     }
   }, []);
 
   // Helper function to handle image load and cleanup
-  const handleImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.target as HTMLImageElement;
-    setTimeout(() => {
-      try {
-        URL.revokeObjectURL(img.src);
-      } catch (error) {
-        console.error('Error revoking object URL:', error);
-      }
-    }, 100);
-  }, []);
+  const handleImageLoad = useCallback(
+    (e: React.SyntheticEvent<HTMLImageElement>) => {
+      const img = e.target as HTMLImageElement;
+      setTimeout(() => {
+        try {
+          URL.revokeObjectURL(img.src);
+        } catch (error) {
+          console.error("Error revoking object URL:", error);
+        }
+      }, 100);
+    },
+    [],
+  );
 
   if (completedWeeks.length === 0) {
     return (
@@ -82,7 +100,9 @@ export default function CompletedWeeksGallery() {
             <Calendar className="h-5 w-5 text-blue-600" />
             Completed Week Maps
           </CardTitle>
-          <CardDescription>View uploaded maps from completed weeks</CardDescription>
+          <CardDescription>
+            View uploaded maps from completed weeks
+          </CardDescription>
         </CardHeader>
         <CardContent className="text-center py-8">
           <ImageIcon className="h-12 w-12 mx-auto text-gray-400 mb-4" />
@@ -112,7 +132,10 @@ export default function CompletedWeeksGallery() {
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="bg-green-50 text-green-700">
+                  <Badge
+                    variant="outline"
+                    className="bg-green-50 text-green-700"
+                  >
                     Week {week.week}
                   </Badge>
                   <Button
@@ -124,17 +147,19 @@ export default function CompletedWeeksGallery() {
                     <MapPin className="h-3 w-3" />
                   </Button>
                 </div>
-                <span className="text-xs text-gray-500">
-                  {week.length} km
-                </span>
+                <span className="text-xs text-gray-500">{week.length} km</span>
               </div>
 
               <div className="mb-3">
-                <p className="font-medium text-sm truncate" title={week.location}>
+                <p
+                  className="font-medium text-sm truncate"
+                  title={week.location}
+                >
                   {week.location}
                 </p>
                 <p className="text-xs text-gray-500">
-                  {new Date(week.startDate).toLocaleDateString()} - {new Date(week.endDate).toLocaleDateString()}
+                  {new Date(week.startDate).toLocaleDateString()} -{" "}
+                  {new Date(week.endDate).toLocaleDateString()}
                 </p>
               </div>
 
@@ -145,7 +170,7 @@ export default function CompletedWeeksGallery() {
                       if (!image || !(image instanceof File)) {
                         return null;
                       }
-                      
+
                       const imageUrl = createImageUrl(image);
                       if (!imageUrl) {
                         return null;
@@ -186,70 +211,92 @@ export default function CompletedWeeksGallery() {
                                 </Button>
                               </DialogTitle>
                             </DialogHeader>
-                            
-                            {selectedWeekData && 
-                             selectedWeekData.images[selectedImageIndex] && 
-                             selectedWeekData.images[selectedImageIndex] instanceof File && (
-                              <div className="relative">
-                                <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                                  <img
-                                    src={createImageUrl(selectedWeekData.images[selectedImageIndex])}
-                                    alt={`Week ${selectedWeekData.week} - Image ${selectedImageIndex + 1}`}
-                                    className="w-full h-full object-contain"
-                                    onLoad={handleImageLoad}
-                                  />
-                                </div>
-                                
-                                {selectedWeekData.images.length > 1 && (
-                                  <div className="flex items-center justify-between mt-4">
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      onClick={prevImage}
-                                      disabled={selectedImageIndex === 0}
-                                    >
-                                      <ChevronLeft className="h-4 w-4" />
-                                      Previous
-                                    </Button>
-                                    
-                                    <span className="text-sm text-gray-600">
-                                      {selectedImageIndex + 1} of {selectedWeekData.images.length}
-                                    </span>
-                                    
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      onClick={nextImage}
-                                      disabled={selectedImageIndex === selectedWeekData.images.length - 1}
-                                    >
-                                      Next
-                                      <ChevronRight className="h-4 w-4" />
-                                    </Button>
+
+                            {selectedWeekData &&
+                              selectedWeekData.images[selectedImageIndex] &&
+                              selectedWeekData.images[
+                                selectedImageIndex
+                              ] instanceof File && (
+                                <div className="relative">
+                                  <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                                    <img
+                                      src={createImageUrl(
+                                        selectedWeekData.images[
+                                          selectedImageIndex
+                                        ],
+                                      )}
+                                      alt={`Week ${selectedWeekData.week} - Image ${selectedImageIndex + 1}`}
+                                      className="w-full h-full object-contain"
+                                      onLoad={handleImageLoad}
+                                    />
                                   </div>
-                                )}
-                                
-                                <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                                  <div className="grid grid-cols-2 gap-4 text-sm">
-                                    <div>
-                                      <span className="font-medium">Period:</span>
-                                      <p className="text-gray-600">
-                                        {new Date(selectedWeekData.startDate).toLocaleDateString()} - {new Date(selectedWeekData.endDate).toLocaleDateString()}
-                                      </p>
+
+                                  {selectedWeekData.images.length > 1 && (
+                                    <div className="flex items-center justify-between mt-4">
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={prevImage}
+                                        disabled={selectedImageIndex === 0}
+                                      >
+                                        <ChevronLeft className="h-4 w-4" />
+                                        Previous
+                                      </Button>
+
+                                      <span className="text-sm text-gray-600">
+                                        {selectedImageIndex + 1} of{" "}
+                                        {selectedWeekData.images.length}
+                                      </span>
+
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={nextImage}
+                                        disabled={
+                                          selectedImageIndex ===
+                                          selectedWeekData.images.length - 1
+                                        }
+                                      >
+                                        Next
+                                        <ChevronRight className="h-4 w-4" />
+                                      </Button>
                                     </div>
-                                    <div>
-                                      <span className="font-medium">Distance:</span>
-                                      <p className="text-gray-600">{selectedWeekData.length} km</p>
+                                  )}
+
+                                  <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                                    <div className="grid grid-cols-2 gap-4 text-sm">
+                                      <div>
+                                        <span className="font-medium">
+                                          Period:
+                                        </span>
+                                        <p className="text-gray-600">
+                                          {new Date(
+                                            selectedWeekData.startDate,
+                                          ).toLocaleDateString()}{" "}
+                                          -{" "}
+                                          {new Date(
+                                            selectedWeekData.endDate,
+                                          ).toLocaleDateString()}
+                                        </p>
+                                      </div>
+                                      <div>
+                                        <span className="font-medium">
+                                          Distance:
+                                        </span>
+                                        <p className="text-gray-600">
+                                          {selectedWeekData.length} km
+                                        </p>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
                           </DialogContent>
                         </Dialog>
                       );
                     })}
                   </div>
-                  
+
                   {week.images.length > 4 && (
                     <div className="text-center">
                       <Dialog>
@@ -288,14 +335,17 @@ export default function CompletedWeeksGallery() {
                               if (!image || !(image instanceof File)) {
                                 return null;
                               }
-                              
+
                               const imageUrl = createImageUrl(image);
                               if (!imageUrl) {
                                 return null;
                               }
 
                               return (
-                                <div key={imgIndex} className="aspect-square bg-gray-100 rounded overflow-hidden">
+                                <div
+                                  key={imgIndex}
+                                  className="aspect-square bg-gray-100 rounded overflow-hidden"
+                                >
                                   <img
                                     src={imageUrl}
                                     alt={`Week ${week.week} - Image ${imgIndex + 1}`}
