@@ -58,17 +58,19 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <ThemeProvider>
-        <AuthProvider>
-          <DataProvider>
-            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
-              <Toaster />
-              <Sonner />
-              <BrowserRouter>
-                <ProtectedRoutes />
-              </BrowserRouter>
-            </div>
-          </DataProvider>
-        </AuthProvider>
+        <NotificationProvider>
+          <AuthProvider>
+            <DataProvider>
+              <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+                <Toaster />
+                <Sonner />
+                <BrowserRouter>
+                  <ProtectedRoutes />
+                </BrowserRouter>
+              </div>
+            </DataProvider>
+          </AuthProvider>
+        </NotificationProvider>
       </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
