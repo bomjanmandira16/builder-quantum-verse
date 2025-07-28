@@ -8,6 +8,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { User, Bell, Shield, Palette, Globe } from "lucide-react";
 
 export default function Settings() {
+  const [activeTab, setActiveTab] = useState("profile");
+  const { currentUser, updateProfile } = useAuth();
+  const { mappingRecords } = useData();
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="space-y-6">
       <div>
