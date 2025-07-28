@@ -111,6 +111,85 @@ export default function Settings() {
     }
   }, [currentUser]);
 
+  const handleAvatarUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "Invalid File Type",
+        description: "Please select an image file (PNG, JPG, etc.)",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Validate file size (5MB limit)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        title: "File Too Large",
+        description: "Please select an image smaller than 5MB",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      // Convert file to base64 URL for storage
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const avatarUrl = e.target?.result as string;
+
+        // Update profile with new avatar
+        await updateProfile({ avatar: avatarUrl });
+
+        toast({
+          title: "Profile Photo Updated! 📸",
+          description: "Your profile photo has been updated successfully.",
+        });
+
+        addNotification({
+          type: 'success',
+          title: 'Profile Photo Updated',
+          message: 'Your profile photo has been changed and is now visible throughout the app.',
+          actionType: 'system'
+        });
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      toast({
+        title: "Upload Failed",
+        description: "Failed to upload profile photo. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const removeAvatar = async () => {
+    try {
+      await updateProfile({ avatar: undefined });
+
+      toast({
+        title: "Profile Photo Removed",
+        description: "Your profile photo has been removed. Your initials will be shown instead.",
+      });
+
+      addNotification({
+        type: 'info',
+        title: 'Profile Photo Removed',
+        message: 'Profile photo removed. Your initials are now displayed as your avatar.',
+        actionType: 'system'
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to remove profile photo. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -141,6 +220,78 @@ export default function Settings() {
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
+            {/* Profile Image Section */}
+            <div className="flex items-center gap-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div className="relative">
+                {currentUser?.avatar ? (
+                  <img
+                    src={currentUser.avatar}
+                    alt={currentUser.name}
+                    className="w-20 h-20 rounded-full object-cover border-4 border-white dark:border-gray-700 shadow-lg"
+                  />
+                ) : (
+                  <div className="w-20 h-20 bg-blue-600 dark:bg-blue-700 rounded-full flex items-center justify-center text-white text-xl font-bold border-4 border-white dark:border-gray-700 shadow-lg">
+                    {currentUser?.name
+                      ?.split(' ')
+                      .map(n => n[0])
+                      .join('')
+                      .toUpperCase() || 'U'}
+                  </div>
+                )}
+                <label
+                  htmlFor="avatar-upload"
+                  className="absolute bottom-0 right-0 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-1.5 cursor-pointer transition-colors shadow-lg"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </label>
+                <input
+                  id="avatar-upload"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleAvatarUpload}
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100">Profile Photo</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  Upload a profile photo to personalize your account. This will appear in the header and throughout the app.
+                </p>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => document.getElementById('avatar-upload')?.click()}
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    Upload Photo
+                  </Button>
+                  {currentUser?.avatar && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={removeAvatar}
+                      className="text-red-600 hover:text-red-700"
+                    >
+                      Remove
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Personal Information Section */}
+            <div className="space-y-4">
+              <div className="border-b border-gray-200 dark:border-gray-700 pb-2">
+                <h4 className="font-medium text-gray-900 dark:text-gray-100">Personal Information</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Update your basic profile details</p>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
@@ -161,6 +312,7 @@ export default function Settings() {
                   />
                 </div>
               </div>
+
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
                 <Input
@@ -171,6 +323,15 @@ export default function Settings() {
                   placeholder="Enter your email address"
                 />
               </div>
+            </div>
+
+            {/* Organization Information Section */}
+            <div className="space-y-4">
+              <div className="border-b border-gray-200 dark:border-gray-700 pb-2">
+                <h4 className="font-medium text-gray-900 dark:text-gray-100">Organization Details</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Your workplace and role information</p>
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="organization">Organization</Label>
                 <Input
@@ -200,7 +361,8 @@ export default function Settings() {
               >
                 {isSaving ? "Saving..." : "Save Changes"}
               </Button>
-            </CardContent>
+            </div>
+          </CardContent>
           </Card>
         </TabsContent>
 
