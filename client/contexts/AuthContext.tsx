@@ -163,31 +163,59 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const inviteTeamMember = async (email: string, role: User['role']): Promise<boolean> => {
     if (!currentUser?.permissions.canInvite) return false;
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const newMember: TeamMember = {
-      id: Date.now().toString(),
-      email,
-      name: email.split('@')[0].replace(/[._]/g, ' '),
-      role,
-      joinedAt: new Date(),
-      lastActive: new Date(),
-      invitedBy: currentUser.id,
-      status: 'pending',
-      permissions: {
-        canEdit: role !== 'viewer',
-        canDelete: role === 'admin',
-        canInvite: role === 'admin',
-        canManageUsers: role === 'admin'
+
+    try {
+      // Send real email invitation via API
+      const response = await fetch('/api/invite', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          role,
+          inviterName: currentUser.name,
+          organizationName: 'BaatoMetrics'
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Add member with pending status after successful email send
+        const newMember: TeamMember = {
+          id: Date.now().toString(),
+          email,
+          name: email.split('@')[0].replace(/[._]/g, ' '),
+          role,
+          joinedAt: new Date(),
+          lastActive: new Date(),
+          invitedBy: currentUser.id,
+          status: 'pending',
+          permissions: {
+            canEdit: role !== 'viewer',
+            canDelete: role === 'admin',
+            canInvite: role === 'admin',
+            canManageUsers: role === 'admin'
+          }
+        };
+
+        const updatedTeam = [...teamMembers, newMember];
+        setTeamMembers(updatedTeam);
+        saveTeam(updatedTeam);
+
+        console.log('✅ Email sent successfully:', result.message);
+        console.log('📧 Email preview:', result.emailPreview);
+
+        return true;
+      } else {
+        console.error('❌ Failed to send email:', result.error);
+        return false;
       }
-    };
-    
-    const updatedTeam = [...teamMembers, newMember];
-    setTeamMembers(updatedTeam);
-    saveTeam(updatedTeam);
-    return true;
+    } catch (error) {
+      console.error('❌ Error sending invitation:', error);
+      return false;
+    }
   };
 
   const updateUserRole = (userId: string, role: User['role']) => {
