@@ -24,9 +24,10 @@ export default function LocationOverview() {
     {} as Record<string, number>,
   );
 
-  const locations = Object.entries(locationStats)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 6); // Show top 6 locations
+  // Dynamically adjust location count based on available locations
+  const allLocations = Object.entries(locationStats).sort(([, a], [, b]) => b - a);
+  const maxLocationsToShow = allLocations.length <= 3 ? allLocations.length : 6;
+  const locations = allLocations.slice(0, maxLocationsToShow);
 
   const openInBaatoMaps = (location: string, distance: number) => {
     try {
@@ -74,17 +75,19 @@ export default function LocationOverview() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 auto-rows-fr">
           {locations.map(([location, distance], index) => (
             <Button
               key={location}
               variant="outline"
-              className="h-auto p-3 flex flex-col items-center gap-2 hover:bg-blue-50 hover:border-blue-300 transition-all"
+              className="h-auto p-3 flex flex-col items-center gap-2 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-300 dark:hover:border-blue-600 transition-all"
               onClick={() => openInBaatoMaps(location, distance)}
             >
               <div
                 className={`p-2 rounded-lg ${
-                  index === 0 ? "bg-yellow-100" : "bg-blue-100"
+                  index === 0
+                    ? "bg-yellow-100 dark:bg-yellow-900/30"
+                    : "bg-blue-100 dark:bg-blue-900/30"
                 }`}
               >
                 <MapPin
@@ -101,11 +104,11 @@ export default function LocationOverview() {
                 >
                   {location}
                 </p>
-                <p className="text-xs text-gray-600 font-bold">
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-bold">
                   {distance.toFixed(1)} km
                 </p>
                 {index === 0 && (
-                  <Badge className="bg-yellow-100 text-yellow-800 text-xs mt-1">
+                  <Badge className="bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300 text-xs mt-1">
                     Top
                   </Badge>
                 )}
@@ -116,10 +119,10 @@ export default function LocationOverview() {
           ))}
         </div>
 
-        {Object.keys(locationStats).length > 6 && (
+        {Object.keys(locationStats).length > maxLocationsToShow && (
           <div className="text-center mt-4">
-            <p className="text-sm text-gray-500">
-              +{Object.keys(locationStats).length - 6} more locations
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              +{Object.keys(locationStats).length - maxLocationsToShow} more locations
             </p>
           </div>
         )}
