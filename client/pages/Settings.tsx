@@ -248,58 +248,6 @@ export default function Settings() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="security">
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-4">
-              <div className="p-2 bg-red-100 rounded-lg">
-                <Shield className="h-6 w-6 text-red-600" />
-              </div>
-              <div>
-                <CardTitle>Security Settings</CardTitle>
-                <CardDescription>
-                  Manage your account security and access
-                </CardDescription>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="currentPassword">Current Password</Label>
-                  <Input
-                    id="currentPassword"
-                    type="password"
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="newPassword">New Password</Label>
-                  <Input id="newPassword" type="password" className="mt-1" />
-                </div>
-                <div>
-                  <Label htmlFor="confirmPassword">Confirm New Password</Label>
-                  <Input
-                    id="confirmPassword"
-                    type="password"
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-              <div className="space-y-4 pt-4 border-t">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium">Two-Factor Authentication</p>
-                    <p className="text-sm text-muted-foreground">
-                      Add extra security to your account
-                    </p>
-                  </div>
-                  <Switch />
-                </div>
-              </div>
-              <Button>Update Security</Button>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
         <TabsContent value="appearance">
           <Card>
             <CardHeader className="flex flex-row items-center gap-4">
