@@ -25,10 +25,19 @@ export default function ProfilePopover() {
     setIsOpen(false);
   };
 
+  const handleProfileClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="sm" title="Profile">
+        <Button
+          variant="ghost"
+          size="sm"
+          title="Profile"
+          onClick={handleProfileClick}
+        >
           <UserCircle className="h-4 w-4" />
         </Button>
       </PopoverTrigger>

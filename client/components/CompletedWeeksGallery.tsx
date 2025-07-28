@@ -23,7 +23,17 @@ export default function CompletedWeeksGallery() {
     .sort((a, b) => a.week - b.week);
 
   const openInBaatoMaps = useCallback((location: string) => {
-    window.open(`https://maps.baato.io/?q=${encodeURIComponent(location)}`, '_blank');
+    try {
+      const url = `https://maps.baato.io/?q=${encodeURIComponent(location)}`;
+      console.log('Opening Baato Maps:', url);
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!newWindow) {
+        alert('Please allow popups for this site to open maps');
+      }
+    } catch (error) {
+      console.error('Error opening Baato Maps:', error);
+      alert('Unable to open maps. Please try again.');
+    }
   }, []);
 
   const selectedWeekData = selectedWeek 
