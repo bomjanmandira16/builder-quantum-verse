@@ -23,6 +23,7 @@ import { useData } from "@/contexts/DataContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useNotifications } from "@/contexts/NotificationContext";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState("profile");
@@ -30,6 +31,7 @@ export default function Settings() {
   const { mappingRecords } = useData();
   const { theme, setTheme } = useTheme();
   const { addNotification } = useNotifications();
+  const { toast } = useToast();
 
   const [notificationSettings, setNotificationSettings] = useState({
     weeklyUpdates: true,
@@ -38,6 +40,54 @@ export default function Settings() {
     systemUpdates: false,
     browserNotifications: true,
   });
+
+  // Profile form state
+  const [profileData, setProfileData] = useState({
+    firstName: currentUser?.name?.split(' ')[0] || '',
+    lastName: currentUser?.name?.split(' ')[1] || '',
+    email: currentUser?.email || '',
+    organization: 'BaatoMetrics Inc.',
+    role: currentUser?.role || 'GIS Analyst'
+  });
+
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleProfileChange = (field: string, value: string) => {
+    setProfileData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const saveProfile = async () => {
+    setIsSaving(true);
+    try {
+      // Update the user profile
+      await updateProfile({
+        name: `${profileData.firstName} ${profileData.lastName}`.trim(),
+        email: profileData.email,
+        role: profileData.role
+      });
+
+      toast({
+        title: "Profile Updated! ✅",
+        description: "Your profile information has been successfully saved.",
+      });
+
+      addNotification({
+        type: 'success',
+        title: 'Profile Updated',
+        message: `Profile information for ${profileData.firstName} ${profileData.lastName} has been updated successfully.`,
+        actionType: 'system'
+      });
+
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to update profile. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const testNotification = () => {
     addNotification({
@@ -58,10 +108,9 @@ export default function Settings() {
       </div>
 
       <Tabs defaultValue="profile" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
-          <TabsTrigger value="security">Security</TabsTrigger>
           <TabsTrigger value="appearance">Appearance</TabsTrigger>
         </TabsList>
 
@@ -82,11 +131,21 @@ export default function Settings() {
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" defaultValue="John" />
+                  <Input
+                    id="firstName"
+                    value={profileData.firstName}
+                    onChange={(e) => handleProfileChange('firstName', e.target.value)}
+                    placeholder="Enter your first name"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" defaultValue="Doe" />
+                  <Input
+                    id="lastName"
+                    value={profileData.lastName}
+                    onChange={(e) => handleProfileChange('lastName', e.target.value)}
+                    placeholder="Enter your last name"
+                  />
                 </div>
               </div>
               <div className="space-y-2">
@@ -94,12 +153,19 @@ export default function Settings() {
                 <Input
                   id="email"
                   type="email"
-                  defaultValue="john.doe@baatometrics.com"
+                  value={profileData.email}
+                  onChange={(e) => handleProfileChange('email', e.target.value)}
+                  placeholder="Enter your email address"
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="organization">Organization</Label>
-                <Input id="organization" defaultValue="BaatoMetrics Inc." />
+                <Input
+                  id="organization"
+                  value={profileData.organization}
+                  onChange={(e) => handleProfileChange('organization', e.target.value)}
+                  placeholder="Enter your organization"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="role">Role</Label>
@@ -114,7 +180,13 @@ export default function Settings() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button>Save Changes</Button>
+              <Button
+                onClick={saveProfile}
+                disabled={isSaving}
+                className="bg-blue-600 hover:bg-blue-700"
+              >
+                {isSaving ? "Saving..." : "Save Changes"}
+              </Button>
             </CardContent>
           </Card>
         </TabsContent>
