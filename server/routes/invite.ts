@@ -28,7 +28,17 @@ export async function handleInvite(req: Request, res: Response) {
 
     // Use a cleaner, easier domain for invitations
     const baseUrl = process.env.INVITE_DOMAIN || req.headers.origin || 'https://app.baato.io';
-    const inviteLink = `${baseUrl}/join?token=${inviteToken}`;
+    const fullInviteLink = `${baseUrl}/join?token=${inviteToken}`;
+
+    // Create an easy short link
+    const shortCode = inviteToken.substring(0, 8).toLowerCase();
+    const easyLink = `${baseUrl}/j/${shortCode}`;
+
+    console.log(`📧 Easy Link Created: ${easyLink}`);
+    console.log(`📧 Full Link: ${fullInviteLink}`);
+
+    // Use the easy link for user-facing communications
+    const inviteLink = easyLink;
 
     // Email template
     const emailContent = {
