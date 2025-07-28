@@ -21,13 +21,13 @@ export default function NotificationPopover() {
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="hidden sm:flex relative"
+        <Button
+          variant="ghost"
+          size="sm"
+          className="hidden sm:flex relative hover:bg-gray-100 dark:hover:bg-gray-700"
           title="Notifications"
         >
-          <Bell className="h-4 w-4" />
+          <Bell className="h-4 w-4 text-gray-600 dark:text-gray-300" />
           {unreadCount > 0 && (
             <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-red-500 hover:bg-red-500">
               {unreadCount}
@@ -35,10 +35,10 @@ export default function NotificationPopover() {
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80 p-0" align="end">
-        <div className="p-4 border-b">
+      <PopoverContent className="w-80 p-0 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700" align="end">
+        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold">Notifications</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-gray-100">Notifications</h3>
             {unreadCount > 0 && (
               <Button variant="ghost" size="sm" onClick={markAllAsRead}>
                 Mark all read
@@ -49,7 +49,7 @@ export default function NotificationPopover() {
 
         <div className="max-h-80 overflow-y-auto">
           {notifications.length === 0 ? (
-            <div className="p-4 text-center text-gray-500">
+            <div className="p-4 text-center text-gray-500 dark:text-gray-400">
               <Bell className="h-8 w-8 mx-auto mb-2 opacity-50" />
               <p>No notifications</p>
             </div>
@@ -57,8 +57,8 @@ export default function NotificationPopover() {
             notifications.map((notification) => (
               <div
                 key={notification.id}
-                className={`p-3 border-b last:border-b-0 hover:bg-gray-50 ${
-                  notification.unread ? 'bg-blue-50' : ''
+                className={`p-3 border-b border-gray-200 dark:border-gray-700 last:border-b-0 hover:bg-gray-50 dark:hover:bg-gray-700 ${
+                  notification.unread ? 'bg-blue-50 dark:bg-blue-900/20' : ''
                 }`}
               >
                 <div className="flex items-start gap-3">
@@ -72,7 +72,7 @@ export default function NotificationPopover() {
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       {notification.message}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                       {notification.time}
                     </p>
                   </div>
@@ -105,8 +105,8 @@ export default function NotificationPopover() {
         </div>
         
         {notifications.length > 0 && (
-          <div className="p-3 border-t">
-            <Button variant="ghost" className="w-full text-sm">
+          <div className="p-3 border-t border-gray-200 dark:border-gray-700">
+            <Button variant="ghost" className="w-full text-sm hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
               View all notifications
             </Button>
           </div>
