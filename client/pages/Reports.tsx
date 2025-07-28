@@ -208,36 +208,36 @@ export default function Reports() {
 
       {/* Quick Actions */}
       <div className="grid md:grid-cols-3 gap-4">
-        <Card 
-          className="cursor-pointer hover:shadow-md transition-shadow"
+        <Card
+          className="cursor-pointer hover:shadow-md transition-shadow hover:bg-gray-50 dark:hover:bg-gray-800 border-gray-200 dark:border-gray-700"
           onClick={generateWeeklyReport}
         >
           <CardContent className="p-6 text-center">
-            <Calendar className="h-8 w-8 mx-auto text-blue-600 mb-3" />
-            <h3 className="font-semibold mb-2">Weekly Summary</h3>
-            <p className="text-sm text-muted-foreground">Generate weekly mapping summary</p>
+            <Calendar className="h-8 w-8 mx-auto text-blue-600 dark:text-blue-400 mb-3" />
+            <h3 className="font-semibold mb-2 text-gray-900 dark:text-gray-100">Weekly Summary</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Generate weekly mapping summary</p>
           </CardContent>
         </Card>
 
-        <Card 
-          className="cursor-pointer hover:shadow-md transition-shadow"
+        <Card
+          className="cursor-pointer hover:shadow-md transition-shadow hover:bg-gray-50 dark:hover:bg-gray-800 border-gray-200 dark:border-gray-700"
           onClick={generateMonthlyReport}
         >
           <CardContent className="p-6 text-center">
-            <BarChart3 className="h-8 w-8 mx-auto text-green-600 mb-3" />
-            <h3 className="font-semibold mb-2">Monthly Analysis</h3>
-            <p className="text-sm text-muted-foreground">Comprehensive monthly analysis</p>
+            <BarChart3 className="h-8 w-8 mx-auto text-green-600 dark:text-green-400 mb-3" />
+            <h3 className="font-semibold mb-2 text-gray-900 dark:text-gray-100">Monthly Analysis</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Comprehensive monthly analysis</p>
           </CardContent>
         </Card>
 
-        <Card 
-          className="cursor-pointer hover:shadow-md transition-shadow"
+        <Card
+          className="cursor-pointer hover:shadow-md transition-shadow hover:bg-gray-50 dark:hover:bg-gray-800 border-gray-200 dark:border-gray-700"
           onClick={generateLocationReport}
         >
           <CardContent className="p-6 text-center">
-            <FileText className="h-8 w-8 mx-auto text-purple-600 mb-3" />
-            <h3 className="font-semibold mb-2">Location Report</h3>
-            <p className="text-sm text-muted-foreground">Location-based analysis</p>
+            <FileText className="h-8 w-8 mx-auto text-purple-600 dark:text-purple-400 mb-3" />
+            <h3 className="font-semibold mb-2 text-gray-900 dark:text-gray-100">Location Report</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Location-based analysis</p>
           </CardContent>
         </Card>
       </div>
