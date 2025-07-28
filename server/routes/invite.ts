@@ -11,7 +11,7 @@ interface InviteRequest {
 
 export async function handleInvite(req: Request, res: Response) {
   try {
-    const { email, role, inviterName, organizationName = 'BaatoMetrics' }: InviteRequest = req.body;
+    const { email, role, inviterName, organizationName = 'BaatoMetrics', customDomain }: InviteRequest = req.body;
 
     if (!email || !role || !inviterName) {
       return res.status(400).json({
