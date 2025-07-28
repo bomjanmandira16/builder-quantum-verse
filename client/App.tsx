@@ -18,6 +18,7 @@ import { measurePageLoad, preloadCriticalResources } from "./lib/performance";
 import { DataProvider } from "./contexts/DataContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { NotificationProvider } from "./contexts/NotificationContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
