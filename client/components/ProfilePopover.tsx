@@ -40,14 +40,15 @@ export default function ProfilePopover() {
           variant="ghost"
           size="sm"
           title="Profile"
+          className="hover:bg-gray-100 dark:hover:bg-gray-700"
           onClick={handleProfileClick}
         >
-          <UserCircle className="h-4 w-4" />
+          <UserCircle className="h-4 w-4 text-gray-600 dark:text-gray-300" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-72 p-0" align="end">
+      <PopoverContent className="w-72 p-0 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700" align="end">
         {/* Profile Header */}
-        <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30">
           <div className="flex items-center gap-3">
             {currentUser?.avatar ? (
               <img
@@ -67,10 +68,10 @@ export default function ProfilePopover() {
               </div>
             )}
             <div>
-              <h3 className="font-semibold text-gray-900">
+              <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                 {currentUser?.name}
               </h3>
-              <p className="text-sm text-gray-600 capitalize">
+              <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">
                 {currentUser?.role}
               </p>
             </div>
@@ -116,8 +117,8 @@ export default function ProfilePopover() {
         </div>
 
         {/* Footer */}
-        <div className="p-3 border-t bg-gray-50">
-          <p className="text-xs text-gray-500 text-center">
+        <div className="p-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+          <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
             BaatoMetrics v1.0 • © 2024
           </p>
         </div>
