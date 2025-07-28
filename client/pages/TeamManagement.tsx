@@ -9,12 +9,14 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth, User } from "@/contexts/AuthContext";
+import { useNotifications } from "@/contexts/NotificationContext";
 import { Plus, UserPlus, Shield, Edit2, Trash2, Mail, Calendar, Clock, Crown, Users, Key } from 'lucide-react';
 import { format, formatDistanceToNow } from 'date-fns';
 
 export default function TeamManagement() {
   const { currentUser, teamMembers, inviteTeamMember, updateUserRole, removeTeamMember, updateProfile } = useAuth();
   const { toast } = useToast();
+  const { addNotification } = useNotifications();
   
   const [isInviteOpen, setIsInviteOpen] = useState(false);
   const [inviteEmail, setInviteEmail] = useState('');
