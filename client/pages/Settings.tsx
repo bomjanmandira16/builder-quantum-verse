@@ -22,12 +22,31 @@ import { User, Bell, Shield, Palette, Globe } from "lucide-react";
 import { useData } from "@/contexts/DataContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useNotifications } from "@/contexts/NotificationContext";
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState("profile");
   const { currentUser, updateProfile } = useAuth();
   const { mappingRecords } = useData();
   const { theme, setTheme } = useTheme();
+  const { addNotification } = useNotifications();
+
+  const [notificationSettings, setNotificationSettings] = useState({
+    weeklyUpdates: true,
+    reportGeneration: true,
+    dataImports: true,
+    systemUpdates: false,
+    browserNotifications: true,
+  });
+
+  const testNotification = () => {
+    addNotification({
+      type: 'info',
+      title: 'Test Notification',
+      message: 'This is a test notification to check if the system is working properly.',
+      actionType: 'system'
+    });
+  };
 
   return (
     <div className="space-y-6">

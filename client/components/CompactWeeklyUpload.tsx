@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useData, MappingRecord } from "@/contexts/DataContext";
+import { useNotifications } from "@/contexts/NotificationContext";
 
 interface WeekData {
   id: number;
@@ -31,6 +32,7 @@ interface WeekData {
 export default function CompactWeeklyUpload() {
   const { mappingRecords, addMappingRecord, getCompletedWeeks } = useData();
   const { toast } = useToast();
+  const { addNotification } = useNotifications();
   
   const [currentWeek, setCurrentWeek] = useState<WeekData>({
     id: 1,
@@ -94,6 +96,20 @@ export default function CompactWeeklyUpload() {
       endDate: currentWeek.endDate,
       images: currentWeek.images,
       status: 'completed'
+    });
+
+    // Trigger fast notification
+    addNotification({
+      type: 'success',
+      title: 'Week Completed! 🎉',
+      message: `Week ${currentWeek.weekNumber} mapping in ${currentWeek.location} (${currentWeek.roadLength} km) has been successfully completed and uploaded.`,
+      actionType: 'week_completed',
+      metadata: {
+        week: currentWeek.weekNumber,
+        location: currentWeek.location,
+        distance: parseFloat(currentWeek.roadLength),
+        imageCount: currentWeek.images.length
+      }
     });
 
     // Reset for next week

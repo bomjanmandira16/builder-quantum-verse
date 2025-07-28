@@ -132,10 +132,7 @@ export default function Layout({ children }: LayoutProps) {
 
               {/* Action Buttons */}
               <div className="flex items-center gap-2">
-                <NotificationPopover
-                  notifications={notifications.map(n => ({ ...n, type: 'info' as const }))}
-                  unreadCount={unreadCount}
-                />
+                <NotificationPopover />
                 <Button variant="ghost" size="sm" className="hidden sm:flex" title="Help">
                   <HelpCircle className="h-4 w-4" />
                 </Button>
