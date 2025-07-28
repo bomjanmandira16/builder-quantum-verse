@@ -68,7 +68,7 @@ export default function Settings() {
 
       toast({
         title: "Profile Updated! ✅",
-        description: "Your profile information has been successfully saved.",
+        description: `Profile updated for ${profileData.firstName} ${profileData.lastName}. Check your profile icon!`,
       });
 
       addNotification({
