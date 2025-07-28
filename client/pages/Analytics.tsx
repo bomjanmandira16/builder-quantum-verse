@@ -115,7 +115,9 @@ export default function Analytics() {
           <CardContent>
             {Object.keys(locationAnalytics).length > 0 ? (
               <div className="space-y-4">
-                {Object.entries(locationAnalytics).map(([location, stats]) => (
+                {Object.entries(locationAnalytics)
+                  .sort(([,a], [,b]) => b.distance - a.distance) // Sort by distance descending
+                  .map(([location, stats]) => (
                   <div
                     key={location}
                     className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 cursor-pointer transition-colors"
@@ -136,6 +138,7 @@ export default function Analytics() {
               <div className="text-center py-8 text-muted-foreground">
                 <BarChart3 className="h-12 w-12 mx-auto mb-4 opacity-50" />
                 <p>Complete some weeks to see location analytics</p>
+                <p className="text-sm mt-2">Add locations like "Ilam", "Kathmandu", etc. when completing weekly uploads</p>
               </div>
             )}
           </CardContent>
