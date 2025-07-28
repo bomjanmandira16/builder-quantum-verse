@@ -33,13 +33,15 @@ export default function Join() {
 
   useEffect(() => {
     const token = searchParams.get('token');
+    const ref = searchParams.get('ref'); // For short links
+
     if (token) {
       try {
         const decoded = JSON.parse(atob(token)) as InviteData;
-        
+
         // Check if token is expired (7 days)
         const isExpired = Date.now() - decoded.timestamp > 7 * 24 * 60 * 60 * 1000;
-        
+
         if (isExpired) {
           setIsValidToken(false);
           toast({
@@ -59,6 +61,14 @@ export default function Join() {
           variant: "destructive"
         });
       }
+    } else if (ref) {
+      // Handle short link reference
+      toast({
+        title: "Processing Short Link",
+        description: "This appears to be a short invitation link. Please contact your inviter for the full invitation link.",
+        variant: "destructive"
+      });
+      setIsValidToken(false);
     } else {
       setIsValidToken(false);
     }
