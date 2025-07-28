@@ -8,14 +8,21 @@ export default function Analytics() {
 
   const locationAnalytics = mappingRecords.reduce((acc, record) => {
     if (record.status === 'completed') {
-      if (!acc[record.location]) {
-        acc[record.location] = { distance: 0, weeks: 0 };
+      // Ensure location name is properly formatted and case-consistent
+      const cleanLocation = record.location.trim();
+
+      if (!acc[cleanLocation]) {
+        acc[cleanLocation] = { distance: 0, weeks: 0 };
       }
-      acc[record.location].distance += record.length;
-      acc[record.location].weeks += 1;
+      acc[cleanLocation].distance += record.length;
+      acc[cleanLocation].weeks += 1;
     }
     return acc;
   }, {} as Record<string, { distance: number; weeks: number }>);
+
+  // Debug: Log to check if all locations are being processed correctly
+  console.log('Mapping Records:', mappingRecords);
+  console.log('Location Analytics:', locationAnalytics);
 
   return (
     <div className="space-y-6">
