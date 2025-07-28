@@ -111,16 +111,16 @@ export default function Analytics() {
                 {Object.entries(locationAnalytics).map(([location, stats]) => (
                   <div
                     key={location}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-blue-50 cursor-pointer transition-colors"
+                    className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 cursor-pointer transition-colors"
                     onClick={() => window.open(`https://maps.baato.io/?q=${encodeURIComponent(location)}`, '_blank')}
                   >
                     <div>
-                      <p className="font-medium">{location}</p>
-                      <p className="text-sm text-gray-600">{stats.weeks} weeks completed • Click to view on map</p>
+                      <p className="font-medium capitalize text-gray-900 dark:text-gray-100">{location}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{stats.weeks} weeks completed • Click to view on map</p>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-blue-600">{stats.distance.toFixed(1)} km</p>
-                      <p className="text-sm text-gray-600">{(stats.distance / stats.weeks).toFixed(1)} km/week avg</p>
+                      <p className="font-bold text-blue-600 dark:text-blue-400">{stats.distance.toFixed(1)} km</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{(stats.distance / stats.weeks).toFixed(1)} km/week avg</p>
                     </div>
                   </div>
                 ))}
