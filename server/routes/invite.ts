@@ -26,7 +26,9 @@ export async function handleInvite(req: Request, res: Response) {
       inviter: inviterName
     })).toString('base64');
 
-    const inviteLink = `${req.headers.origin || 'https://baatometrics.com'}/join?token=${inviteToken}`;
+    // Use a cleaner, easier domain for invitations
+    const baseUrl = process.env.INVITE_DOMAIN || req.headers.origin || 'https://app.baato.io';
+    const inviteLink = `${baseUrl}/join?token=${inviteToken}`;
 
     // Email template
     const emailContent = {
