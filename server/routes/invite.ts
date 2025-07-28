@@ -6,6 +6,7 @@ interface InviteRequest {
   role: string;
   inviterName: string;
   organizationName?: string;
+  customDomain?: string;
 }
 
 export async function handleInvite(req: Request, res: Response) {
