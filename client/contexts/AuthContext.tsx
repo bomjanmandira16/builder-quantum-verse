@@ -219,18 +219,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     saveTeam(updatedTeam);
   };
 
-  const updateProfile = (userId: string, updates: Partial<User>) => {
-    if (userId === currentUser?.id) {
+  const updateProfile = (updates: Partial<User>) => {
+    if (currentUser) {
       const updatedUser = { ...currentUser, ...updates };
       setCurrentUser(updatedUser);
       saveUser(updatedUser);
-    } else if (currentUser?.permissions.canManageUsers) {
-      const updatedTeam = teamMembers.map(member =>
-        member.id === userId ? { ...member, ...updates } : member
-      );
-      setTeamMembers(updatedTeam);
-      saveTeam(updatedTeam);
+
+      // Force immediate re-render
+      setTimeout(() => setCurrentUser({ ...updatedUser }), 100);
+
+      return true;
     }
+    return false;
   };
 
   // Update last active time
