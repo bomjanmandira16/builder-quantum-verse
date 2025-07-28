@@ -22,5 +22,8 @@ export function createServer() {
   app.get("/api/demo", handleDemo);
   app.post("/api/invite", handleInvite);
 
+  // Short link redirects
+  app.get("/j/:code", handleShortLink);
+
   return app;
 }
