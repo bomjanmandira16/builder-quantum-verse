@@ -40,10 +40,24 @@ export default function ProfilePopover() {
           variant="ghost"
           size="sm"
           title="Profile"
-          className="hover:bg-gray-100 dark:hover:bg-gray-700"
+          className="hover:bg-gray-100 dark:hover:bg-gray-700 relative"
           onClick={handleProfileClick}
         >
-          <UserCircle className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+          {currentUser?.avatar ? (
+            <img
+              src={currentUser.avatar}
+              alt={currentUser.name}
+              className="w-6 h-6 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-6 h-6 bg-blue-600 dark:bg-blue-700 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+              {currentUser?.name
+                ?.split(' ')
+                .map(n => n[0])
+                .join('')
+                .toUpperCase() || 'U'}
+            </div>
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-72 p-0 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700" align="end">

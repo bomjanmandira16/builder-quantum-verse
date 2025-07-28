@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -97,6 +97,19 @@ export default function Settings() {
       actionType: 'system'
     });
   };
+
+  // Update profile form when currentUser changes
+  useEffect(() => {
+    if (currentUser) {
+      setProfileData({
+        firstName: currentUser.name?.split(' ')[0] || '',
+        lastName: currentUser.name?.split(' ')[1] || '',
+        email: currentUser.email || '',
+        organization: 'BaatoMetrics Inc.',
+        role: currentUser.role || 'GIS Analyst'
+      });
+    }
+  }, [currentUser]);
 
   return (
     <div className="space-y-6">
