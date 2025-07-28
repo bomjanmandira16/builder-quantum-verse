@@ -152,7 +152,10 @@ export default function Analytics() {
           <CardContent>
             {mappingRecords.length > 0 ? (
               <div className="space-y-4">
-                {mappingRecords.map((record) => (
+                {mappingRecords
+                  .filter(record => record.status === 'completed')
+                  .sort((a, b) => a.week - b.week) // Sort weeks in ascending order (1, 2, 3, 4, 5...)
+                  .map((record) => (
                   <div key={record.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div>
                       <p className="font-medium">Week {record.week}</p>
