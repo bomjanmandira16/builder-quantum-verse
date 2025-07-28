@@ -34,25 +34,33 @@ const queryClient = new QueryClient({
 measurePageLoad();
 preloadCriticalResources();
 
-const ProtectedRoutes = () => {
+const AppRoutes = () => {
   const { isAuthenticated } = useAuth();
 
-  if (!isAuthenticated) {
-    return <Login />;
-  }
-
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/team" element={<TeamManagement />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Layout>
+    <Routes>
+      {/* Public routes */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/join" element={<Join />} />
+
+      {/* Protected routes */}
+      {isAuthenticated ? (
+        <Route path="/*" element={
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/reports" element={<Reports />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/team" element={<TeamManagement />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Layout>
+        } />
+      ) : (
+        <Route path="/*" element={<Login />} />
+      )}
+    </Routes>
   );
 };
 
@@ -67,7 +75,7 @@ const App = () => (
                 <Toaster />
                 <Sonner />
                 <BrowserRouter>
-                  <ProtectedRoutes />
+                  <AppRoutes />
                 </BrowserRouter>
               </div>
             </DataProvider>
