@@ -32,7 +32,7 @@ export async function handleInvite(req: Request, res: Response) {
     const fullInviteLink = `${baseUrl}/join?token=${inviteToken}`;
 
     // Create an easy short link
-    const shortCode = inviteToken.substring(0, 8).toLowerCase();
+    const shortCode = createShortLink(inviteToken);
     const easyLink = `${baseUrl}/j/${shortCode}`;
 
     console.log(`📧 Easy Link Created: ${easyLink}`);
