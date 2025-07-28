@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { handleInvite } from "./routes/invite";
+import { handleShortLink } from "./routes/redirect";
 
 export function createServer() {
   const app = express();
