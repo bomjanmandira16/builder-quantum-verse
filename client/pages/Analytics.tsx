@@ -152,15 +152,27 @@ export default function Analytics() {
           <CardContent>
             {mappingRecords.length > 0 ? (
               <div className="space-y-4">
+                <div className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-2">
+                  Showing {mappingRecords.filter(r => r.status === 'completed').length} completed weeks (sorted chronologically)
+                </div>
                 {mappingRecords
                   .filter(record => record.status === 'completed')
                   .sort((a, b) => a.week - b.week) // Sort weeks in ascending order (1, 2, 3, 4, 5...)
                   .map((record) => (
                   <div key={record.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
                     <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div className={`w-2 h-2 rounded-full ${
+                        record.week >= 4 ? 'bg-blue-500' : 'bg-green-500'
+                      }`}></div>
                       <div>
-                        <p className="font-medium text-gray-900 dark:text-gray-100">Week {record.week}</p>
+                        <p className={`font-medium ${
+                          record.week >= 4
+                            ? 'text-blue-700 dark:text-blue-300 font-bold'
+                            : 'text-gray-900 dark:text-gray-100'
+                        }`}>
+                          Week {record.week}
+                          {record.week >= 4 && <span className="ml-1 text-xs text-blue-600 dark:text-blue-400">✨</span>}
+                        </p>
                         <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">{record.location}</p>
                       </div>
                     </div>
