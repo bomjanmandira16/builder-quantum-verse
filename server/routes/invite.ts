@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { createShortLink } from './redirect';
 
 interface InviteRequest {
   email: string;
