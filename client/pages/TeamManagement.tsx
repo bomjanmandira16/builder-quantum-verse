@@ -160,7 +160,7 @@ export default function TeamManagement() {
               <DialogHeader>
                 <DialogTitle>Invite Team Member</DialogTitle>
                 <DialogDescription>
-                  Send an invitation to join your BaatoMetrics team.
+                  Send an email invitation with a secure join link. The invited person will receive instructions to create their account and join the team.
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4">
