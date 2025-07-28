@@ -91,7 +91,7 @@ export default function Layout({ children }: LayoutProps) {
                     target.style.display = 'none';
                   }}
                 />
-                <h1 className="text-xl font-bold text-gray-900">BaatoMetrics</h1>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">BaatoMetrics</h1>
               </div>
 
               {/* Desktop Navigation */}
@@ -133,8 +133,8 @@ export default function Layout({ children }: LayoutProps) {
               {/* Action Buttons */}
               <div className="flex items-center gap-2">
                 <NotificationPopover />
-                <Button variant="ghost" size="sm" className="hidden sm:flex" title="Help">
-                  <HelpCircle className="h-4 w-4" />
+                <Button variant="ghost" size="sm" className="hidden sm:flex hover:bg-gray-100 dark:hover:bg-gray-700" title="Help">
+                  <HelpCircle className="h-4 w-4 text-gray-600 dark:text-gray-300" />
                 </Button>
                 <ProfilePopover />
 
@@ -142,10 +142,10 @@ export default function Layout({ children }: LayoutProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="md:hidden"
+                  className="md:hidden hover:bg-gray-100 dark:hover:bg-gray-700"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
-                  <Menu className="h-4 w-4" />
+                  <Menu className="h-4 w-4 text-gray-600 dark:text-gray-300" />
                 </Button>
               </div>
             </div>
