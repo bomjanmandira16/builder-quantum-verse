@@ -258,8 +258,11 @@ export default function Settings() {
               <div className="flex-1">
                 <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100">Profile Photo</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  Upload a profile photo to personalize your account. This will appear in the header and throughout the app.
+                  Upload a profile photo to personalize your account. This will appear in the header, profile popover, and throughout the app.
                 </p>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                  <span className="font-medium">Supported formats:</span> PNG, JPG, GIF • <span className="font-medium">Max size:</span> 5MB
+                </div>
                 <div className="flex gap-2">
                   <Button
                     variant="outline"

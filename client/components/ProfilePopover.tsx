@@ -68,16 +68,16 @@ export default function ProfilePopover() {
               <img
                 src={currentUser.avatar}
                 alt={currentUser.name}
-                className="w-12 h-12 rounded-full object-cover"
+                className="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-gray-600 shadow-sm"
               />
             ) : (
-              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-semibold">
+              <div className="w-12 h-12 bg-blue-600 dark:bg-blue-700 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-600 shadow-sm">
+                <span className="text-white font-semibold text-lg">
                   {currentUser?.name
-                    .split(" ")
+                    ?.split(" ")
                     .map((n) => n[0])
                     .join("")
-                    .toUpperCase()}
+                    .toUpperCase() || 'U'}
                 </span>
               </div>
             )}
