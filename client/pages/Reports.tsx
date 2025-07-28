@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -257,8 +258,8 @@ export default function Reports() {
           {reports.length === 0 ? (
             <div className="text-center py-12">
               <FileText className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No reports yet</h3>
-              <p className="text-gray-500 mb-6">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No reports yet</h3>
+              <p className="text-gray-500 dark:text-gray-400 mb-6">
                 Generate reports from your completed mapping weeks to analyze your progress.
               </p>
               <Button 
@@ -272,13 +273,13 @@ export default function Reports() {
           ) : (
             <div className="space-y-4">
               {reports.map((report) => (
-                <div key={report.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                <div key={report.id} className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <div className="flex items-start gap-4">
-                    <div className="p-2 bg-gray-100 rounded-lg">
+                    <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
                       {getReportIcon(report.type)}
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-sm">{report.title}</h4>
+                      <h4 className="font-semibold text-sm text-gray-900 dark:text-gray-100">{report.title}</h4>
                       <p className="text-sm text-muted-foreground mt-1">{report.description}</p>
                       <div className="flex items-center gap-3 mt-2">
                         <span className="text-xs text-muted-foreground">
