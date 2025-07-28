@@ -165,6 +165,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!currentUser?.permissions.canInvite) return false;
 
     try {
+      // Get custom domain from localStorage if set
+      const customDomain = localStorage.getItem('custom-invite-domain');
+
       // Send real email invitation via API
       const response = await fetch('/api/invite', {
         method: 'POST',
@@ -175,7 +178,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           email,
           role,
           inviterName: currentUser.name,
-          organizationName: 'BaatoMetrics'
+          organizationName: 'BaatoMetrics',
+          customDomain: customDomain || undefined
         })
       });
 
