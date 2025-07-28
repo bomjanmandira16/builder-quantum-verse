@@ -156,14 +156,22 @@ export default function Analytics() {
                   .filter(record => record.status === 'completed')
                   .sort((a, b) => a.week - b.week) // Sort weeks in ascending order (1, 2, 3, 4, 5...)
                   .map((record) => (
-                  <div key={record.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div>
-                      <p className="font-medium">Week {record.week}</p>
-                      <p className="text-sm text-gray-600">{record.location}</p>
+                  <div key={record.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div>
+                        <p className="font-medium text-gray-900 dark:text-gray-100">Week {record.week}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">{record.location}</p>
+                      </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-green-600">{record.length.toFixed(1)} km</p>
-                      <p className="text-sm text-gray-600">{record.date}</p>
+                      <p className="font-bold text-green-600 dark:text-green-400">{record.length.toFixed(1)} km</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {new Date(record.endDate).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </p>
                     </div>
                   </div>
                 ))}
