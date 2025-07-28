@@ -1,11 +1,23 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { User, Bell, Shield, Palette, Globe } from "lucide-react";
 import { useData } from "@/contexts/DataContext";
 import { useAuth } from "@/contexts/AuthContext";
@@ -21,7 +33,9 @@ export default function Settings() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold">Settings</h1>
-        <p className="text-muted-foreground">Manage your account and application preferences</p>
+        <p className="text-muted-foreground">
+          Manage your account and application preferences
+        </p>
       </div>
 
       <Tabs defaultValue="profile" className="space-y-6">
@@ -40,7 +54,9 @@ export default function Settings() {
               </div>
               <div>
                 <CardTitle>Profile Information</CardTitle>
-                <CardDescription>Update your personal information and preferences</CardDescription>
+                <CardDescription>
+                  Update your personal information and preferences
+                </CardDescription>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -56,7 +72,11 @@ export default function Settings() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
-                <Input id="email" type="email" defaultValue="john.doe@baatometrics.com" />
+                <Input
+                  id="email"
+                  type="email"
+                  defaultValue="john.doe@baatometrics.com"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="organization">Organization</Label>
@@ -88,7 +108,9 @@ export default function Settings() {
               </div>
               <div>
                 <CardTitle>Notification Preferences</CardTitle>
-                <CardDescription>Configure how you receive notifications</CardDescription>
+                <CardDescription>
+                  Configure how you receive notifications
+                </CardDescription>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -96,28 +118,36 @@ export default function Settings() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Email Notifications</p>
-                    <p className="text-sm text-muted-foreground">Receive updates via email</p>
+                    <p className="text-sm text-muted-foreground">
+                      Receive updates via email
+                    </p>
                   </div>
                   <Switch defaultChecked />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Weekly Reports</p>
-                    <p className="text-sm text-muted-foreground">Get weekly summary reports</p>
+                    <p className="text-sm text-muted-foreground">
+                      Get weekly summary reports
+                    </p>
                   </div>
                   <Switch defaultChecked />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Data Import Alerts</p>
-                    <p className="text-sm text-muted-foreground">Notifications for data imports</p>
+                    <p className="text-sm text-muted-foreground">
+                      Notifications for data imports
+                    </p>
                   </div>
                   <Switch />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">System Maintenance</p>
-                    <p className="text-sm text-muted-foreground">Alerts for system updates</p>
+                    <p className="text-sm text-muted-foreground">
+                      Alerts for system updates
+                    </p>
                   </div>
                   <Switch defaultChecked />
                 </div>
@@ -135,14 +165,20 @@ export default function Settings() {
               </div>
               <div>
                 <CardTitle>Security Settings</CardTitle>
-                <CardDescription>Manage your account security and access</CardDescription>
+                <CardDescription>
+                  Manage your account security and access
+                </CardDescription>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="currentPassword">Current Password</Label>
-                  <Input id="currentPassword" type="password" className="mt-1" />
+                  <Input
+                    id="currentPassword"
+                    type="password"
+                    className="mt-1"
+                  />
                 </div>
                 <div>
                   <Label htmlFor="newPassword">New Password</Label>
@@ -150,14 +186,20 @@ export default function Settings() {
                 </div>
                 <div>
                   <Label htmlFor="confirmPassword">Confirm New Password</Label>
-                  <Input id="confirmPassword" type="password" className="mt-1" />
+                  <Input
+                    id="confirmPassword"
+                    type="password"
+                    className="mt-1"
+                  />
                 </div>
               </div>
               <div className="space-y-4 pt-4 border-t">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Two-Factor Authentication</p>
-                    <p className="text-sm text-muted-foreground">Add extra security to your account</p>
+                    <p className="text-sm text-muted-foreground">
+                      Add extra security to your account
+                    </p>
                   </div>
                   <Switch />
                 </div>
@@ -167,8 +209,6 @@ export default function Settings() {
           </Card>
         </TabsContent>
 
-
-
         <TabsContent value="appearance">
           <Card>
             <CardHeader className="flex flex-row items-center gap-4">
@@ -177,7 +217,9 @@ export default function Settings() {
               </div>
               <div>
                 <CardTitle>Appearance</CardTitle>
-                <CardDescription>Customize the look and feel of the application</CardDescription>
+                <CardDescription>
+                  Customize the look and feel of the application
+                </CardDescription>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
