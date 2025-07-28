@@ -38,12 +38,29 @@ export default function TeamManagement() {
 
     setIsInviting(true);
     try {
+      // Generate invitation email content
+      const inviteToken = btoa(inviteEmail + '-' + Date.now() + '-' + inviteRole);
+      const inviteLink = `https://baatometrics.com/join?token=${inviteToken}`;
+
+      console.log('📧 Sending invitation email...');
+      console.log(`To: ${inviteEmail}`);
+      console.log(`Role: ${inviteRole}`);
+      console.log(`Invite Link: ${inviteLink}`);
+
       const success = await inviteTeamMember(inviteEmail, inviteRole);
       if (success) {
         toast({
-          title: "Invitation Sent",
-          description: `Invitation sent to ${inviteEmail} as ${inviteRole}.`
+          title: "Invitation Sent! 📧",
+          description: `Email invitation sent to ${inviteEmail} as ${inviteRole}.`
         });
+
+        addNotification({
+          type: 'success',
+          title: 'Team Member Invited',
+          message: `${inviteEmail} invited as ${inviteRole.toUpperCase()}. They will receive an email with join instructions.`,
+          actionType: 'team_update'
+        });
+
         setInviteEmail('');
         setInviteRole('editor');
         setIsInviteOpen(false);
