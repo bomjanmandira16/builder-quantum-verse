@@ -489,6 +489,17 @@ export default function Settings() {
             </CardContent>
           </Card>
         </TabsContent>
+
+        <TabsContent value="links">
+          <CustomLinkConfig
+            onDomainUpdate={(domain) => {
+              toast({
+                title: "Domain Updated",
+                description: `Invitation links will now use: ${domain}`
+              });
+            }}
+          />
+        </TabsContent>
       </Tabs>
     </div>
   );
