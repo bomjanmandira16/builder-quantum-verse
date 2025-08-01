@@ -140,6 +140,12 @@ export default function DebugMappingData() {
               <Eye className="h-4 w-4 mr-1" />
               {isMonitoring ? "Monitoring" : "Paused"}
             </Button>
+            <Button onClick={forceDataSync} size="sm" variant="secondary">
+              🔄 Force Sync
+            </Button>
+            <Button onClick={showRawData} size="sm" variant="outline">
+              📋 Raw Data
+            </Button>
             <Button onClick={refreshData} size="sm" variant="outline">
               <RefreshCw className="h-4 w-4 mr-1" />
               Refresh
