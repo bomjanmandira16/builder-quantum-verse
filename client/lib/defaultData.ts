@@ -1,14 +1,14 @@
 import { MappingRecord } from '@/contexts/DataContext';
 import { StoredImage } from './imageStorage';
 
-// Default demo data that shows for all visitors
+// Default demo data that shows for all visitors (Bomjan Mandira's actual progress)
 export const DEFAULT_MAPPING_RECORDS: MappingRecord[] = [
   {
     id: 'demo-week-1',
     date: '2025-01-20',
     week: 1,
     location: 'Kathmandu District',
-    length: 793,
+    length: 793, // Your actual Week 1 data
     startDate: '2025-01-14',
     endDate: '2025-01-20',
     images: [],
@@ -20,8 +20,8 @@ export const DEFAULT_MAPPING_RECORDS: MappingRecord[] = [
     id: 'demo-week-2',
     date: '2025-01-27',
     week: 2,
-    location: 'Lalitpur District',
-    length: 456,
+    location: 'Bagmati Province', // Update to match your Week 2
+    length: 620, // Estimated Week 2 value
     startDate: '2025-01-21',
     endDate: '2025-01-27',
     images: [],
