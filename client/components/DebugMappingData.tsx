@@ -93,12 +93,18 @@ export default function DebugMappingData() {
       </CardHeader>
       <CardContent>
         <div className="space-y-2 text-xs">
-          <p>
-            <strong>Total Records:</strong> {mappingRecords.length}
-          </p>
-          <p>
-            <strong>Completed Weeks:</strong> {getCompletedWeeks()}
-          </p>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p><strong>Total Records:</strong> {mappingRecords.length}</p>
+              <p><strong>Completed Weeks:</strong> {getCompletedWeeks()}</p>
+              <p><strong>Total Distance:</strong> {mappingRecords.reduce((sum, r) => sum + r.length, 0).toFixed(1)} km</p>
+            </div>
+            <div>
+              <p><strong>Current Week:</strong> Week {getCompletedWeeks() + 1}</p>
+              <p><strong>Total Images:</strong> {mappingRecords.reduce((sum, r) => sum + (r.imageIds?.length || 0), 0)}</p>
+              <p><strong>Locations:</strong> {new Set(mappingRecords.map(r => r.location)).size}</p>
+            </div>
+          </div>
 
           {mappingRecords.length > 0 ? (
             <div className="space-y-2">
