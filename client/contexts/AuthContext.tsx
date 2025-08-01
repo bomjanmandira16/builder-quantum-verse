@@ -143,6 +143,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       email: googleUserData.email,
       name: googleUserData.name,
       avatar: googleUserData.avatar,
+      organization: 'BaatoMetrics Inc.',
       role: 'admin',
       joinedAt: new Date(),
       lastActive: new Date(),
