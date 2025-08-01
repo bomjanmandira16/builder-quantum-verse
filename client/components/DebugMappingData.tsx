@@ -62,6 +62,45 @@ export default function DebugMappingData() {
     window.location.reload();
   };
 
+  const forceDataSync = () => {
+    // Force read from localStorage and update state
+    const rawData = localStorage.getItem('baatometrics-data');
+    const rawImages = localStorage.getItem('baatometrics-images');
+
+    console.log('🔄 FORCE SYNC - Raw localStorage data:');
+    console.log('Data:', rawData);
+    console.log('Images:', rawImages);
+
+    if (rawData) {
+      try {
+        const parsed = JSON.parse(rawData);
+        console.log('📊 Parsed records:', parsed);
+      } catch (e) {
+        console.error('❌ Failed to parse data:', e);
+      }
+    }
+
+    toast({
+      title: "Data Sync Forced! 🔄",
+      description: "Check console for raw localStorage data. Page will refresh.",
+    });
+
+    setTimeout(() => window.location.reload(), 1000);
+  };
+
+  const showRawData = () => {
+    const rawData = localStorage.getItem('baatometrics-data');
+    const rawImages = localStorage.getItem('baatometrics-images');
+
+    console.log('🗂️ RAW LOCALSTORAGE DUMP:');
+    console.log('='.repeat(50));
+    console.log('baatometrics-data:', rawData);
+    console.log('baatometrics-images:', rawImages);
+    console.log('='.repeat(50));
+
+    alert(`Raw Data Check:\nRecords: ${rawData ? 'EXISTS' : 'EMPTY'}\nImages: ${rawImages ? 'EXISTS' : 'EMPTY'}\nCheck console for details.`);
+  };
+
   const forceCompleteWeek = (recordId: string, weekNumber: number) => {
     updateMappingRecord(recordId, { status: "completed" });
     toast({
