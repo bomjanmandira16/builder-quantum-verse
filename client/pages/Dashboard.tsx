@@ -39,6 +39,9 @@ export default function Dashboard() {
       {/* Compact Weekly Upload System */}
       <CompactWeeklyUpload />
 
+      {/* Debug Information */}
+      <DebugMappingData />
+
       {/* Statistics Cards */}
       <div className="grid md:grid-cols-3 gap-6">
         <Card>
