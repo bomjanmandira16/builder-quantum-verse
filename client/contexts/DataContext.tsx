@@ -45,24 +45,70 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [mappingRecords, setMappingRecords] = useState<MappingRecord[]>([]);
   const [isSharedData, setIsSharedData] = useState(false);
 
-  const [reports, setReports] = useState<Report[]>(() => {
-    // Load reports from localStorage
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('baatometrics-reports');
-      if (saved) {
+  const [reports, setReports] = useState<Report[]>([]);
+
+  // Load data on initialization
+  useEffect(() => {
+    loadInitialData();
+  }, []);
+
+  const loadInitialData = () => {
+    if (typeof window === 'undefined') return;
+
+    // Check for shared data first
+    const urlParams = new URLSearchParams(window.location.search);
+    const shareParam = urlParams.get('share');
+
+    if (shareParam) {
+      // Load shared data
+      const sharedData = loadByShareId(shareParam);
+      if (sharedData) {
         try {
-          const parsed = JSON.parse(saved);
-          return parsed.map((report: any) => ({
-            ...report,
-            createdAt: new Date(report.createdAt)
-          }));
+          const { mappingRecords: sharedRecords, images } = parseSharedData(sharedData);
+          setMappingRecords(sharedRecords);
+          setIsSharedData(true);
+
+          // Save shared images to current storage
+          if (images.length > 0) {
+            saveImagesToStorage(images);
+          }
+
+          console.log(`Loaded shared data: ${sharedRecords.length} records, ${images.length} images`);
+          return;
         } catch (error) {
-          console.error('Error loading saved reports:', error);
+          console.error('Failed to load shared data:', error);
         }
       }
     }
-    return [];
-  });
+
+    // Load local data
+    try {
+      const saved = localStorage.getItem('baatometrics-data');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const localRecords = parsed.map((record: any) => ({
+          ...record,
+          createdAt: new Date(record.createdAt),
+          imageIds: record.imageIds || [],
+          images: []
+        }));
+        setMappingRecords(localRecords);
+      }
+
+      // Load local reports
+      const savedReports = localStorage.getItem('baatometrics-reports');
+      if (savedReports) {
+        const parsedReports = JSON.parse(savedReports);
+        const localReports = parsedReports.map((report: any) => ({
+          ...report,
+          createdAt: new Date(report.createdAt)
+        }));
+        setReports(localReports);
+      }
+    } catch (error) {
+      console.error('Error loading local data:', error);
+    }
+  };
 
   // Save to localStorage whenever data changes
   const saveToStorage = (records: MappingRecord[]) => {
