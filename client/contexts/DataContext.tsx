@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
+import { StoredImage } from '@/lib/imageStorage';
 
 export interface MappingRecord {
   id: string;
@@ -9,6 +10,7 @@ export interface MappingRecord {
   startDate: string;
   endDate: string;
   images: File[];
+  imageIds: string[]; // References to stored images
   status: 'completed' | 'current' | 'locked';
   createdAt: Date;
 }
