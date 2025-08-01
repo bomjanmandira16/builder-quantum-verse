@@ -42,28 +42,8 @@ interface DataContextType {
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: ReactNode }) {
-  const [mappingRecords, setMappingRecords] = useState<MappingRecord[]>(() => {
-    // Load from localStorage on initialization
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('baatometrics-data');
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          return parsed.map((record: any) => ({
-            ...record,
-            createdAt: new Date(record.createdAt),
-            // Ensure imageIds exists for backward compatibility
-            imageIds: record.imageIds || [],
-            // Keep images array for backward compatibility but empty it
-            images: []
-          }));
-        } catch (error) {
-          console.error('Error loading saved data:', error);
-        }
-      }
-    }
-    return [];
-  });
+  const [mappingRecords, setMappingRecords] = useState<MappingRecord[]>([]);
+  const [isSharedData, setIsSharedData] = useState(false);
 
   const [reports, setReports] = useState<Report[]>(() => {
     // Load reports from localStorage
