@@ -174,6 +174,24 @@ export function DataProvider({ children }: { children: ReactNode }) {
       }));
   };
 
+  const getImagesForRecord = (recordId: string): File[] => {
+    const record = mappingRecords.find(r => r.id === recordId);
+    if (!record || !record.imageIds.length) return [];
+
+    try {
+      // Dynamically import to avoid SSR issues
+      import('@/lib/imageStorage').then(({ loadImagesFromStorage, storedImagesToFiles }) => {
+        const allStoredImages = loadImagesFromStorage();
+        const recordImages = allStoredImages.filter(img => record.imageIds.includes(img.id));
+        return storedImagesToFiles(recordImages);
+      });
+    } catch (error) {
+      console.error('Failed to load images for record:', error);
+    }
+
+    return [];
+  };
+
   return (
     <DataContext.Provider
       value={{
