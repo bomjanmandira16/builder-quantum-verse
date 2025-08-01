@@ -28,6 +28,7 @@ export interface Report {
 interface DataContextType {
   mappingRecords: MappingRecord[];
   reports: Report[];
+  isSharedData: boolean;
   addMappingRecord: (record: Omit<MappingRecord, 'id' | 'createdAt'>) => Promise<void>;
   updateMappingRecord: (id: string, updates: Partial<MappingRecord>) => void;
   deleteMappingRecord: (id: string) => void;
