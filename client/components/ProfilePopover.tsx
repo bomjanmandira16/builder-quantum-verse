@@ -88,6 +88,11 @@ export default function ProfilePopover() {
               <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">
                 {currentUser?.role}
               </p>
+              {currentUser?.organization && (
+                <p className="text-xs text-gray-500 dark:text-gray-500">
+                  {currentUser.organization}
+                </p>
+              )}
             </div>
           </div>
         </div>
