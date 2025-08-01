@@ -107,6 +107,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: '1',
         email,
         name: email.split('@')[0].replace(/[._]/g, ' '),
+        organization: 'BaatoMetrics Inc.',
         role: 'admin',
         joinedAt: new Date(),
         lastActive: new Date(),
