@@ -83,7 +83,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
       }
     }
 
-    // Load local data
+    // Initialize default data for new visitors
+    initializeDefaultData();
+
+    // Load local data (which now includes defaults for new visitors)
     try {
       const saved = localStorage.getItem('baatometrics-data');
       if (saved) {
@@ -95,6 +98,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
           images: []
         }));
         setMappingRecords(localRecords);
+        console.log(`📊 Loaded ${localRecords.length} mapping records for visitor`);
       }
 
       // Load local reports
@@ -109,6 +113,12 @@ export function DataProvider({ children }: { children: ReactNode }) {
       }
     } catch (error) {
       console.error('Error loading local data:', error);
+
+      // Fallback: Load default data directly if localStorage fails
+      const defaultData = getDefaultData();
+      setMappingRecords(defaultData.mappingRecords);
+      saveImagesToStorage(defaultData.images);
+      console.log('📊 Loaded fallback default data');
     }
   };
 
