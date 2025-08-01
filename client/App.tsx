@@ -86,8 +86,8 @@ const App = () => (
   </QueryClientProvider>
 );
 
-// Fix for multiple createRoot calls
 const rootElement = document.getElementById("root");
-if (rootElement && !rootElement._reactRootContainer) {
-  createRoot(rootElement).render(<App />);
+if (rootElement) {
+  const root = createRoot(rootElement);
+  root.render(<App />);
 }
