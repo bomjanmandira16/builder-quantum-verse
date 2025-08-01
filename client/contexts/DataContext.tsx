@@ -91,10 +91,26 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const addMappingRecord = (record: Omit<MappingRecord, 'id' | 'createdAt'>) => {
+  const addMappingRecord = async (record: Omit<MappingRecord, 'id' | 'createdAt'>) => {
+    // Import image storage functions
+    const { filesToStoredImages, addImagesToStorage } = await import('@/lib/imageStorage');
+
+    // Convert and store images
+    let imageIds: string[] = [];
+    if (record.images && record.images.length > 0) {
+      try {
+        const storedImages = await filesToStoredImages(record.images);
+        addImagesToStorage(storedImages);
+        imageIds = storedImages.map(img => img.id);
+      } catch (error) {
+        console.error('Failed to store images:', error);
+      }
+    }
+
     const newRecord: MappingRecord = {
       ...record,
       id: Date.now().toString(),
+      imageIds,
       createdAt: new Date(),
     };
     const updatedRecords = [...mappingRecords, newRecord];
