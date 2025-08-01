@@ -230,6 +230,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
       value={{
         mappingRecords,
         reports,
+        isSharedData,
         addMappingRecord,
         updateMappingRecord,
         deleteMappingRecord,
