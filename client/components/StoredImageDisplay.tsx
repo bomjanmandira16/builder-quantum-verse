@@ -35,6 +35,31 @@ export default function StoredImageDisplay({
     loadStoredImages();
   }, [imageIds]);
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isDialogOpen) return;
+
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          prevImage();
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          nextImage();
+          break;
+        case 'Escape':
+          event.preventDefault();
+          setIsDialogOpen(false);
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isDialogOpen, selectedImageIndex, images.length]);
+
   const loadStoredImages = () => {
     try {
       const allStoredImages = loadImagesFromStorage();
