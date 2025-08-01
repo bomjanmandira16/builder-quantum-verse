@@ -57,6 +57,9 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const loadInitialData = () => {
     if (typeof window === 'undefined') return;
 
+    // Clean up any dummy data first
+    cleanupDummyData();
+
     // Check for shared data first
     const urlParams = new URLSearchParams(window.location.search);
     const shareParam = urlParams.get('share');
