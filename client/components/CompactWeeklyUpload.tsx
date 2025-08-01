@@ -76,7 +76,7 @@ export default function CompactWeeklyUpload() {
     updateCurrentWeek({ images: newImages });
   };
 
-  const completeWeek = () => {
+  const completeWeek = async () => {
     if (!currentWeek.location || !currentWeek.startDate || !currentWeek.endDate || !currentWeek.roadLength) {
       toast({
         title: "Missing Information",
@@ -86,49 +86,59 @@ export default function CompactWeeklyUpload() {
       return;
     }
 
-    // Add to mapping records
-    addMappingRecord({
-      date: currentWeek.endDate,
-      week: currentWeek.weekNumber,
-      location: currentWeek.location,
-      length: parseFloat(currentWeek.roadLength),
-      startDate: currentWeek.startDate,
-      endDate: currentWeek.endDate,
-      images: currentWeek.images,
-      status: 'completed'
-    });
-
-    // Trigger fast notification
-    addNotification({
-      type: 'success',
-      title: 'Week Completed! 🎉',
-      message: `Week ${currentWeek.weekNumber} mapping in ${currentWeek.location} (${currentWeek.roadLength} km) has been successfully completed and uploaded.`,
-      actionType: 'week_completed',
-      metadata: {
+    try {
+      // Add to mapping records (now async to handle image storage)
+      await addMappingRecord({
+        date: currentWeek.endDate,
         week: currentWeek.weekNumber,
         location: currentWeek.location,
-        distance: parseFloat(currentWeek.roadLength),
-        imageCount: currentWeek.images.length
-      }
-    });
+        length: parseFloat(currentWeek.roadLength),
+        startDate: currentWeek.startDate,
+        endDate: currentWeek.endDate,
+        images: currentWeek.images,
+        imageIds: [], // Will be populated by addMappingRecord
+        status: 'completed'
+      });
 
-    // Reset for next week
-    const nextWeekNumber = currentWeek.weekNumber + 1;
-    setCurrentWeek({
-      id: nextWeekNumber,
-      weekNumber: nextWeekNumber,
-      status: 'current',
-      location: '',
-      startDate: '',
-      endDate: '',
-      images: [],
-      roadLength: ''
-    });
+      // Trigger fast notification
+      addNotification({
+        type: 'success',
+        title: 'Week Completed! 🎉',
+        message: `Week ${currentWeek.weekNumber} mapping in ${currentWeek.location} (${currentWeek.roadLength} km) has been successfully completed and uploaded.`,
+        actionType: 'week_completed',
+        metadata: {
+          week: currentWeek.weekNumber,
+          location: currentWeek.location,
+          distance: parseFloat(currentWeek.roadLength),
+          imageCount: currentWeek.images.length
+        }
+      });
 
-    toast({
-      title: "Week Completed!",
-      description: `Week ${currentWeek.weekNumber} has been completed and added to your mapping logs.`,
-    });
+      // Reset for next week
+      const nextWeekNumber = currentWeek.weekNumber + 1;
+      setCurrentWeek({
+        id: nextWeekNumber,
+        weekNumber: nextWeekNumber,
+        status: 'current',
+        location: '',
+        startDate: '',
+        endDate: '',
+        images: [],
+        roadLength: ''
+      });
+
+      toast({
+        title: "Week Completed! 📸",
+        description: `Week ${currentWeek.weekNumber} with ${currentWeek.images.length} images has been saved and will persist after refresh.`,
+      });
+    } catch (error) {
+      console.error('Failed to save week:', error);
+      toast({
+        title: "Save Failed",
+        description: "Failed to save the week data. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
