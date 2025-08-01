@@ -25,9 +25,27 @@ export default function DebugMappingData() {
     }
   }, [isMonitoring]);
 
-  // Watch for data changes
+  // Watch for data changes and log activities
   useEffect(() => {
-    console.log('🔍 Debug Panel - Data updated:', {
+    const currentCount = mappingRecords.length;
+    const now = new Date().toLocaleTimeString();
+
+    if (currentCount !== previousRecordCount) {
+      const change = currentCount > previousRecordCount ? 'ADDED' : 'REMOVED';
+      const logEntry = `${now}: ${change} record(s) - Total: ${currentCount}`;
+
+      setActivityLog(prev => [logEntry, ...prev.slice(0, 4)]); // Keep last 5 entries
+      setPreviousRecordCount(currentCount);
+
+      console.log('🔍 Debug Panel - Data changed:', {
+        change,
+        totalRecords: currentCount,
+        completedWeeks: getCompletedWeeks(),
+        latestRecord: mappingRecords[mappingRecords.length - 1]
+      });
+    }
+
+    console.log('🔍 Current Data State:', {
       totalRecords: mappingRecords.length,
       completedWeeks: getCompletedWeeks(),
       records: mappingRecords.map(r => ({
@@ -38,7 +56,7 @@ export default function DebugMappingData() {
         images: r.imageIds?.length || 0
       }))
     });
-  }, [mappingRecords, getCompletedWeeks]);
+  }, [mappingRecords, getCompletedWeeks, previousRecordCount]);
 
   const refreshData = () => {
     window.location.reload();
