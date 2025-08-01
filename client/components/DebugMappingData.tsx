@@ -11,6 +11,8 @@ export default function DebugMappingData() {
   const { toast } = useToast();
   const [lastUpdate, setLastUpdate] = useState(Date.now());
   const [isMonitoring, setIsMonitoring] = useState(true);
+  const [activityLog, setActivityLog] = useState<string[]>([]);
+  const [previousRecordCount, setPreviousRecordCount] = useState(mappingRecords.length);
 
   // Monitor data changes in real-time
   useEffect(() => {
