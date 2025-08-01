@@ -52,6 +52,23 @@ export default function StoredImageDisplay({
     }
   };
 
+  const nextImage = () => {
+    if (selectedImageIndex < images.length - 1) {
+      setSelectedImageIndex(selectedImageIndex + 1);
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedImageIndex > 0) {
+      setSelectedImageIndex(selectedImageIndex - 1);
+    }
+  };
+
+  const openImageViewer = (index: number) => {
+    setSelectedImageIndex(index);
+    setIsDialogOpen(true);
+  };
+
   if (loading) {
     return (
       <div className={`grid grid-cols-4 gap-2 ${className}`}>
