@@ -58,8 +58,29 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
+      {/* Shared Data Banner */}
+      {isSharedData && (
+        <Card className="border-blue-200 bg-blue-50 dark:bg-blue-900/20">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-blue-100 dark:bg-blue-800 rounded-lg">
+                <Plus className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-blue-900 dark:text-blue-100">
+                  Viewing Shared Data
+                </h3>
+                <p className="text-sm text-blue-700 dark:text-blue-300">
+                  You're viewing someone else's mapping progress. This data is read-only.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Compact Weekly Upload System */}
-      <CompactWeeklyUpload />
+      {!isSharedData && <CompactWeeklyUpload />}
 
       {/* Debug Information */}
       <DebugMappingData />
