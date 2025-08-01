@@ -47,7 +47,7 @@ export default function Settings() {
     firstName: currentUser?.name?.split(' ')[0] || '',
     lastName: currentUser?.name?.split(' ')[1] || '',
     email: currentUser?.email || '',
-    organization: 'BaatoMetrics Inc.',
+    organization: currentUser?.organization || 'BaatoMetrics Inc.',
     role: currentUser?.role || 'GIS Analyst'
   });
 
