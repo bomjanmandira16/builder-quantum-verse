@@ -25,6 +25,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useNotifications } from "@/contexts/NotificationContext";
 import { useToast } from "@/hooks/use-toast";
 import CustomLinkConfig from "@/components/CustomLinkConfig";
+import DataSharing from "@/components/DataSharing";
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState("profile");
