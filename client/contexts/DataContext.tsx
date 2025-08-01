@@ -124,6 +124,11 @@ export function DataProvider({ children }: { children: ReactNode }) {
   };
 
   const addMappingRecord = async (record: Omit<MappingRecord, 'id' | 'createdAt'>) => {
+    if (isSharedData) {
+      // Don't allow adding records when viewing shared data
+      throw new Error('Cannot add records while viewing shared data');
+    }
+
     // Import image storage functions
     const { filesToStoredImages, addImagesToStorage } = await import('@/lib/imageStorage');
 
