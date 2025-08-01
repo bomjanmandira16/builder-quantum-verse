@@ -24,6 +24,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useData } from "@/contexts/DataContext";
+import StoredImageDisplay, { useStoredImages } from "@/components/StoredImageDisplay";
 
 export default function CompletedWeeksGallery() {
   const { mappingRecords } = useData();
