@@ -34,10 +34,15 @@ export default function DebugMappingData() {
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-sm">Debug: Mapping Records</CardTitle>
-          <Button onClick={refreshData} size="sm" variant="outline">
-            <RefreshCw className="h-4 w-4 mr-1" />
-            Refresh
-          </Button>
+          <div className="flex gap-2">
+            <Button onClick={refreshData} size="sm" variant="outline">
+              <RefreshCw className="h-4 w-4 mr-1" />
+              Refresh
+            </Button>
+            <Button onClick={clearAllData} size="sm" variant="destructive">
+              Clear All Data
+            </Button>
+          </div>
         </div>
       </CardHeader>
       <CardContent>
