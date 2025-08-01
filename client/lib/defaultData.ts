@@ -31,6 +31,12 @@ export const DEFAULT_MAPPING_RECORDS: MappingRecord[] = [
   }
 ];
 
+// Helper function to safely encode SVG to data URL
+function createSvgDataUrl(svgContent: string): string {
+  // Use encodeURIComponent instead of btoa to handle Unicode characters
+  return 'data:image/svg+xml,' + encodeURIComponent(svgContent);
+}
+
 // Default demo images
 export const DEFAULT_IMAGES: StoredImage[] = [
   {
@@ -38,14 +44,14 @@ export const DEFAULT_IMAGES: StoredImage[] = [
     name: 'kathmandu_road_1.jpg',
     type: 'image/jpeg',
     size: 2048576, // 2MB
-    dataUrl: 'data:image/svg+xml;base64,' + btoa(`
+    dataUrl: createSvgDataUrl(`
       <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
         <rect width="400" height="300" fill="#2563eb"/>
         <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
         <text x="200" y="130" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Kathmandu Road Mapping</text>
         <text x="200" y="160" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Week 1 - Main Highway</text>
         <circle cx="120" cy="200" r="20" fill="#10b981"/>
-        <text x="120" y="206" text-anchor="middle" fill="white" font-family="Arial" font-size="10">✓</text>
+        <text x="120" y="206" text-anchor="middle" fill="white" font-family="Arial" font-size="10">OK</text>
         <text x="280" y="206" text-anchor="middle" fill="#374151" font-family="Arial" font-size="10">793 km mapped</text>
       </svg>
     `),
@@ -56,7 +62,7 @@ export const DEFAULT_IMAGES: StoredImage[] = [
     name: 'kathmandu_road_2.jpg',
     type: 'image/jpeg',
     size: 1843200, // 1.8MB
-    dataUrl: 'data:image/svg+xml;base64,' + btoa(`
+    dataUrl: createSvgDataUrl(`
       <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
         <rect width="400" height="300" fill="#059669"/>
         <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
@@ -73,13 +79,13 @@ export const DEFAULT_IMAGES: StoredImage[] = [
     name: 'kathmandu_overview.jpg',
     type: 'image/jpeg',
     size: 3145728, // 3MB
-    dataUrl: 'data:image/svg+xml;base64,' + btoa(`
+    dataUrl: createSvgDataUrl(`
       <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
         <rect width="400" height="300" fill="#7c3aed"/>
         <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
         <text x="200" y="120" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Area Overview</text>
         <text x="200" y="140" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Kathmandu District</text>
-        <text x="200" y="170" text-anchor="middle" fill="#374151" font-family="Arial" font-size="14">✅ 793 KM COMPLETED</text>
+        <text x="200" y="170" text-anchor="middle" fill="#374151" font-family="Arial" font-size="14">DONE - 793 KM COMPLETED</text>
         <text x="200" y="190" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="10">Total progress Week 1</text>
         <text x="200" y="220" text-anchor="middle" fill="#059669" font-family="Arial" font-size="12">Status: Completed</text>
       </svg>
@@ -91,7 +97,7 @@ export const DEFAULT_IMAGES: StoredImage[] = [
     name: 'lalitpur_road_1.jpg',
     type: 'image/jpeg',
     size: 2621440, // 2.5MB
-    dataUrl: 'data:image/svg+xml;base64,' + btoa(`
+    dataUrl: createSvgDataUrl(`
       <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
         <rect width="400" height="300" fill="#dc2626"/>
         <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
@@ -99,7 +105,7 @@ export const DEFAULT_IMAGES: StoredImage[] = [
         <text x="200" y="160" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Week 2 - District Roads</text>
         <circle cx="150" cy="200" r="15" fill="#10b981"/>
         <circle cx="250" cy="200" r="15" fill="#10b981"/>
-        <text x="200" y="230" text-anchor="middle" fill="#374151" font-family="Arial" font-size="10">456 km mapped</text>
+        <text x="200" y="230" text-anchor="middle" fill="#374151" font-family="Arial" font-size="10">620 km mapped</text>
       </svg>
     `),
     uploadedAt: '2025-01-27T11:20:00Z'
@@ -109,14 +115,14 @@ export const DEFAULT_IMAGES: StoredImage[] = [
     name: 'lalitpur_progress.jpg',
     type: 'image/jpeg',
     size: 1966080, // 1.9MB
-    dataUrl: 'data:image/svg+xml;base64,' + btoa(`
+    dataUrl: createSvgDataUrl(`
       <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
         <rect width="400" height="300" fill="#ea580c"/>
         <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
         <text x="200" y="120" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Week 2 Complete</text>
-        <text x="200" y="140" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Lalitpur District</text>
-        <text x="200" y="170" text-anchor="middle" fill="#374151" font-family="Arial" font-size="14">✅ 456 KM COMPLETED</text>
-        <text x="200" y="190" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="10">Total: 1,249 km across 2 weeks</text>
+        <text x="200" y="140" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Bagmati Province</text>
+        <text x="200" y="170" text-anchor="middle" fill="#374151" font-family="Arial" font-size="14">DONE - 620 KM COMPLETED</text>
+        <text x="200" y="190" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="10">Total: 1,413 km across 2 weeks</text>
         <text x="200" y="220" text-anchor="middle" fill="#059669" font-family="Arial" font-size="12">Progress: Excellent!</text>
       </svg>
     `),
