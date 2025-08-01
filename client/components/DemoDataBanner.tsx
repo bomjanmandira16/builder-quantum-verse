@@ -54,7 +54,7 @@ export default function DemoDataBanner() {
                 Demo Progress - Bomjan Mandira's Mapping Data
               </h3>
               <p className="text-sm text-purple-700 dark:text-purple-300">
-                You're viewing sample mapping progress: <strong>{completedWeeks} weeks completed</strong> • <strong>{totalDistance.toFixed(1)} km mapped</strong> • View images in the gallery below
+                Complete mapping portfolio: <strong>{completedWeeks} weeks completed</strong> • <strong>{totalDistance.toFixed(1)} km mapped</strong> • <strong>6 districts covered</strong> • View all progress and images below
               </p>
             </div>
           </div>
