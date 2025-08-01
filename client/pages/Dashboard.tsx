@@ -9,6 +9,7 @@ import CompactWeeklyUpload from "@/components/CompactWeeklyUpload";
 import RecentMappingLogs from "@/components/RecentMappingLogs";
 import LocationOverview from "@/components/LocationOverview";
 import CompletedWeeksGallery from "@/components/CompletedWeeksGallery";
+import DebugMappingData from "@/components/DebugMappingData";
 import { useData } from "@/contexts/DataContext";
 
 export default function Dashboard() {
