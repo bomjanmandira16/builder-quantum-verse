@@ -9,6 +9,34 @@ import { RefreshCw, CheckCircle, Eye } from "lucide-react";
 export default function DebugMappingData() {
   const { mappingRecords, getCompletedWeeks, updateMappingRecord } = useData();
   const { toast } = useToast();
+  const [lastUpdate, setLastUpdate] = useState(Date.now());
+  const [isMonitoring, setIsMonitoring] = useState(true);
+
+  // Monitor data changes in real-time
+  useEffect(() => {
+    if (isMonitoring) {
+      const interval = setInterval(() => {
+        setLastUpdate(Date.now());
+      }, 2000); // Check every 2 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [isMonitoring]);
+
+  // Watch for data changes
+  useEffect(() => {
+    console.log('🔍 Debug Panel - Data updated:', {
+      totalRecords: mappingRecords.length,
+      completedWeeks: getCompletedWeeks(),
+      records: mappingRecords.map(r => ({
+        week: r.week,
+        location: r.location,
+        distance: r.length,
+        status: r.status,
+        images: r.imageIds?.length || 0
+      }))
+    });
+  }, [mappingRecords, getCompletedWeeks]);
 
   const refreshData = () => {
     window.location.reload();
