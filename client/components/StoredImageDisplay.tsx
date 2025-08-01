@@ -19,14 +19,16 @@ interface StoredImageDisplayProps {
   maxDisplay?: number;
 }
 
-export default function StoredImageDisplay({ 
-  imageIds, 
-  showMetadata = false, 
+export default function StoredImageDisplay({
+  imageIds,
+  showMetadata = false,
   className = "",
-  maxDisplay = 4 
+  maxDisplay = 4
 }: StoredImageDisplayProps) {
   const [images, setImages] = useState<StoredImage[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
