@@ -371,6 +371,7 @@ export default function CompletedWeeksGallery() {
                 </div>
               ) : (
                 <div className="text-center py-4 text-gray-500 text-sm">
+                  <ImageIcon className="h-6 w-6 mx-auto mb-2 text-gray-400" />
                   No images uploaded
                 </div>
               )}
