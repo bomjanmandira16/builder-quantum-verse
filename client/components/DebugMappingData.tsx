@@ -14,7 +14,7 @@ export default function DebugMappingData() {
   };
 
   const forceCompleteWeek = (recordId: string, weekNumber: number) => {
-    updateMappingRecord(recordId, { status: 'completed' });
+    updateMappingRecord(recordId, { status: "completed" });
     toast({
       title: "Week Completed! 🚀",
       description: `Week ${weekNumber} has been manually marked as completed.`,
@@ -22,9 +22,13 @@ export default function DebugMappingData() {
   };
 
   const clearAllData = () => {
-    if (confirm('Are you sure you want to clear all mapping data? This cannot be undone.')) {
-      localStorage.removeItem('baatometrics-data');
-      localStorage.removeItem('baatometrics-images');
+    if (
+      confirm(
+        "Are you sure you want to clear all mapping data? This cannot be undone.",
+      )
+    ) {
+      localStorage.removeItem("baatometrics-data");
+      localStorage.removeItem("baatometrics-images");
       window.location.reload();
     }
   };
@@ -47,27 +51,41 @@ export default function DebugMappingData() {
       </CardHeader>
       <CardContent>
         <div className="space-y-2 text-xs">
-          <p><strong>Total Records:</strong> {mappingRecords.length}</p>
-          <p><strong>Completed Weeks:</strong> {getCompletedWeeks()}</p>
-          
+          <p>
+            <strong>Total Records:</strong> {mappingRecords.length}
+          </p>
+          <p>
+            <strong>Completed Weeks:</strong> {getCompletedWeeks()}
+          </p>
+
           {mappingRecords.length > 0 ? (
             <div className="space-y-2">
-              <p><strong>Records Detail:</strong></p>
+              <p>
+                <strong>Records Detail:</strong>
+              </p>
               {mappingRecords.map((record, index) => (
                 <div key={record.id} className="p-2 border rounded text-xs">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Badge
-                        variant={record.status === 'completed' ? 'default' : 'secondary'}
-                        className={record.status === 'completed' ? 'bg-green-600' : ''}
+                        variant={
+                          record.status === "completed"
+                            ? "default"
+                            : "secondary"
+                        }
+                        className={
+                          record.status === "completed" ? "bg-green-600" : ""
+                        }
                       >
                         Week {record.week}
                       </Badge>
                       <span className="font-mono">{record.status}</span>
                     </div>
-                    {record.status !== 'completed' && (
+                    {record.status !== "completed" && (
                       <Button
-                        onClick={() => forceCompleteWeek(record.id, record.week)}
+                        onClick={() =>
+                          forceCompleteWeek(record.id, record.week)
+                        }
                         size="sm"
                         variant="outline"
                         className="h-6 px-2 text-xs"
@@ -79,7 +97,10 @@ export default function DebugMappingData() {
                   </div>
                   <p>Location: {record.location}</p>
                   <p>Distance: {record.length} km</p>
-                  <p>Images: {record.images?.length || 0} files, {record.imageIds?.length || 0} stored</p>
+                  <p>
+                    Images: {record.images?.length || 0} files,{" "}
+                    {record.imageIds?.length || 0} stored
+                  </p>
                   <p>Date: {record.endDate}</p>
                 </div>
               ))}

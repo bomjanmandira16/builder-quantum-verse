@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 export interface User {
   id: string;
@@ -6,7 +12,7 @@ export interface User {
   name: string;
   avatar?: string;
   organization?: string;
-  role: 'admin' | 'editor' | 'viewer';
+  role: "admin" | "editor" | "viewer";
   joinedAt: Date;
   lastActive: Date;
   permissions: {
@@ -19,7 +25,7 @@ export interface User {
 
 export interface TeamMember extends User {
   invitedBy?: string;
-  status: 'active' | 'pending' | 'suspended';
+  status: "active" | "pending" | "suspended";
 }
 
 interface AuthContextType {
@@ -29,8 +35,8 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<boolean>;
   loginWithGoogle: () => Promise<boolean>;
   logout: () => void;
-  inviteTeamMember: (email: string, role: User['role']) => Promise<boolean>;
-  updateUserRole: (userId: string, role: User['role']) => void;
+  inviteTeamMember: (email: string, role: User["role"]) => Promise<boolean>;
+  updateUserRole: (userId: string, role: User["role"]) => void;
   removeTeamMember: (userId: string) => void;
   updateProfile: (updates: Partial<User>) => boolean;
 }
@@ -40,18 +46,18 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
     // Load from localStorage
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('baatometrics-user');
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("baatometrics-user");
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
           return {
             ...parsed,
             joinedAt: new Date(parsed.joinedAt),
-            lastActive: new Date(parsed.lastActive)
+            lastActive: new Date(parsed.lastActive),
           };
         } catch (error) {
-          console.error('Error loading user:', error);
+          console.error("Error loading user:", error);
         }
       }
     }
@@ -60,18 +66,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>(() => {
     // Load team from localStorage
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('baatometrics-team');
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("baatometrics-team");
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
           return parsed.map((member: any) => ({
             ...member,
             joinedAt: new Date(member.joinedAt),
-            lastActive: new Date(member.lastActive)
+            lastActive: new Date(member.lastActive),
           }));
         } catch (error) {
-          console.error('Error loading team:', error);
+          console.error("Error loading team:", error);
         }
       }
     }
@@ -82,41 +88,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Save user to localStorage
   const saveUser = (user: User | null) => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       if (user) {
-        localStorage.setItem('baatometrics-user', JSON.stringify(user));
+        localStorage.setItem("baatometrics-user", JSON.stringify(user));
       } else {
-        localStorage.removeItem('baatometrics-user');
+        localStorage.removeItem("baatometrics-user");
       }
     }
   };
 
   // Save team to localStorage
   const saveTeam = (team: TeamMember[]) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('baatometrics-team', JSON.stringify(team));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("baatometrics-team", JSON.stringify(team));
     }
   };
 
   const login = async (email: string, password: string): Promise<boolean> => {
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     if (email && password) {
       const user: User = {
-        id: '1',
+        id: "1",
         email,
-        name: email.split('@')[0].replace(/[._]/g, ' '),
-        organization: 'BaatoMetrics Inc.',
-        role: 'admin',
+        name: email.split("@")[0].replace(/[._]/g, " "),
+        organization: "BaatoMetrics Inc.",
+        role: "admin",
         joinedAt: new Date(),
         lastActive: new Date(),
         permissions: {
           canEdit: true,
           canDelete: true,
           canInvite: true,
-          canManageUsers: true
-        }
+          canManageUsers: true,
+        },
       };
       setCurrentUser(user);
       saveUser(user);
@@ -127,32 +133,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loginWithGoogle = async (): Promise<boolean> => {
     // Simulate Google OAuth - in real implementation this would use Google API
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     // Simulate getting real Google user data
     const googleUserData = {
-      email: 'bomjan.mandira@gmail.com',
-      name: 'Bomjan Mandira',
-      avatar: 'https://lh3.googleusercontent.com/a/default-user=s96-c', // Google profile pic
-      given_name: 'Bomjan',
-      family_name: 'Mandira'
+      email: "bomjan.mandira@gmail.com",
+      name: "Bomjan Mandira",
+      avatar: "https://lh3.googleusercontent.com/a/default-user=s96-c", // Google profile pic
+      given_name: "Bomjan",
+      family_name: "Mandira",
     };
 
     const user: User = {
-      id: 'google_' + Date.now(),
+      id: "google_" + Date.now(),
       email: googleUserData.email,
       name: googleUserData.name,
       avatar: googleUserData.avatar,
-      organization: 'BaatoMetrics Inc.',
-      role: 'admin',
+      organization: "BaatoMetrics Inc.",
+      role: "admin",
       joinedAt: new Date(),
       lastActive: new Date(),
       permissions: {
         canEdit: true,
         canDelete: true,
         canInvite: true,
-        canManageUsers: true
-      }
+        canManageUsers: true,
+      },
     };
     setCurrentUser(user);
     saveUser(user);
@@ -164,26 +170,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     saveUser(null);
   };
 
-  const inviteTeamMember = async (email: string, role: User['role']): Promise<boolean> => {
+  const inviteTeamMember = async (
+    email: string,
+    role: User["role"],
+  ): Promise<boolean> => {
     if (!currentUser?.permissions.canInvite) return false;
 
     try {
       // Get custom domain from localStorage if set
-      const customDomain = localStorage.getItem('custom-invite-domain');
+      const customDomain = localStorage.getItem("custom-invite-domain");
 
       // Send real email invitation via API
-      const response = await fetch('/api/invite', {
-        method: 'POST',
+      const response = await fetch("/api/invite", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email,
           role,
           inviterName: currentUser.name,
-          organizationName: 'BaatoMetrics',
-          customDomain: customDomain || undefined
-        })
+          organizationName: "BaatoMetrics",
+          customDomain: customDomain || undefined,
+        }),
       });
 
       const result = await response.json();
@@ -193,54 +202,54 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const newMember: TeamMember = {
           id: Date.now().toString(),
           email,
-          name: email.split('@')[0].replace(/[._]/g, ' '),
+          name: email.split("@")[0].replace(/[._]/g, " "),
           role,
           joinedAt: new Date(),
           lastActive: new Date(),
           invitedBy: currentUser.id,
-          status: 'pending',
+          status: "pending",
           permissions: {
-            canEdit: role !== 'viewer',
-            canDelete: role === 'admin',
-            canInvite: role === 'admin',
-            canManageUsers: role === 'admin'
-          }
+            canEdit: role !== "viewer",
+            canDelete: role === "admin",
+            canInvite: role === "admin",
+            canManageUsers: role === "admin",
+          },
         };
 
         const updatedTeam = [...teamMembers, newMember];
         setTeamMembers(updatedTeam);
         saveTeam(updatedTeam);
 
-        console.log('✅ Email sent successfully:', result.message);
-        console.log('📧 Email preview:', result.emailPreview);
+        console.log("✅ Email sent successfully:", result.message);
+        console.log("📧 Email preview:", result.emailPreview);
 
         return true;
       } else {
-        console.error('❌ Failed to send email:', result.error);
+        console.error("❌ Failed to send email:", result.error);
         return false;
       }
     } catch (error) {
-      console.error('❌ Error sending invitation:', error);
+      console.error("❌ Error sending invitation:", error);
       return false;
     }
   };
 
-  const updateUserRole = (userId: string, role: User['role']) => {
+  const updateUserRole = (userId: string, role: User["role"]) => {
     if (!currentUser?.permissions.canManageUsers) return;
-    
-    const updatedTeam = teamMembers.map(member => 
-      member.id === userId 
-        ? { 
-            ...member, 
+
+    const updatedTeam = teamMembers.map((member) =>
+      member.id === userId
+        ? {
+            ...member,
             role,
             permissions: {
-              canEdit: role !== 'viewer',
-              canDelete: role === 'admin',
-              canInvite: role === 'admin',
-              canManageUsers: role === 'admin'
-            }
+              canEdit: role !== "viewer",
+              canDelete: role === "admin",
+              canInvite: role === "admin",
+              canManageUsers: role === "admin",
+            },
           }
-        : member
+        : member,
     );
     setTeamMembers(updatedTeam);
     saveTeam(updatedTeam);
@@ -248,8 +257,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const removeTeamMember = (userId: string) => {
     if (!currentUser?.permissions.canManageUsers) return;
-    
-    const updatedTeam = teamMembers.filter(member => member.id !== userId);
+
+    const updatedTeam = teamMembers.filter((member) => member.id !== userId);
     setTeamMembers(updatedTeam);
     saveTeam(updatedTeam);
   };
@@ -304,7 +313,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }

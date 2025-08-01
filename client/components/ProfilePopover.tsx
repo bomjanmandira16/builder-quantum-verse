@@ -52,15 +52,18 @@ export default function ProfilePopover() {
           ) : (
             <div className="w-6 h-6 bg-blue-600 dark:bg-blue-700 rounded-full flex items-center justify-center text-white text-xs font-semibold">
               {currentUser?.name
-                ?.split(' ')
-                .map(n => n[0])
-                .join('')
-                .toUpperCase() || 'U'}
+                ?.split(" ")
+                .map((n) => n[0])
+                .join("")
+                .toUpperCase() || "U"}
             </div>
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-72 p-0 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700" align="end">
+      <PopoverContent
+        className="w-72 p-0 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
+        align="end"
+      >
         {/* Profile Header */}
         <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30">
           <div className="flex items-center gap-3">
@@ -77,7 +80,7 @@ export default function ProfilePopover() {
                     ?.split(" ")
                     .map((n) => n[0])
                     .join("")
-                    .toUpperCase() || 'U'}
+                    .toUpperCase() || "U"}
                 </span>
               </div>
             )}
@@ -100,19 +103,28 @@ export default function ProfilePopover() {
         {/* Navigation Links */}
         <div className="p-2">
           <Link to="/analytics" onClick={() => setIsOpen(false)}>
-            <Button variant="ghost" className="w-full justify-start gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+            >
               <BarChart3 className="h-4 w-4" />
               Analytics
             </Button>
           </Link>
           <Link to="/reports" onClick={() => setIsOpen(false)}>
-            <Button variant="ghost" className="w-full justify-start gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+            >
               <FileText className="h-4 w-4" />
               Reports
             </Button>
           </Link>
           <Link to="/settings" onClick={() => setIsOpen(false)}>
-            <Button variant="ghost" className="w-full justify-start gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+            >
               <Settings className="h-4 w-4" />
               Settings
             </Button>
@@ -120,7 +132,10 @@ export default function ProfilePopover() {
 
           <Separator className="my-2" />
 
-          <Button variant="ghost" className="w-full justify-start gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+          >
             <HelpCircle className="h-4 w-4" />
             Help & Support
           </Button>
