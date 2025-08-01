@@ -166,11 +166,27 @@ export default function CompletedWeeksGallery() {
 
               {/* Use new StoredImageDisplay for persistent images */}
               {week.imageIds && week.imageIds.length > 0 ? (
-                <StoredImageDisplay
-                  imageIds={week.imageIds}
-                  maxDisplay={4}
-                  className="cursor-pointer"
-                />
+                <div className="space-y-2">
+                  <StoredImageDisplay
+                    imageIds={week.imageIds}
+                    maxDisplay={4}
+                    className="cursor-pointer"
+                  />
+                  {week.imageIds.length > 4 && (
+                    <div className="text-center">
+                      <StoredImageDisplay
+                        imageIds={week.imageIds}
+                        maxDisplay={week.imageIds.length}
+                        showMetadata={true}
+                        className="hidden" // Hidden, just for viewing all
+                      />
+                      <Badge variant="outline" className="text-xs">
+                        <ImageIcon className="h-3 w-3 mr-1" />
+                        {week.imageIds.length} images total - Click any image to view full size
+                      </Badge>
+                    </div>
+                  )}
+                </div>
               ) : week.images && week.images.length > 0 ? (
                 <div className="space-y-2">
                   <div className="grid grid-cols-2 gap-2">
