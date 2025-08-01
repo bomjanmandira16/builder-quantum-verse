@@ -28,7 +28,7 @@ import DebugMappingData from "@/components/DebugMappingData";
 import { useData } from "@/contexts/DataContext";
 
 export default function Dashboard() {
-  const { getTotalDistance, getCompletedWeeks, getWeeklyData, mappingRecords } =
+  const { getTotalDistance, getCompletedWeeks, getWeeklyData, mappingRecords, isSharedData } =
     useData();
 
   const totalDistance = getTotalDistance();
