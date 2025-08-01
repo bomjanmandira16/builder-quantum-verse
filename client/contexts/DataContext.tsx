@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { StoredImage, saveImagesToStorage } from '@/lib/imageStorage';
 import { getSharedDataFromURL, loadByShareId, parseSharedData } from '@/lib/dataSharing';
+import { cleanupDummyData } from '@/lib/cleanupData';
 
 export interface MappingRecord {
   id: string;
