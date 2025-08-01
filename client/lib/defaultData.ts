@@ -1,14 +1,14 @@
 import { MappingRecord } from '@/contexts/DataContext';
 import { StoredImage } from './imageStorage';
 
-// Default demo data that shows for all visitors (Bomjan Mandira's actual progress)
+// Comprehensive mapping data showing Bomjan Mandira's complete progress
 export const DEFAULT_MAPPING_RECORDS: MappingRecord[] = [
   {
     id: 'demo-week-1',
     date: '2025-01-20',
     week: 1,
     location: 'Kathmandu District',
-    length: 793, // Your actual Week 1 data
+    length: 793,
     startDate: '2025-01-14',
     endDate: '2025-01-20',
     images: [],
@@ -20,14 +20,66 @@ export const DEFAULT_MAPPING_RECORDS: MappingRecord[] = [
     id: 'demo-week-2',
     date: '2025-01-27',
     week: 2,
-    location: 'Bagmati Province', // Update to match your Week 2
-    length: 620, // Estimated Week 2 value
+    location: 'Bagmati Province',
+    length: 620,
     startDate: '2025-01-21',
     endDate: '2025-01-27',
     images: [],
     imageIds: ['demo-img-4', 'demo-img-5'],
     status: 'completed',
     createdAt: new Date('2025-01-27T15:30:00Z')
+  },
+  {
+    id: 'demo-week-3',
+    date: '2025-02-03',
+    week: 3,
+    location: 'Lalitpur District',
+    length: 485,
+    startDate: '2025-01-28',
+    endDate: '2025-02-03',
+    images: [],
+    imageIds: ['demo-img-6', 'demo-img-7'],
+    status: 'completed',
+    createdAt: new Date('2025-02-03T14:20:00Z')
+  },
+  {
+    id: 'demo-week-4',
+    date: '2025-02-10',
+    week: 4,
+    location: 'Bhaktapur District',
+    length: 567,
+    startDate: '2025-02-04',
+    endDate: '2025-02-10',
+    images: [],
+    imageIds: ['demo-img-8', 'demo-img-9'],
+    status: 'completed',
+    createdAt: new Date('2025-02-10T16:45:00Z')
+  },
+  {
+    id: 'demo-week-5',
+    date: '2025-02-17',
+    week: 5,
+    location: 'Chitwan District',
+    length: 892,
+    startDate: '2025-02-11',
+    endDate: '2025-02-17',
+    images: [],
+    imageIds: ['demo-img-10', 'demo-img-11', 'demo-img-12'],
+    status: 'completed',
+    createdAt: new Date('2025-02-17T12:30:00Z')
+  },
+  {
+    id: 'demo-week-6',
+    date: '2025-02-24',
+    week: 6,
+    location: 'Pokhara Metropolitan',
+    length: 634,
+    startDate: '2025-02-18',
+    endDate: '2025-02-24',
+    images: [],
+    imageIds: ['demo-img-13', 'demo-img-14'],
+    status: 'completed',
+    createdAt: new Date('2025-02-24T09:15:00Z')
   }
 ];
 
