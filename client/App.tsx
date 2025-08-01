@@ -94,8 +94,28 @@ const App = () => (
   </ErrorBoundaryWrapper>
 );
 
+// Ensure proper initialization
 const rootElement = document.getElementById("root");
 if (rootElement) {
-  const root = createRoot(rootElement);
-  root.render(<App />);
+  // Clear any existing content
+  rootElement.innerHTML = '';
+
+  // Create root and render app
+  try {
+    const root = createRoot(rootElement);
+    root.render(<App />);
+  } catch (error) {
+    console.error('Failed to create React root:', error);
+    rootElement.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: center; height: 100vh; font-family: system-ui;">
+        <div style="text-align: center;">
+          <h1>Failed to load application</h1>
+          <p>Please refresh the page</p>
+          <button onclick="window.location.reload()" style="margin-top: 16px; padding: 8px 16px;">Refresh</button>
+        </div>
+      </div>
+    `;
+  }
+} else {
+  console.error('Root element not found');
 }
