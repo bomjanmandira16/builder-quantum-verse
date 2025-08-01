@@ -20,6 +20,7 @@ import { DataProvider } from "./contexts/DataContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { NotificationProvider } from "./contexts/NotificationContext";
+import ErrorBoundaryWrapper from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient({
   defaultOptions: {
