@@ -153,6 +153,94 @@ export default function StoredImageDisplay({
           </div>
         </div>
       )}
+
+      {/* Image Viewer Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-4xl w-full">
+          <DialogHeader>
+            <DialogTitle className="flex items-center justify-between">
+              <span>
+                Image {selectedImageIndex + 1} of {images.length}
+              </span>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsDialogOpen(false)}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </DialogTitle>
+          </DialogHeader>
+
+          {images[selectedImageIndex] && (
+            <div className="space-y-4">
+              {/* Main Image */}
+              <div className="flex justify-center">
+                <img
+                  src={images[selectedImageIndex].dataUrl}
+                  alt={images[selectedImageIndex].name}
+                  className="max-w-full max-h-[70vh] object-contain rounded-lg"
+                />
+              </div>
+
+              {/* Navigation Controls */}
+              {images.length > 1 && (
+                <div className="flex items-center justify-center gap-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={prevImage}
+                    disabled={selectedImageIndex === 0}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    Previous
+                  </Button>
+
+                  <span className="text-sm text-gray-600">
+                    {selectedImageIndex + 1} of {images.length}
+                  </span>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={nextImage}
+                    disabled={selectedImageIndex === images.length - 1}
+                  >
+                    Next
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+
+              {/* Image Metadata */}
+              <div className="p-4 bg-gray-50 rounded-lg">
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span className="font-medium">File Name:</span>
+                    <p className="text-gray-600">{images[selectedImageIndex].name}</p>
+                  </div>
+                  <div>
+                    <span className="font-medium">File Size:</span>
+                    <p className="text-gray-600">
+                      {(images[selectedImageIndex].size / 1024 / 1024).toFixed(2)} MB
+                    </p>
+                  </div>
+                  <div>
+                    <span className="font-medium">Type:</span>
+                    <p className="text-gray-600">{images[selectedImageIndex].type}</p>
+                  </div>
+                  <div>
+                    <span className="font-medium">Uploaded:</span>
+                    <p className="text-gray-600">
+                      {new Date(images[selectedImageIndex].uploadedAt).toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
