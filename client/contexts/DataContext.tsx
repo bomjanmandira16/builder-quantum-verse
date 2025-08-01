@@ -205,6 +205,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
         getTotalDistance,
         getCompletedWeeks,
         getWeeklyData,
+        getImagesForRecord,
       }}
     >
       {children}
