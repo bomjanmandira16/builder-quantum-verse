@@ -6,10 +6,27 @@ import { useToast } from "@/hooks/use-toast";
 import { RefreshCw, CheckCircle } from "lucide-react";
 
 export default function DebugMappingData() {
-  const { mappingRecords, getCompletedWeeks } = useData();
+  const { mappingRecords, getCompletedWeeks, updateMappingRecord } = useData();
+  const { toast } = useToast();
 
   const refreshData = () => {
     window.location.reload();
+  };
+
+  const forceCompleteWeek = (recordId: string, weekNumber: number) => {
+    updateMappingRecord(recordId, { status: 'completed' });
+    toast({
+      title: "Week Completed! 🚀",
+      description: `Week ${weekNumber} has been manually marked as completed.`,
+    });
+  };
+
+  const clearAllData = () => {
+    if (confirm('Are you sure you want to clear all mapping data? This cannot be undone.')) {
+      localStorage.removeItem('baatometrics-data');
+      localStorage.removeItem('baatometrics-images');
+      window.location.reload();
+    }
   };
 
   return (
