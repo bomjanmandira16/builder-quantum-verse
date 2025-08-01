@@ -557,6 +557,10 @@ export default function Settings() {
             }}
           />
         </TabsContent>
+
+        <TabsContent value="sharing">
+          <DataSharing />
+        </TabsContent>
       </Tabs>
     </div>
   );
