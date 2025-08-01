@@ -208,11 +208,12 @@ export default function Settings() {
       </div>
 
       <Tabs defaultValue="profile" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
           <TabsTrigger value="appearance">Appearance</TabsTrigger>
           <TabsTrigger value="links">Links</TabsTrigger>
+          <TabsTrigger value="sharing">Sharing</TabsTrigger>
         </TabsList>
 
         <TabsContent value="profile">
