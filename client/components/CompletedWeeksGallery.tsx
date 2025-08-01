@@ -164,7 +164,14 @@ export default function CompletedWeeksGallery() {
                 </p>
               </div>
 
-              {week.images && week.images.length > 0 ? (
+              {/* Use new StoredImageDisplay for persistent images */}
+              {week.imageIds && week.imageIds.length > 0 ? (
+                <StoredImageDisplay
+                  imageIds={week.imageIds}
+                  maxDisplay={4}
+                  className="cursor-pointer"
+                />
+              ) : week.images && week.images.length > 0 ? (
                 <div className="space-y-2">
                   <div className="grid grid-cols-2 gap-2">
                     {week.images.slice(0, 4).map((image, index) => {
