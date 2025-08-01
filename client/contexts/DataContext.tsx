@@ -27,7 +27,7 @@ export interface Report {
 interface DataContextType {
   mappingRecords: MappingRecord[];
   reports: Report[];
-  addMappingRecord: (record: Omit<MappingRecord, 'id' | 'createdAt'>) => void;
+  addMappingRecord: (record: Omit<MappingRecord, 'id' | 'createdAt'>) => Promise<void>;
   updateMappingRecord: (id: string, updates: Partial<MappingRecord>) => void;
   deleteMappingRecord: (id: string) => void;
   addReport: (report: Omit<Report, 'id' | 'createdAt'>) => void;
@@ -35,6 +35,7 @@ interface DataContextType {
   getTotalDistance: () => number;
   getCompletedWeeks: () => number;
   getWeeklyData: () => Array<{ week: string; km: number }>;
+  getImagesForRecord: (recordId: string) => File[];
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
