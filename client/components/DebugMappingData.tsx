@@ -14,10 +14,31 @@ export default function DebugMappingData() {
   const [activityLog, setActivityLog] = useState<string[]>([]);
   const [previousRecordCount, setPreviousRecordCount] = useState(mappingRecords.length);
 
-  // Monitor data changes in real-time
+  // Monitor data changes in real-time + localStorage
   useEffect(() => {
     if (isMonitoring) {
       const interval = setInterval(() => {
+        // Check localStorage directly
+        const rawData = localStorage.getItem('baatometrics-data');
+        const rawImages = localStorage.getItem('baatometrics-images');
+
+        if (rawData) {
+          try {
+            const parsed = JSON.parse(rawData);
+            console.log('🔍 LIVE CHECK - localStorage has:', {
+              recordCount: parsed.length,
+              records: parsed.map((r: any) => ({
+                week: r.week,
+                location: r.location,
+                length: r.length,
+                status: r.status
+              }))
+            });
+          } catch (e) {
+            console.log('❌ localStorage data corrupted');
+          }
+        }
+
         setLastUpdate(Date.now());
       }, 2000); // Check every 2 seconds
 
