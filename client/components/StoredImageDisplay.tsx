@@ -99,14 +99,17 @@ export default function StoredImageDisplay({
       <div className="grid grid-cols-4 gap-2">
         {displayImages.map((image, index) => (
           <div key={image.id} className="relative group">
-            <div className="aspect-square bg-gray-100 rounded overflow-hidden">
+            <div
+              className="aspect-square bg-gray-100 rounded overflow-hidden cursor-pointer hover:ring-2 hover:ring-blue-500 transition-all"
+              onClick={() => openImageViewer(index)}
+            >
               <img
                 src={image.dataUrl}
                 alt={image.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-105 transition-transform"
               />
             </div>
-            
+
             {showMetadata && (
               <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity rounded flex items-end">
                 <div className="p-2 text-white text-xs">
