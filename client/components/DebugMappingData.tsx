@@ -1,9 +1,10 @@
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useData } from "@/contexts/DataContext";
 import { useToast } from "@/hooks/use-toast";
-import { RefreshCw, CheckCircle } from "lucide-react";
+import { RefreshCw, CheckCircle, Eye } from "lucide-react";
 
 export default function DebugMappingData() {
   const { mappingRecords, getCompletedWeeks, updateMappingRecord } = useData();
