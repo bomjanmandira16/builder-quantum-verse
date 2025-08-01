@@ -50,7 +50,11 @@ export function DataProvider({ children }: { children: ReactNode }) {
           const parsed = JSON.parse(saved);
           return parsed.map((record: any) => ({
             ...record,
-            createdAt: new Date(record.createdAt)
+            createdAt: new Date(record.createdAt),
+            // Ensure imageIds exists for backward compatibility
+            imageIds: record.imageIds || [],
+            // Keep images array for backward compatibility but empty it
+            images: []
           }));
         } catch (error) {
           console.error('Error loading saved data:', error);
