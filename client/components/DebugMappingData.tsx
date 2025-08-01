@@ -55,14 +55,27 @@ export default function DebugMappingData() {
               <p><strong>Records Detail:</strong></p>
               {mappingRecords.map((record, index) => (
                 <div key={record.id} className="p-2 border rounded text-xs">
-                  <div className="flex items-center gap-2">
-                    <Badge 
-                      variant={record.status === 'completed' ? 'default' : 'secondary'}
-                      className={record.status === 'completed' ? 'bg-green-600' : ''}
-                    >
-                      Week {record.week}
-                    </Badge>
-                    <span className="font-mono">{record.status}</span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Badge
+                        variant={record.status === 'completed' ? 'default' : 'secondary'}
+                        className={record.status === 'completed' ? 'bg-green-600' : ''}
+                      >
+                        Week {record.week}
+                      </Badge>
+                      <span className="font-mono">{record.status}</span>
+                    </div>
+                    {record.status !== 'completed' && (
+                      <Button
+                        onClick={() => forceCompleteWeek(record.id, record.week)}
+                        size="sm"
+                        variant="outline"
+                        className="h-6 px-2 text-xs"
+                      >
+                        <CheckCircle className="h-3 w-3 mr-1" />
+                        Complete
+                      </Button>
+                    )}
                   </div>
                   <p>Location: {record.location}</p>
                   <p>Distance: {record.length} km</p>
