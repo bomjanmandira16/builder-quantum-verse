@@ -179,6 +179,176 @@ export const DEFAULT_IMAGES: StoredImage[] = [
       </svg>
     `),
     uploadedAt: '2025-01-27T17:15:00Z'
+  },
+  // Week 3 - Lalitpur District
+  {
+    id: 'demo-img-6',
+    name: 'lalitpur_district_roads.jpg',
+    type: 'image/jpeg',
+    size: 2341888, // 2.2MB
+    dataUrl: createSvgDataUrl(`
+      <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#16a34a"/>
+        <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
+        <text x="200" y="120" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Week 3 Progress</text>
+        <text x="200" y="140" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Lalitpur District Roads</text>
+        <text x="200" y="170" text-anchor="middle" fill="#374151" font-family="Arial" font-size="14">485 KM MAPPED</text>
+        <text x="200" y="190" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="10">Urban & Rural Combined</text>
+        <text x="200" y="220" text-anchor="middle" fill="#059669" font-family="Arial" font-size="12">Status: Completed</text>
+      </svg>
+    `),
+    uploadedAt: '2025-02-03T14:20:00Z'
+  },
+  {
+    id: 'demo-img-7',
+    name: 'lalitpur_survey_complete.jpg',
+    type: 'image/jpeg',
+    size: 1789312, // 1.7MB
+    dataUrl: createSvgDataUrl(`
+      <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#0891b2"/>
+        <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
+        <text x="200" y="130" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Survey Complete</text>
+        <text x="200" y="160" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Week 3 - All Areas Covered</text>
+        <rect x="80" y="180" width="240" height="6" fill="#0891b2"/>
+        <text x="200" y="210" text-anchor="middle" fill="#374151" font-family="Arial" font-size="10">Total Distance: 485 km</text>
+      </svg>
+    `),
+    uploadedAt: '2025-02-03T16:45:00Z'
+  },
+  // Week 4 - Bhaktapur District
+  {
+    id: 'demo-img-8',
+    name: 'bhaktapur_heritage_roads.jpg',
+    type: 'image/jpeg',
+    size: 2895104, // 2.8MB
+    dataUrl: createSvgDataUrl(`
+      <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#be185d"/>
+        <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
+        <text x="200" y="120" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Week 4 - Bhaktapur</text>
+        <text x="200" y="140" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Heritage & Modern Roads</text>
+        <text x="200" y="170" text-anchor="middle" fill="#374151" font-family="Arial" font-size="14">567 KM COMPLETED</text>
+        <text x="200" y="190" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="10">Cultural Heritage Area</text>
+        <text x="200" y="220" text-anchor="middle" fill="#059669" font-family="Arial" font-size="12">High Quality Mapping</text>
+      </svg>
+    `),
+    uploadedAt: '2025-02-10T16:45:00Z'
+  },
+  {
+    id: 'demo-img-9',
+    name: 'bhaktapur_network_analysis.jpg',
+    type: 'image/jpeg',
+    size: 2156544, // 2.1MB
+    dataUrl: createSvgDataUrl(`
+      <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#7c2d12"/>
+        <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
+        <text x="200" y="130" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Network Analysis</text>
+        <text x="200" y="160" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Road Connectivity Study</text>
+        <circle cx="150" cy="190" r="10" fill="#be185d"/>
+        <circle cx="200" cy="190" r="10" fill="#be185d"/>
+        <circle cx="250" cy="190" r="10" fill="#be185d"/>
+        <text x="200" y="220" text-anchor="middle" fill="#374151" font-family="Arial" font-size="10">Connected Network: 567 km</text>
+      </svg>
+    `),
+    uploadedAt: '2025-02-10T18:20:00Z'
+  },
+  // Week 5 - Chitwan District
+  {
+    id: 'demo-img-10',
+    name: 'chitwan_highways.jpg',
+    type: 'image/jpeg',
+    size: 3245056, // 3.1MB
+    dataUrl: createSvgDataUrl(`
+      <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#059669"/>
+        <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
+        <text x="200" y="110" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Week 5 - Chitwan</text>
+        <text x="200" y="130" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Major Highway Network</text>
+        <text x="200" y="160" text-anchor="middle" fill="#374151" font-family="Arial" font-size="14">892 KM MAPPED</text>
+        <text x="200" y="180" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="10">Largest District Coverage</text>
+        <text x="200" y="200" text-anchor="middle" fill="#374151" font-family="Arial" font-size="10">National Park Areas Included</text>
+        <text x="200" y="230" text-anchor="middle" fill="#059669" font-family="Arial" font-size="12">Excellent Progress!</text>
+      </svg>
+    `),
+    uploadedAt: '2025-02-17T12:30:00Z'
+  },
+  {
+    id: 'demo-img-11',
+    name: 'chitwan_rural_roads.jpg',
+    type: 'image/jpeg',
+    size: 2687488, // 2.6MB
+    dataUrl: createSvgDataUrl(`
+      <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#0369a1"/>
+        <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
+        <text x="200" y="130" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Rural Road Network</text>
+        <text x="200" y="160" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Chitwan Rural Areas</text>
+        <rect x="100" y="175" width="200" height="3" fill="#0369a1"/>
+        <rect x="120" y="185" width="160" height="3" fill="#0369a1"/>
+        <rect x="140" y="195" width="120" height="3" fill="#0369a1"/>
+        <text x="200" y="220" text-anchor="middle" fill="#374151" font-family="Arial" font-size="10">Comprehensive Rural Coverage</text>
+      </svg>
+    `),
+    uploadedAt: '2025-02-17T15:45:00Z'
+  },
+  {
+    id: 'demo-img-12',
+    name: 'chitwan_final_report.jpg',
+    type: 'image/jpeg',
+    size: 2134528, // 2.0MB
+    dataUrl: createSvgDataUrl(`
+      <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#7c3aed"/>
+        <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
+        <text x="200" y="110" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Week 5 Summary</text>
+        <text x="200" y="130" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Chitwan District Complete</text>
+        <text x="200" y="160" text-anchor="middle" fill="#374151" font-family="Arial" font-size="14">892 KM TOTAL</text>
+        <text x="200" y="180" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="10">Running Total: 3,357 km</text>
+        <text x="200" y="200" text-anchor="middle" fill="#374151" font-family="Arial" font-size="10">5 Weeks Completed</text>
+        <text x="200" y="230" text-anchor="middle" fill="#059669" font-family="Arial" font-size="12">Outstanding Achievement!</text>
+      </svg>
+    `),
+    uploadedAt: '2025-02-17T18:00:00Z'
+  },
+  // Week 6 - Pokhara Metropolitan
+  {
+    id: 'demo-img-13',
+    name: 'pokhara_city_roads.jpg',
+    type: 'image/jpeg',
+    size: 2456576, // 2.3MB
+    dataUrl: createSvgDataUrl(`
+      <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#dc2626"/>
+        <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
+        <text x="200" y="120" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">Week 6 - Pokhara</text>
+        <text x="200" y="140" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">Metropolitan Area</text>
+        <text x="200" y="170" text-anchor="middle" fill="#374151" font-family="Arial" font-size="14">634 KM MAPPED</text>
+        <text x="200" y="190" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="10">Tourist & Urban Areas</text>
+        <text x="200" y="220" text-anchor="middle" fill="#059669" font-family="Arial" font-size="12">Latest Completion</text>
+      </svg>
+    `),
+    uploadedAt: '2025-02-24T09:15:00Z'
+  },
+  {
+    id: 'demo-img-14',
+    name: 'pokhara_total_progress.jpg',
+    type: 'image/jpeg',
+    size: 1987584, // 1.9MB
+    dataUrl: createSvgDataUrl(`
+      <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#ea580c"/>
+        <rect x="50" y="50" width="300" height="200" fill="#f3f4f6" rx="10"/>
+        <text x="200" y="110" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16">TOTAL PROGRESS</text>
+        <text x="200" y="130" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="12">6 Weeks Completed</text>
+        <text x="200" y="160" text-anchor="middle" fill="#374151" font-family="Arial" font-size="18">3,991 KM</text>
+        <text x="200" y="180" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="10">Total Distance Mapped</text>
+        <text x="200" y="200" text-anchor="middle" fill="#374151" font-family="Arial" font-size="10">6 Districts Covered</text>
+        <text x="200" y="230" text-anchor="middle" fill="#059669" font-family="Arial" font-size="12">INCREDIBLE ACHIEVEMENT!</text>
+      </svg>
+    `),
+    uploadedAt: '2025-02-24T17:30:00Z'
   }
 ];
 
