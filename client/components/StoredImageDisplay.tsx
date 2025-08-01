@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useToast } from '@/hooks/use-toast';
 import { loadImagesFromStorage, StoredImage, createImagePreviewUrl } from '@/lib/imageStorage';
-import { Image as ImageIcon, Calendar, Trash2 } from 'lucide-react';
+import { Image as ImageIcon, Calendar, Trash2, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface StoredImageDisplayProps {
   imageIds: string[];
