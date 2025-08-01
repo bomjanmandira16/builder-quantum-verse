@@ -66,8 +66,21 @@ export default function DebugMappingData() {
     <Card className="mb-4">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-sm">Debug: Mapping Records</CardTitle>
+          <div>
+            <CardTitle className="text-sm">Debug: Live Mapping Records</CardTitle>
+            <p className="text-xs text-gray-500">
+              Real-time monitoring • Last update: {new Date(lastUpdate).toLocaleTimeString()}
+            </p>
+          </div>
           <div className="flex gap-2">
+            <Button
+              onClick={() => setIsMonitoring(!isMonitoring)}
+              size="sm"
+              variant={isMonitoring ? "default" : "outline"}
+            >
+              <Eye className="h-4 w-4 mr-1" />
+              {isMonitoring ? "Monitoring" : "Paused"}
+            </Button>
             <Button onClick={refreshData} size="sm" variant="outline">
               <RefreshCw className="h-4 w-4 mr-1" />
               Refresh
