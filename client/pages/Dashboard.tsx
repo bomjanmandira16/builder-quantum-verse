@@ -58,9 +58,6 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Demo Data Banner */}
-      <DemoDataBanner />
-
       {/* Shared Data Banner */}
       {isSharedData && (
         <Card className="border-blue-200 bg-blue-50 dark:bg-blue-900/20">
