@@ -120,10 +120,23 @@ export default function DebugMappingData() {
               <p><strong>Total Distance:</strong> {mappingRecords.reduce((sum, r) => sum + r.length, 0).toFixed(1)} km</p>
             </div>
             <div>
-              <p><strong>Current Week:</strong> Week {getCompletedWeeks() + 1}</p>
+              <p><strong>Working on:</strong> Week {getCompletedWeeks() + 1}</p>
               <p><strong>Total Images:</strong> {mappingRecords.reduce((sum, r) => sum + (r.imageIds?.length || 0), 0)}</p>
               <p><strong>Locations:</strong> {new Set(mappingRecords.map(r => r.location)).size}</p>
             </div>
+          </div>
+
+          {/* Current Status */}
+          <div className="mt-3 p-2 bg-green-50 dark:bg-green-900/20 rounded border-l-4 border-green-400">
+            <p className="text-xs font-medium text-green-800 dark:text-green-200">
+              📊 You are currently working on: <strong>Week {getCompletedWeeks() + 1}</strong>
+            </p>
+            <p className="text-xs text-green-600 dark:text-green-300">
+              {mappingRecords.length === 0
+                ? "Start by completing your first week of mapping"
+                : `Last completed: Week ${getCompletedWeeks()} - Add Week ${getCompletedWeeks() + 1} when ready`
+              }
+            </p>
           </div>
 
           {/* Real-time Activity Log */}
