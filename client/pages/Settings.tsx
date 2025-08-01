@@ -64,6 +64,7 @@ export default function Settings() {
       await updateProfile({
         name: `${profileData.firstName} ${profileData.lastName}`.trim(),
         email: profileData.email,
+        organization: profileData.organization,
         role: profileData.role
       });
 
