@@ -35,33 +35,38 @@ measurePageLoad();
 preloadCriticalResources();
 
 const AppRoutes = () => {
-  const { isAuthenticated } = useAuth();
+  try {
+    const { isAuthenticated } = useAuth();
 
-  return (
-    <Routes>
-      {/* Public routes */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/join" element={<Join />} />
+    return (
+      <Routes>
+        {/* Public routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
 
-      {/* Protected routes */}
-      {isAuthenticated ? (
-        <Route path="/*" element={
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/analytics" element={<Analytics />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/team" element={<TeamManagement />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Layout>
-        } />
-      ) : (
-        <Route path="/*" element={<Login />} />
-      )}
-    </Routes>
-  );
+        {/* Protected routes */}
+        {isAuthenticated ? (
+          <Route path="/*" element={
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/reports" element={<Reports />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/team" element={<TeamManagement />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Layout>
+          } />
+        ) : (
+          <Route path="/*" element={<Login />} />
+        )}
+      </Routes>
+    );
+  } catch (error) {
+    console.error('AppRoutes error:', error);
+    return <Login />;
+  }
 };
 
 const App = () => (
