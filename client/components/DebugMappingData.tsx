@@ -126,6 +126,18 @@ export default function DebugMappingData() {
             </div>
           </div>
 
+          {/* Real-time Activity Log */}
+          {activityLog.length > 0 && (
+            <div className="mt-4 p-2 bg-blue-50 dark:bg-blue-900/20 rounded border">
+              <p className="font-semibold text-xs mb-1">Recent Activity:</p>
+              {activityLog.map((entry, index) => (
+                <p key={index} className="text-xs text-blue-700 dark:text-blue-300">
+                  {entry}
+                </p>
+              ))}
+            </div>
+          )}
+
           {mappingRecords.length > 0 ? (
             <div className="space-y-2">
               <p>
