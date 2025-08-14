@@ -32,7 +32,6 @@ import WeeklyBarChart from "@/components/charts/WeeklyBarChart";
 import CompactWeeklyUpload from "@/components/CompactWeeklyUpload";
 import LocationOverview from "@/components/LocationOverview";
 import CompletedWeeksGallery from "@/components/CompletedWeeksGallery";
-import DebugMappingData from "@/components/DebugMappingData";
 
 export default function Dashboard() {
   const { getTotalDistance, getCompletedWeeks, getWeeklyData, mappingRecords, isSharedData, updateMappingRecord, deleteMappingRecord } =
