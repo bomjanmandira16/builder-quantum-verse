@@ -81,8 +81,12 @@ export default function Layout({ children }: LayoutProps) {
             {/* Logo and Brand */}
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">B</span>
+                <div className="w-8 h-8 rounded-full overflow-hidden">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F67d3cd4f4d464a76af4015fa874bdeea%2F77a2f3bcaf664c808fa4155aac774bd2?format=webp&width=800"
+                    alt="BaatoMeter Logo"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h1 className="text-xl font-bold text-gray-900">BaatoMeter</h1>
               </div>
