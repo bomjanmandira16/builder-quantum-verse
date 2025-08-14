@@ -64,11 +64,9 @@ export default function LocationOverview() {
       <CardContent>
         <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 auto-rows-fr">
           {locations.map(([location, distance], index) => (
-            <Button
+            <div
               key={location}
-              variant="outline"
-              className="h-auto p-3 flex flex-col items-center gap-2 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-300 dark:hover:border-blue-600 transition-all"
-              onClick={() => openInBaatoMaps(location, distance)}
+              className="h-auto p-3 flex flex-col items-center gap-2 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition-all"
             >
               <div
                 className={`p-2 rounded-lg ${
@@ -101,8 +99,7 @@ export default function LocationOverview() {
                 )}
               </div>
 
-              <ExternalLink className="h-3 w-3 text-gray-400" />
-            </Button>
+            </div>
           ))}
         </div>
 
