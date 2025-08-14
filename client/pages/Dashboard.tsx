@@ -286,14 +286,6 @@ export default function Dashboard() {
                           </Badge>
                         </div>
                         
-                        {/* Map Placeholder */}
-                        <div className="aspect-square bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg flex items-center justify-center border">
-                          <div className="text-center text-blue-600">
-                            <MapPin className="h-8 w-8 mx-auto mb-2" />
-                            <p className="text-sm font-medium">Map View</p>
-                            <p className="text-xs">Click to expand</p>
-                          </div>
-                        </div>
                         
                         <div className="text-sm text-gray-600">
                           <p><span className="font-medium">Distance:</span> {record.length} km</p>
