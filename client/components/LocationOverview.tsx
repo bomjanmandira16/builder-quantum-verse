@@ -58,7 +58,7 @@ export default function LocationOverview() {
           Mapped Locations ({locations.length})
         </CardTitle>
         <CardDescription>
-          Click location icons to view on Baato Maps
+          Your mapped locations overview
         </CardDescription>
       </CardHeader>
       <CardContent>
