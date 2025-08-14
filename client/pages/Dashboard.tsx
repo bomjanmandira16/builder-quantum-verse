@@ -20,10 +20,12 @@ import {
   TrendingUp,
   Upload,
   Check,
+  Eye,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useData } from "@/contexts/DataContext";
+import { loadImagesFromStorage, getImageById } from "@/lib/imageStorage";
 
 export default function Dashboard() {
   const { getTotalDistance, getCompletedWeeks, getWeeklyData, mappingRecords, isSharedData } =
