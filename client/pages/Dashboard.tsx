@@ -188,8 +188,6 @@ export default function Dashboard() {
         </Card>
       )}
 
-      {/* Debug Information */}
-      <DebugMappingData />
 
       {/* Statistics Cards - Styled to match Figma */}
       <div className="grid md:grid-cols-3 gap-6">
