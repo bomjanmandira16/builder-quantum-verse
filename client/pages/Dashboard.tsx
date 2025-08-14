@@ -74,6 +74,51 @@ export default function Dashboard() {
     color: name.toLowerCase().includes('kathmandu') ? 'blue' : 'purple'
   }));
 
+  const handleEdit = (record: any) => {
+    setEditingRecord(record);
+    setEditForm({
+      location: record.location,
+      length: record.length.toString(),
+      startDate: record.startDate,
+      endDate: record.endDate
+    });
+  };
+
+  const handleSaveEdit = () => {
+    if (!editingRecord) return;
+
+    if (!editForm.location || !editForm.length || !editForm.startDate || !editForm.endDate) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    updateMappingRecord(editingRecord.id, {
+      location: editForm.location,
+      length: parseFloat(editForm.length),
+      startDate: editForm.startDate,
+      endDate: editForm.endDate
+    });
+
+    toast({
+      title: "Record Updated! ✅",
+      description: `Week ${editingRecord.week} has been successfully updated.`,
+    });
+
+    setEditingRecord(null);
+  };
+
+  const handleDelete = (record: any) => {
+    deleteMappingRecord(record.id);
+    toast({
+      title: "Record Deleted",
+      description: `Week ${record.week} has been removed.`,
+    });
+  };
+
   return (
     <div className="space-y-6 bg-gray-50 min-h-screen p-6">
       {/* Shared Data Banner */}
