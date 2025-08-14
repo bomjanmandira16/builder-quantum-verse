@@ -126,14 +126,6 @@ export default function CompletedWeeksGallery() {
                   >
                     Week {week.week}
                   </Badge>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => openInBaatoMaps(week.location)}
-                    className="h-6 px-2"
-                  >
-                    <MapPin className="h-3 w-3" />
-                  </Button>
                 </div>
                 <span className="text-xs text-gray-500">{week.length} km</span>
               </div>
