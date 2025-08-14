@@ -337,9 +337,89 @@ export default function Dashboard() {
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <h3 className="font-medium text-gray-900">{record.location}</h3>
-                          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                            Week {record.week}
-                          </Badge>
+                          <div className="flex items-center gap-2">
+                            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                              Week {record.week}
+                            </Badge>
+                            {!isSharedData && (
+                              <div className="flex gap-1">
+                                <Dialog>
+                                  <DialogTrigger asChild>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="h-6 w-6 p-0"
+                                      onClick={() => handleEdit(record)}
+                                    >
+                                      <Edit2 className="h-3 w-3" />
+                                    </Button>
+                                  </DialogTrigger>
+                                  <DialogContent>
+                                    <DialogHeader>
+                                      <DialogTitle>Edit Week {record.week}</DialogTitle>
+                                      <DialogDescription>
+                                        Update the details for this mapping record.
+                                      </DialogDescription>
+                                    </DialogHeader>
+                                    <div className="grid gap-4 py-4">
+                                      <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="edit-location" className="text-right">Location</Label>
+                                        <Input
+                                          id="edit-location"
+                                          value={editForm.location}
+                                          onChange={(e) => setEditForm(prev => ({ ...prev, location: e.target.value }))}
+                                          className="col-span-3"
+                                        />
+                                      </div>
+                                      <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="edit-length" className="text-right">Length (km)</Label>
+                                        <Input
+                                          id="edit-length"
+                                          type="number"
+                                          step="0.1"
+                                          value={editForm.length}
+                                          onChange={(e) => setEditForm(prev => ({ ...prev, length: e.target.value }))}
+                                          className="col-span-3"
+                                        />
+                                      </div>
+                                      <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="edit-start" className="text-right">Start Date</Label>
+                                        <Input
+                                          id="edit-start"
+                                          type="date"
+                                          value={editForm.startDate}
+                                          onChange={(e) => setEditForm(prev => ({ ...prev, startDate: e.target.value }))}
+                                          className="col-span-3"
+                                        />
+                                      </div>
+                                      <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="edit-end" className="text-right">End Date</Label>
+                                        <Input
+                                          id="edit-end"
+                                          type="date"
+                                          value={editForm.endDate}
+                                          onChange={(e) => setEditForm(prev => ({ ...prev, endDate: e.target.value }))}
+                                          className="col-span-3"
+                                        />
+                                      </div>
+                                    </div>
+                                    <DialogFooter>
+                                      <Button variant="outline" onClick={() => setEditingRecord(null)}>Cancel</Button>
+                                      <Button onClick={handleSaveEdit}>Save Changes</Button>
+                                    </DialogFooter>
+                                  </DialogContent>
+                                </Dialog>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 w-6 p-0 text-red-500 hover:text-red-700"
+                                  onClick={() => handleDelete(record)}
+                                >
+                                  <Trash2 className="h-3 w-3" />
+                                </Button>
+                              </div>
+                            )}
+                          </div>
                         </div>
                         
                         
