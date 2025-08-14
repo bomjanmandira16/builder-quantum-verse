@@ -73,47 +73,36 @@ export default function Layout({ children }: LayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40 transition-colors">
-        <div className="px-4 sm:px-6 lg:px-8">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div className="px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo and Brand */}
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F67d3cd4f4d464a76af4015fa874bdeea%2F60ac84203645468c97574dd2e6beec68?format=webp&width=800"
-                  alt="BaatoMetrics Logo"
-                  className="w-8 h-8 object-contain transition-opacity duration-200"
-                  loading="eager"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                  }}
-                />
-                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">BaatoMetrics</h1>
+                <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">B</span>
+                </div>
+                <h1 className="text-xl font-bold text-gray-900">BaatoMeter</h1>
               </div>
 
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex space-x-1">
-                {navigation.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className={cn(
-                        "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                        isActive(item.href)
-                          ? "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-                      )}
-                    >
-                      <Icon className="h-4 w-4" />
-                      {item.name}
-                    </Link>
-                  );
-                })}
+              <nav className="hidden md:flex space-x-6">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium transition-colors border-b-2 border-transparent",
+                      isActive(item.href)
+                        ? "text-blue-600 border-blue-600 bg-blue-50"
+                        : "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                    )}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
               </nav>
             </div>
 
@@ -121,10 +110,10 @@ export default function Layout({ children }: LayoutProps) {
             <div className="flex items-center gap-4">
               {/* Search */}
               <form onSubmit={handleSearch} className="hidden lg:flex relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-500" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
-                  placeholder="Search for roads, locations, or data..."
-                  className="pl-10 w-80 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                  placeholder="Search"
+                  className="pl-10 w-64 bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -132,20 +121,16 @@ export default function Layout({ children }: LayoutProps) {
 
               {/* Action Buttons */}
               <div className="flex items-center gap-2">
-                <NotificationPopover />
-                <Button variant="ghost" size="sm" className="hidden sm:flex hover:bg-gray-100 dark:hover:bg-gray-700" title="Help">
-                  <HelpCircle className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-                </Button>
                 <ProfilePopover />
 
                 {/* Mobile menu button */}
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="md:hidden hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="md:hidden hover:bg-gray-100"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
-                  <Menu className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                  <Menu className="h-4 w-4 text-gray-600" />
                 </Button>
               </div>
             </div>
@@ -216,7 +201,7 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Main Content */}
       <main className={cn(
-        "px-4 sm:px-6 lg:px-8 py-8 max-w-7xl mx-auto transition-all duration-300",
+        "max-w-full transition-all duration-300",
         isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       )}>
         {children}
