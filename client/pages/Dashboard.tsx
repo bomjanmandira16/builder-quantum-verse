@@ -35,8 +35,17 @@ import CompletedWeeksGallery from "@/components/CompletedWeeksGallery";
 import DebugMappingData from "@/components/DebugMappingData";
 
 export default function Dashboard() {
-  const { getTotalDistance, getCompletedWeeks, getWeeklyData, mappingRecords, isSharedData } =
+  const { getTotalDistance, getCompletedWeeks, getWeeklyData, mappingRecords, isSharedData, updateMappingRecord, deleteMappingRecord } =
     useData();
+  const { toast } = useToast();
+
+  const [editingRecord, setEditingRecord] = useState<any>(null);
+  const [editForm, setEditForm] = useState({
+    location: '',
+    length: '',
+    startDate: '',
+    endDate: ''
+  });
 
   const totalDistance = getTotalDistance();
   const completedWeeks = getCompletedWeeks();
