@@ -25,10 +25,11 @@ export default function LocationOverview() {
   );
 
   // Dynamically adjust location count based on available locations
-  const allLocations = Object.entries(locationStats).sort(([, a], [, b]) => b - a);
+  const allLocations = Object.entries(locationStats).sort(
+    ([, a], [, b]) => b - a,
+  );
   const maxLocationsToShow = allLocations.length <= 3 ? allLocations.length : 6;
   const locations = allLocations.slice(0, maxLocationsToShow);
-
 
   if (locations.length === 0) {
     return (
@@ -57,9 +58,7 @@ export default function LocationOverview() {
           <MapPin className="h-5 w-5 text-purple-600" />
           Mapped Locations ({locations.length})
         </CardTitle>
-        <CardDescription>
-          Your mapped locations overview
-        </CardDescription>
+        <CardDescription>Your mapped locations overview</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 auto-rows-fr">
@@ -98,7 +97,6 @@ export default function LocationOverview() {
                   </Badge>
                 )}
               </div>
-
             </div>
           ))}
         </div>
@@ -106,7 +104,8 @@ export default function LocationOverview() {
         {Object.keys(locationStats).length > maxLocationsToShow && (
           <div className="text-center mt-4">
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              +{Object.keys(locationStats).length - maxLocationsToShow} more locations
+              +{Object.keys(locationStats).length - maxLocationsToShow} more
+              locations
             </p>
           </div>
         )}

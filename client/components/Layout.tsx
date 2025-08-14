@@ -18,7 +18,7 @@ import {
   Github,
   Twitter,
   Mail,
-  Phone
+  Phone,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useData } from "@/contexts/DataContext";
@@ -36,14 +36,29 @@ export default function Layout({ children }: LayoutProps) {
   const { currentUser } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [notifications] = useState([
-    { id: 1, message: "Week 3 data successfully uploaded", time: "2 hours ago", unread: true },
-    { id: 2, message: "Monthly report generated", time: "1 day ago", unread: false },
-    { id: 3, message: "New team member added", time: "3 days ago", unread: false },
+    {
+      id: 1,
+      message: "Week 3 data successfully uploaded",
+      time: "2 hours ago",
+      unread: true,
+    },
+    {
+      id: 2,
+      message: "Monthly report generated",
+      time: "1 day ago",
+      unread: false,
+    },
+    {
+      id: 3,
+      message: "New team member added",
+      time: "3 days ago",
+      unread: false,
+    },
   ]);
 
-  const unreadCount = notifications.filter(n => n.unread).length;
+  const unreadCount = notifications.filter((n) => n.unread).length;
 
   useEffect(() => {
     setIsLoaded(true);
@@ -52,7 +67,7 @@ export default function Layout({ children }: LayoutProps) {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      console.log('Searching for:', searchQuery);
+      console.log("Searching for:", searchQuery);
       // In a real app, you'd implement search functionality here
     }
   };
@@ -101,7 +116,7 @@ export default function Layout({ children }: LayoutProps) {
                       "px-4 py-2 text-sm font-medium transition-colors border-b-2 border-transparent",
                       isActive(item.href)
                         ? "text-blue-600 border-blue-600 bg-blue-50"
-                        : "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                        : "text-gray-700 hover:text-gray-900 hover:bg-gray-100",
                     )}
                   >
                     {item.name}
@@ -156,7 +171,7 @@ export default function Layout({ children }: LayoutProps) {
                       "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                       isActive(item.href)
                         ? "bg-blue-100 text-blue-700"
-                        : "text-gray-700 hover:bg-gray-100"
+                        : "text-gray-700 hover:bg-gray-100",
                     )}
                   >
                     <Icon className="h-4 w-4" />
@@ -164,7 +179,7 @@ export default function Layout({ children }: LayoutProps) {
                   </Link>
                 );
               })}
-              
+
               {/* Mobile Search */}
               <div className="pt-4 pb-2">
                 <form onSubmit={handleSearch} className="relative">
@@ -204,10 +219,12 @@ export default function Layout({ children }: LayoutProps) {
       </header>
 
       {/* Main Content */}
-      <main className={cn(
-        "max-w-full transition-all duration-300",
-        isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      )}>
+      <main
+        className={cn(
+          "max-w-full transition-all duration-300",
+          isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+        )}
+      >
         {children}
       </main>
 
@@ -224,10 +241,13 @@ export default function Layout({ children }: LayoutProps) {
                   alt="BaatoMetrics Logo"
                   className="w-8 h-8 object-contain"
                 />
-                <span className="text-lg font-bold text-gray-900">BaatoMetrics</span>
+                <span className="text-lg font-bold text-gray-900">
+                  BaatoMetrics
+                </span>
               </div>
               <p className="text-sm text-gray-600">
-                Professional road mapping and analytics platform for efficient infrastructure management.
+                Professional road mapping and analytics platform for efficient
+                infrastructure management.
               </p>
               <div className="flex gap-3">
                 <Button variant="ghost" size="sm" className="p-2">
@@ -248,7 +268,9 @@ export default function Layout({ children }: LayoutProps) {
               <div className="space-y-2 text-sm text-gray-600">
                 <div className="flex justify-between">
                   <span>Total Distance:</span>
-                  <span className="font-medium">{getTotalDistance().toFixed(1)} km</span>
+                  <span className="font-medium">
+                    {getTotalDistance().toFixed(1)} km
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Completed Weeks:</span>
@@ -281,11 +303,17 @@ export default function Layout({ children }: LayoutProps) {
             <div className="space-y-4">
               <h4 className="font-semibold text-gray-900">Support</h4>
               <div className="space-y-2 text-sm text-gray-600">
-                <a href="mailto:support@baatometrics.com" className="flex items-center gap-2 hover:text-gray-900">
+                <a
+                  href="mailto:support@baatometrics.com"
+                  className="flex items-center gap-2 hover:text-gray-900"
+                >
                   <Mail className="h-3 w-3" />
                   support@baatometrics.com
                 </a>
-                <a href="tel:+977-1-4444444" className="flex items-center gap-2 hover:text-gray-900">
+                <a
+                  href="tel:+977-1-4444444"
+                  className="flex items-center gap-2 hover:text-gray-900"
+                >
                   <Phone className="h-3 w-3" />
                   +977-1-4444444
                 </a>
@@ -303,10 +331,18 @@ export default function Layout({ children }: LayoutProps) {
               <span>© 2024 BaatoMetrics. All rights reserved.</span>
             </div>
             <div className="flex items-center gap-4 text-sm">
-              <button className="text-gray-600 hover:text-gray-900 transition-colors">Privacy Policy</button>
-              <button className="text-gray-600 hover:text-gray-900 transition-colors">Terms of Service</button>
-              <button className="text-gray-600 hover:text-gray-900 transition-colors">Help Center</button>
-              <button className="text-gray-600 hover:text-gray-900 transition-colors">API Docs</button>
+              <button className="text-gray-600 hover:text-gray-900 transition-colors">
+                Privacy Policy
+              </button>
+              <button className="text-gray-600 hover:text-gray-900 transition-colors">
+                Terms of Service
+              </button>
+              <button className="text-gray-600 hover:text-gray-900 transition-colors">
+                Help Center
+              </button>
+              <button className="text-gray-600 hover:text-gray-900 transition-colors">
+                API Docs
+              </button>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ interface WeeklyBarChartProps {
 }
 
 export default function WeeklyBarChart({ data }: WeeklyBarChartProps) {
-  const maxKm = Math.max(...data.map(d => d.km));
+  const maxKm = Math.max(...data.map((d) => d.km));
   // Set a reasonable target for 100% (either the max value or a round number like 1000)
   const targetKm = Math.max(maxKm, 1000);
 
@@ -22,14 +22,16 @@ export default function WeeklyBarChart({ data }: WeeklyBarChartProps) {
 
         return (
           <div key={item.week} className="flex items-center gap-3 group">
-            <span className="text-sm font-medium w-8 text-gray-600">{item.week}</span>
+            <span className="text-sm font-medium w-8 text-gray-600">
+              {item.week}
+            </span>
             <div className="flex-1 relative">
               <div className="bg-gray-200 rounded-full h-6 relative overflow-hidden">
                 <div
                   className="bg-blue-400 h-full rounded-full transition-all duration-500 ease-out"
                   style={{
                     width: `${barWidth}%`,
-                    animationDelay: `${index * 50}ms`
+                    animationDelay: `${index * 50}ms`,
                   }}
                 />
               </div>

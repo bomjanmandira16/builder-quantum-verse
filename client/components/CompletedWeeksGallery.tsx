@@ -24,7 +24,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useData } from "@/contexts/DataContext";
-import StoredImageDisplay, { useStoredImages } from "@/components/StoredImageDisplay";
+import StoredImageDisplay, {
+  useStoredImages,
+} from "@/components/StoredImageDisplay";
 
 export default function CompletedWeeksGallery() {
   const { mappingRecords } = useData();
@@ -34,7 +36,6 @@ export default function CompletedWeeksGallery() {
   const completedWeeks = mappingRecords
     .filter((record) => record.status === "completed")
     .sort((a, b) => a.week - b.week);
-
 
   const selectedWeekData = selectedWeek
     ? completedWeeks.find((week) => week.week === selectedWeek)
@@ -161,7 +162,8 @@ export default function CompletedWeeksGallery() {
                       />
                       <Badge variant="outline" className="text-xs">
                         <ImageIcon className="h-3 w-3 mr-1" />
-                        {week.imageIds.length} images total - Click any image to view full size
+                        {week.imageIds.length} images total - Click any image to
+                        view full size
                       </Badge>
                     </div>
                   )}
